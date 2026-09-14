@@ -1,8 +1,206 @@
 # how to use text editor in linux
+# paste in linux
+
+Pasting in Linux depends on **where you’re pasting (terminal, Vim, GUI, etc.)**. Here’s a clear guide 👇
+
+---
+
+# 🖥️ 1. Paste in Linux Terminal
+
+Most terminals (like GNOME Terminal) use:
+
+### ✅ Paste shortcut:
+
+* **Ctrl + Shift + V**
+
+### ✅ Copy:
+
+* **Ctrl + Shift + C**
+
+👉 Regular `Ctrl + V` usually **does NOT work** in terminal.
+
+---
+
+# 🖱️ 2. Middle-click paste (very important)
+
+Linux has a second clipboard called **selection clipboard**:
+
+* Select text → it’s automatically copied
+* Click **middle mouse button (scroll wheel)** → paste
+
+👉 Works almost everywhere
+
+---
+
+# 📋 3. Paste in GUI apps (browser, editor, etc.)
+
+Standard shortcuts:
+
+* **Ctrl + V** → paste
+* **Ctrl + C** → copy
+
+---
+
+# 🧠 4. Paste inside Vim
+
+### If using system clipboard:
+
+```vim
+"+p
+```
+
+### If pasting from terminal (to avoid formatting issues):
+
+```vim
+:set paste
+```
+
+Then press:
+
+* `Ctrl + Shift + V`
+
+After pasting:
+
+```vim
+:set nopaste
+```
+
+---
+
+# ⚙️ 5. Paste in TTY (no GUI, like Ctrl+Alt+F3)
+
+Use:
+
+* **Shift + Insert**
+
+---
+
+# 🔑 Quick cheat sheet
+
+| Context         | Paste Shortcut   |
+| --------------- | ---------------- |
+| Terminal        | Ctrl + Shift + V |
+| GUI apps        | Ctrl + V         |
+| Vim (clipboard) | `"+p`            |
+| TTY             | Shift + Insert   |
+| Mouse           | Middle click     |
+
+---
+
+If you want, I can show you how to **sync Vim with system clipboard permanently** so copy/paste just works like normal apps.
+
+
+# shift insert
+**Shift + Insert** is a keyboard shortcut used to **paste text**, especially in Linux terminals and older systems.
+
+---
+
+## 🧠 What it means
+
+* **Shift** → the key you hold down
+* **Insert (Ins)** → a key on your keyboard (usually near Delete, Home, Page Up)
+
+👉 Press them together:
+
+```
+Hold Shift + press Insert
+```
+
+---
+
+## 🖥️ Where it’s used
+
+### 1. Linux terminal / console
+
+In terminals like GNOME Terminal:
+
+* **Shift + Insert = Paste**
+* Works even when `Ctrl + V` doesn’t
+
+---
+
+### 2. TTY (no GUI mode)
+
+When you switch to a pure console (e.g., `Ctrl + Alt + F3`):
+
+* **Shift + Insert is often the main paste shortcut**
+
+---
+
+### 3. Legacy / universal behavior
+
+This shortcut comes from older systems and still works in many programs as a **universal paste fallback**.
+
+---
+
+## 🔑 Why it exists
+
+In terminals:
+
+* `Ctrl + V` is often reserved for special purposes (like inserting control characters)
+* So **Shift + Insert** became the reliable paste method
+
+---
+
+## ⚠️ If your keyboard doesn’t have “Insert”
+
+* Laptops sometimes map it to:
+
+  * `Fn + Enter`
+  * `Fn + Del`
+  * or another key
+
+---
+
+## 🔁 Quick comparison
+
+| Shortcut         | Action                     |
+| ---------------- | -------------------------- |
+| Ctrl + V         | Paste (GUI apps)           |
+| Ctrl + Shift + V | Paste (terminal)           |
+| Shift + Insert   | Paste (universal/terminal) |
+
+---
+
+If you want, I can show you how to remap paste keys or check what your Insert key is on your specific keyboard.
+
+
+# paste into vim's comman mode
+
+To paste copied text into Vim's command mode (after typing :), press Ctrl + R followed by the double-quote key ".
+Here is the quick step-by-step workflow:
+## 1. Copy (Yank) the Text
+
+   1. Press Esc to enter Normal Mode.
+   2. Press v to enter Visual Mode and select your text.
+   3. Press y to yank (copy) it.
+
+## 2. Paste into the Command Line
+
+   1. Type : to open Command Mode.
+   2. Press Ctrl + R.
+   3. Press " (the double-quote key). The text will instantly appear at your cursor.
+
+------------------------------
+## Useful Shortcuts for Other Clipboard Registers
+Depending on where your text is coming from, you can swap out the final key after pressing Ctrl + R:
+
+* Ctrl + R then + (or *): Pastes text directly from your system clipboard (outside of Vim).
+* Ctrl + R then 0: Pastes your last explicitly yanked text (prevents deleted text from overwriting your copy).
+* Ctrl + R then Ctrl + W: Automatically grabs the word currently under your cursor and drops it into the command line.
+
+Are you trying to run a specific Vim command with this text, or do you need help enabling system clipboard integration?
+
+
+
 ## vim
 ### how to copy from vim to linux clipboard
 
 ### how to paste from linux clipboard to vim
+
+
+
+
 
 ### remove YouCompleteMe
 To remove **YouCompleteMe** from your Vim setup, the steps depend on how you installed it (most likely via **vim-plug** or **Vundle**).
