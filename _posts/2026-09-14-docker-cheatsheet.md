@@ -23,7 +23,7 @@ Container
     └── Environment variables
 ```
 
-
+---
 
 ## 1. Basic Docker Concepts
 
@@ -43,7 +43,7 @@ The most important relationship:
 Dockerfile → Image → Container
 ```
 
-
+---
 
 ## 2. Docker Version & Information
 
@@ -70,7 +70,7 @@ docker help
 docker run --help
 ```
 
-
+---
 
 ## 3. Images
 
@@ -147,7 +147,7 @@ docker image inspect ubuntu
 docker history ubuntu
 ```
 
-
+---
 
 ## 4. Run Containers
 
