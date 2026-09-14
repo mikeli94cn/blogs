@@ -1,4 +1,4 @@
-## Docker Cheatsheet
+# Docker Cheatsheet
 
 Docker is a platform for **building, running, and distributing applications as containers**.
 
@@ -25,10 +25,10 @@ Container
 
 
 
-### 1. Basic Docker Concepts
+## 1. Basic Docker Concepts
 
 | Concept            | Meaning                                       |
-|  |  |
+| ---                | ---                                           |
 | **Image**          | Read-only template used to create containers  |
 | **Container**      | Running instance of an image                  |
 | **Dockerfile**     | Instructions for building an image            |
@@ -74,7 +74,7 @@ docker run --help
 
 ## 3. Images
 
-#### List images
+### List images
 
 ```bash
 docker images
@@ -86,7 +86,7 @@ or:
 docker image ls
 ```
 
-#### Pull an image
+### Pull an image
 
 ```bash
 docker pull ubuntu
@@ -117,7 +117,7 @@ ubuntu:latest
 
 
 
-#### Remove image
+### Remove image
 
 ```bash
 docker rmi ubuntu
@@ -135,13 +135,13 @@ Force:
 docker rmi -f ubuntu
 ```
 
-#### Inspect image
+### Inspect image
 
 ```bash
 docker image inspect ubuntu
 ```
 
-#### Image history
+### Image history
 
 ```bash
 docker history ubuntu
@@ -185,43 +185,43 @@ exit
 
 ## 5. Container Lifecycle
 
-#### List running containers
+### List running containers
 
 ```bash
 docker ps
 ```
 
-#### List all containers
+### List all containers
 
 ```bash
 docker ps -a
 ```
 
-#### Start existing container
+### Start existing container
 
 ```bash
 docker start <container>
 ```
 
-#### Stop container
+### Stop container
 
 ```bash
 docker stop <container>
 ```
 
-#### Restart
+### Restart
 
 ```bash
 docker restart <container>
 ```
 
-#### Kill immediately
+### Kill immediately
 
 ```bash
 docker kill <container>
 ```
 
-#### Remove container
+### Remove container
 
 ```bash
 docker rm <container>
@@ -462,19 +462,19 @@ If you delete a container, data stored only inside its writable layer can disapp
 
 Use a volume for persistent data.
 
-#### Create volume
+### Create volume
 
 ```bash
 docker volume create mydata
 ```
 
-#### List volumes
+### List volumes
 
 ```bash
 docker volume ls
 ```
 
-#### Use volume
+### Use volume
 
 ```bash
 docker run \
@@ -658,7 +658,7 @@ Container
 
 ## 19. Important Dockerfile Instructions
 
-#### FROM
+### FROM
 
 Specify base image:
 
@@ -674,7 +674,7 @@ FROM eclipse-temurin:21-jdk
 
 
 
-#### WORKDIR
+### WORKDIR
 
 Set working directory:
 
@@ -690,7 +690,7 @@ cd /app
 
 
 
-#### COPY
+### COPY
 
 Copy files into image:
 
@@ -706,7 +706,7 @@ COPY pom.xml .
 
 
 
-#### RUN
+### RUN
 
 Execute a command **while building the image**:
 
@@ -728,7 +728,7 @@ docker build
 
 
 
-#### CMD
+### CMD
 
 Default command when the container starts:
 
@@ -738,7 +738,7 @@ CMD ["java", "-jar", "app.jar"]
 
 
 
-#### ENTRYPOINT
+### ENTRYPOINT
 
 Defines the executable:
 
@@ -756,7 +756,7 @@ ENTRYPOINT  → main runtime executable
 
 
 
-#### EXPOSE
+### EXPOSE
 
 Documents the port used by the application:
 
@@ -776,7 +776,7 @@ docker run -p 8080:8080 myapp
 
 
 
-#### ENV
+### ENV
 
 Set environment variable:
 
@@ -786,7 +786,7 @@ ENV APP_ENV=production
 
 
 
-#### ARG
+### ARG
 
 Build-time variable:
 
@@ -1242,7 +1242,7 @@ The container disappears automatically when you exit.
 
 Since you're learning **Java + Spring Boot**, a typical workflow is:
 
-#### Dockerfile
+### Dockerfile
 
 ```dockerfile
 FROM eclipse-temurin:21-jre
@@ -1362,7 +1362,7 @@ For learning Docker systematically, I would organize it into **six layers**:
              Docker Compose
 ```
 
-#### Learning order
+### Learning order
 
 **1. Containers**
 
