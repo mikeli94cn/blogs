@@ -1,4 +1,4 @@
-# Docker Cheatsheet
+## Docker Cheatsheet
 
 Docker is a platform for **building, running, and distributing applications as containers**.
 
@@ -23,12 +23,12 @@ Container
     └── Environment variables
 ```
 
----
 
-## 1. Basic Docker Concepts
+
+### 1. Basic Docker Concepts
 
 | Concept            | Meaning                                       |
-| ------------------ | --------------------------------------------- |
+|  |  |
 | **Image**          | Read-only template used to create containers  |
 | **Container**      | Running instance of an image                  |
 | **Dockerfile**     | Instructions for building an image            |
@@ -43,9 +43,9 @@ The most important relationship:
 Dockerfile → Image → Container
 ```
 
----
 
-# 2. Docker Version & Information
+
+## 2. Docker Version & Information
 
 ```bash
 docker --version
@@ -70,11 +70,11 @@ docker help
 docker run --help
 ```
 
----
 
-# 3. Images
 
-### List images
+## 3. Images
+
+#### List images
 
 ```bash
 docker images
@@ -86,7 +86,7 @@ or:
 docker image ls
 ```
 
-### Pull an image
+#### Pull an image
 
 ```bash
 docker pull ubuntu
@@ -115,9 +115,9 @@ Docker normally uses:
 ubuntu:latest
 ```
 
----
 
-### Remove image
+
+#### Remove image
 
 ```bash
 docker rmi ubuntu
@@ -135,21 +135,21 @@ Force:
 docker rmi -f ubuntu
 ```
 
-### Inspect image
+#### Inspect image
 
 ```bash
 docker image inspect ubuntu
 ```
 
-### Image history
+#### Image history
 
 ```bash
 docker history ubuntu
 ```
 
----
 
-# 4. Run Containers
+
+## 4. Run Containers
 
 The most important Docker command:
 
@@ -181,47 +181,47 @@ Exit:
 exit
 ```
 
----
 
-# 5. Container Lifecycle
 
-### List running containers
+## 5. Container Lifecycle
+
+#### List running containers
 
 ```bash
 docker ps
 ```
 
-### List all containers
+#### List all containers
 
 ```bash
 docker ps -a
 ```
 
-### Start existing container
+#### Start existing container
 
 ```bash
 docker start <container>
 ```
 
-### Stop container
+#### Stop container
 
 ```bash
 docker stop <container>
 ```
 
-### Restart
+#### Restart
 
 ```bash
 docker restart <container>
 ```
 
-### Kill immediately
+#### Kill immediately
 
 ```bash
 docker kill <container>
 ```
 
-### Remove container
+#### Remove container
 
 ```bash
 docker rm <container>
@@ -233,9 +233,9 @@ Force removal:
 docker rm -f <container>
 ```
 
----
 
-# 6. Give a Container a Name
+
+## 6. Give a Container a Name
 
 Instead of Docker generating a random name:
 
@@ -259,9 +259,9 @@ myubuntu
 
 instead of the container ID.
 
----
 
-# 7. Run in Background
+
+## 7. Run in Background
 
 Use `-d`:
 
@@ -287,9 +287,9 @@ Stop it:
 docker stop <container>
 ```
 
----
 
-# 8. Execute Commands Inside a Running Container
+
+## 8. Execute Commands Inside a Running Container
 
 This is extremely useful.
 
@@ -327,9 +327,9 @@ Container
  └── shell
 ```
 
----
 
-# 9. Container Logs
+
+## 9. Container Logs
 
 View logs:
 
@@ -361,9 +361,9 @@ Very common:
 docker logs -f myapp
 ```
 
----
 
-# 10. Port Mapping
+
+## 10. Port Mapping
 
 Suppose the application inside the container listens on:
 
@@ -420,9 +420,9 @@ localhost:9000
 container:8080
 ```
 
----
 
-# 11. Environment Variables
+
+## 11. Environment Variables
 
 ```bash
 docker run \
@@ -452,9 +452,9 @@ DB_USER=admin
 DB_PASSWORD=secret
 ```
 
----
 
-# 12. Volumes
+
+## 12. Volumes
 
 Containers are generally considered **ephemeral**.
 
@@ -462,19 +462,19 @@ If you delete a container, data stored only inside its writable layer can disapp
 
 Use a volume for persistent data.
 
-### Create volume
+#### Create volume
 
 ```bash
 docker volume create mydata
 ```
 
-### List volumes
+#### List volumes
 
 ```bash
 docker volume ls
 ```
 
-### Use volume
+#### Use volume
 
 ```bash
 docker run \
@@ -507,9 +507,9 @@ Container
 /data
 ```
 
----
 
-# 13. Bind Mount
+
+## 13. Bind Mount
 
 You can mount a host directory:
 
@@ -539,9 +539,9 @@ docker run \
 
 For development, bind mounts are very useful.
 
----
 
-# 14. Inspect Containers
+
+## 14. Inspect Containers
 
 ```bash
 docker inspect <container>
@@ -561,9 +561,9 @@ Example:
 docker inspect myapp
 ```
 
----
 
-# 15. Container Resource Usage
+
+## 15. Container Resource Usage
 
 ```bash
 docker stats
@@ -584,9 +584,9 @@ Specific container:
 docker stats myapp
 ```
 
----
 
-# 16. Copy Files
+
+## 16. Copy Files
 
 Host → container:
 
@@ -600,17 +600,17 @@ Container → host:
 docker cp myapp:/tmp/file.txt .
 ```
 
----
 
-# 17. Rename Container
+
+## 17. Rename Container
 
 ```bash
 docker rename old-name new-name
 ```
 
----
 
-# 18. Dockerfile
+
+## 18. Dockerfile
 
 A Dockerfile describes how to build an image.
 
@@ -654,11 +654,11 @@ myjavaapp:latest
 Container
 ```
 
----
 
-# 19. Important Dockerfile Instructions
 
-### FROM
+## 19. Important Dockerfile Instructions
+
+#### FROM
 
 Specify base image:
 
@@ -672,9 +672,9 @@ or:
 FROM eclipse-temurin:21-jdk
 ```
 
----
 
-### WORKDIR
+
+#### WORKDIR
 
 Set working directory:
 
@@ -688,9 +688,9 @@ Equivalent conceptually to:
 cd /app
 ```
 
----
 
-### COPY
+
+#### COPY
 
 Copy files into image:
 
@@ -704,9 +704,9 @@ Or:
 COPY pom.xml .
 ```
 
----
 
-### RUN
+
+#### RUN
 
 Execute a command **while building the image**:
 
@@ -726,9 +726,9 @@ happens during:
 docker build
 ```
 
----
 
-### CMD
+
+#### CMD
 
 Default command when the container starts:
 
@@ -736,9 +736,9 @@ Default command when the container starts:
 CMD ["java", "-jar", "app.jar"]
 ```
 
----
 
-### ENTRYPOINT
+
+#### ENTRYPOINT
 
 Defines the executable:
 
@@ -754,9 +754,9 @@ CMD         → default runtime command
 ENTRYPOINT  → main runtime executable
 ```
 
----
 
-### EXPOSE
+
+#### EXPOSE
 
 Documents the port used by the application:
 
@@ -774,9 +774,9 @@ You still need:
 docker run -p 8080:8080 myapp
 ```
 
----
 
-### ENV
+
+#### ENV
 
 Set environment variable:
 
@@ -784,9 +784,9 @@ Set environment variable:
 ENV APP_ENV=production
 ```
 
----
 
-### ARG
+
+#### ARG
 
 Build-time variable:
 
@@ -800,9 +800,9 @@ Build:
 docker build --build-arg VERSION=2.0 -t myapp .
 ```
 
----
 
-# 20. Build an Image
+
+## 20. Build an Image
 
 Basic:
 
@@ -828,9 +828,9 @@ List:
 docker images
 ```
 
----
 
-# 21. Docker Registry
+
+## 21. Docker Registry
 
 Login:
 
@@ -856,9 +856,9 @@ Pull:
 docker pull username/myapp:1.0
 ```
 
----
 
-# 22. Docker Networks
+
+## 22. Docker Networks
 
 List networks:
 
@@ -904,9 +904,9 @@ db
 
 The important point is that `db` can be used as a hostname.
 
----
 
-# 23. Connect an Existing Container to a Network
+
+## 23. Connect an Existing Container to a Network
 
 ```bash
 docker network connect mynetwork myapp
@@ -924,9 +924,9 @@ Inspect:
 docker network inspect mynetwork
 ```
 
----
 
-# 24. Docker Compose
+
+## 24. Docker Compose
 
 Docker Compose is extremely useful for applications consisting of multiple services.
 
@@ -1008,9 +1008,9 @@ Execute command:
 docker compose exec app /bin/bash
 ```
 
----
 
-# 25. Docker Compose Mental Model
+
+## 25. Docker Compose Mental Model
 
 Without Compose:
 
@@ -1038,9 +1038,9 @@ docker compose up
 
 This is one of the most important things to learn after basic Docker.
 
----
 
-# 26. Cleanup Commands
+
+## 26. Cleanup Commands
 
 Remove stopped containers:
 
@@ -1086,9 +1086,9 @@ docker system prune -a
 
 because it can remove unused images and other Docker resources.
 
----
 
-# 27. Useful Filtering
+
+## 27. Useful Filtering
 
 List containers:
 
@@ -1108,9 +1108,9 @@ Images:
 docker images --filter "reference=ubuntu"
 ```
 
----
 
-# 28. Container Naming & IDs
+
+## 28. Container Naming & IDs
 
 You can use either:
 
@@ -1132,17 +1132,17 @@ docker stop a1b2
 
 as long as the prefix uniquely identifies the container.
 
----
 
-# 29. Common Docker Commands — Quick Reference
+
+## 29. Common Docker Commands — Quick Reference
 
 ```bash
-# Information
+## Information
 docker --version
 docker version
 docker info
 
-# Images
+## Images
 docker images
 docker pull IMAGE
 docker build -t NAME .
@@ -1150,7 +1150,7 @@ docker rmi IMAGE
 docker image inspect IMAGE
 docker history IMAGE
 
-# Containers
+## Containers
 docker run IMAGE
 docker run -it IMAGE /bin/bash
 docker run -d IMAGE
@@ -1162,40 +1162,40 @@ docker stop CONTAINER
 docker restart CONTAINER
 docker rm CONTAINER
 
-# Execute / logs
+## Execute / logs
 docker exec -it CONTAINER /bin/bash
 docker logs CONTAINER
 docker logs -f CONTAINER
 docker inspect CONTAINER
 docker stats
 
-# Ports
+## Ports
 docker run -p 8080:8080 IMAGE
 
-# Environment
+## Environment
 docker run -e KEY=value IMAGE
 docker run --env-file .env IMAGE
 
-# Volumes
+## Volumes
 docker volume ls
 docker volume create NAME
 docker run -v NAME:/data IMAGE
 
-# Networks
+## Networks
 docker network ls
 docker network create NAME
 docker network inspect NAME
 
-# Copy
+## Copy
 docker cp FILE CONTAINER:/path
 docker cp CONTAINER:/path FILE
 
-# Registry
+## Registry
 docker login
 docker push IMAGE
 docker pull IMAGE
 
-# Compose
+## Compose
 docker compose up
 docker compose up -d
 docker compose down
@@ -1203,21 +1203,21 @@ docker compose ps
 docker compose logs
 docker compose exec SERVICE COMMAND
 
-# Cleanup
+## Cleanup
 docker container prune
 docker image prune
 docker volume prune
 docker system prune
 ```
 
----
 
-# 30. The Most Important Options
+
+## 30. The Most Important Options
 
 You will see these options constantly:
 
 | Option      | Meaning                                   | Example                    |
-| ----------- | ----------------------------------------- | -------------------------- |
+| -- | -- | -- |
 | `-d`        | Detached/background                       | `docker run -d nginx`      |
 | `-it`       | Interactive terminal                      | `docker run -it ubuntu`    |
 | `--name`    | Container name                            | `--name app`               |
@@ -1236,13 +1236,13 @@ docker run --rm -it ubuntu
 
 The container disappears automatically when you exit.
 
----
 
-# 31. A Real Java Backend Example
+
+## 31. A Real Java Backend Example
 
 Since you're learning **Java + Spring Boot**, a typical workflow is:
 
-### Dockerfile
+#### Dockerfile
 
 ```dockerfile
 FROM eclipse-temurin:21-jre
@@ -1299,9 +1299,9 @@ For a real backend, you might have:
 
 This is where Docker becomes especially valuable for backend development.
 
----
 
-# 32. Docker vs VM
+
+## 32. Docker vs VM
 
 A very important concept:
 
@@ -1338,9 +1338,9 @@ Hardware
 
 The key idea is that **containers share the host kernel**, whereas traditional VMs contain a complete guest operating system.
 
----
 
-# 33. Docker's Big Picture
+
+## 33. Docker's Big Picture
 
 For learning Docker systematically, I would organize it into **six layers**:
 
@@ -1362,7 +1362,7 @@ For learning Docker systematically, I would organize it into **six layers**:
              Docker Compose
 ```
 
-### Learning order
+#### Learning order
 
 **1. Containers**
 
