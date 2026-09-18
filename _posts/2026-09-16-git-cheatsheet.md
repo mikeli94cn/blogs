@@ -5,7 +5,7 @@ A practical Git command reference for your daily development workflow with Java,
 Git is a distributed version control system. It tracks changes in your project, lets you create branches, and helps you collaborate with other developers.
 
 ## 1. Git's basic workflow
-
+```
 Working Directory
 
 Edit, create, and delete files
@@ -27,12 +27,12 @@ git push / git pull
 Remote Repository
 
 GitHub, GitLab, or another Git server
-
+```
 The most important commands to remember:
 
-Bash
 
-```
+
+```Bash
 git status
 git add .
 git commit -m "Describe changes"
@@ -44,18 +44,18 @@ git pull
 
 Configure your identity (usually once per machine):
 
-Bash
 
-```
+
+```Bash
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
 ```
 
 Check configuration:
 
-Bash
 
-```
+
+```Bash
 git config --list
 git config --global --get user.name
 git config --global --get user.email
@@ -63,9 +63,9 @@ git config --global --get user.email
 
 Useful configuration:
 
-Bash
 
-```
+
+```Bash
 # Default branch name for new repositories
 git config --global init.defaultBranch main
 
@@ -75,66 +75,19 @@ git config --global color.ui auto
 
 ## 3. Create or download a repository
 
-|
-Command
-
-|
-
-Purpose
-
-|
+|Command|Purpose|
 | --- | --- |
-|
-
-`git init`
-
-|
-
-Initialize Git in current directory
-
-|
-|
-
-`git clone URL`
-
-|
-
-Download a repository and its history
-
-|
-|
-
-`git clone URL my-project`
-
-|
-
-Clone into a named directory
-
-|
-|
-
-`git status`
-
-|
-
-Check current changes and branch
-
-|
-|
-
-`git rev-parse --show-toplevel`
-
-|
-
-Show repository root
-
-|
+|`git init`|Initialize Git in current directory|
+|`git clone URL`|Download a repository and its history|
+|`git clone URL my-project`|Clone into a named directory|
+|`git status`|Check current changes and branch|
+|`git rev-parse --show-toplevel`|Show repository root|
 
 Example:
 
-Bash
 
-```
+
+```Bash
 mkdir my-web-project
 cd my-web-project
 
@@ -143,15 +96,15 @@ git init
 
 Or clone an existing project:
 
-Bash
 
-```
+
+```Bash
 git clone https://github.com/user/project.git
 cd project
 ```
 
 ## 4. Everyday commands
-
+```
 git status
 
 See modified, staged, and untracked files.
@@ -179,12 +132,12 @@ Save staged changes in a commit.
 git log --oneline --graph --all
 
 View a compact history graph.
-
+```
 ### Example: your first commit
 
-Bash
 
-```
+
+```Bash
 git status
 git add index.html style.css app.js
 git diff --staged
@@ -198,84 +151,21 @@ Remember: `git add` stages a snapshot of the file's current contents. If you edi
 
 Branches let you develop features or fix bugs separately from your main code.
 
-|
-Command
-
-|
-
-Purpose
-
-|
+|Command|Purpose|
 | --- | --- |
-|
-
-`git branch`
-
-|
-
-List local branches
-
-|
-|
-
-`git branch -a`
-
-|
-
-List local and remote-tracking branches
-
-|
-|
-
-`git branch feature/login`
-
-|
-
-Create a branch
-
-|
-|
-
-`git switch feature/login`
-
-|
-
-Switch branches
-
-|
-|
-
-`git switch -c feature/login`
-
-|
-
-Create and switch
-
-|
-|
-
-`git branch -d feature/login`
-
-|
-
-Delete a merged branch
-
-|
-|
-
-`git branch -D feature/login`
-
-|
-
-Force-delete a branch
-
-|
+|`git branch`|List local branches|
+|`git branch -a`|List local and remote-tracking branches|
+|`git branch feature/login`|Create a branch|
+|`git switch feature/login`|Switch branches|
+|`git switch -c feature/login`|Create and switch|
+|`git branch -d feature/login`|Delete a merged branch|
+|`git branch -D feature/login`|Force-delete a branch|
 
 ### Typical feature workflow
 
-Bash
 
-```
+
+```Bash
 # Start from main
 git switch main
 git pull
@@ -297,78 +187,15 @@ After review, merge the feature into `main` through your team's chosen workflow 
 
 A remote is a named reference to another repository, often hosted on GitHub or GitLab.
 
-|
-Command
-
-|
-
-Purpose
-
-|
+|Command|Purpose|
 | --- | --- |
-|
-
-`git remote -v`
-
-|
-
-List remote URLs
-
-|
-|
-
-`git remote add origin URL`
-
-|
-
-Add a remote
-
-|
-|
-
-`git remote set-url origin URL`
-
-|
-
-Change remote URL
-
-|
-|
-
-`git fetch`
-
-|
-
-Download remote updates without integrating
-
-|
-|
-
-`git pull`
-
-|
-
-Fetch and integrate updates
-
-|
-|
-
-`git push`
-
-|
-
-Upload commits
-
-|
-|
-
-`git push -u origin main`
-
-|
-
-Push and set upstream
-
-|
+|`git remote -v`|List remote URLs|
+|`git remote add origin URL`|Add a remote|
+|`git remote set-url origin URL`|Change remote URL|
+|`git fetch`|Download remote updates without integrating|
+|`git pull`|Fetch and integrate updates|
+|`git push`|Upload commits|
+|`git push -u origin main`|Push and set upstream|
 
 ### Fetch vs. pull
 
@@ -380,94 +207,31 @@ Push and set upstream
 
 This is one of the most important Git topics. Different commands affect different areas.
 
-|
-Command
-
-|
-
-Effect
-
-|
+|Command|Effect|
 | --- | --- |
-|
-
-`git restore file.js`
-
-|
-
-Discard unstaged changes to a tracked file
-
-|
-|
-
-`git restore --staged file.js`
-
-|
-
-Unstage a file, keeping its working changes
-
-|
-|
-
-`git commit --amend`
-
-|
-
-Replace the latest commit
-
-|
-|
-
-`git revert <commit>`
-
-|
-
-Create a new commit that reverses another commit
-
-|
-|
-
-`git reset --soft HEAD~1`
-
-|
-
-Undo last commit, keep changes staged
-
-|
-|
-
-`git reset --mixed HEAD~1`
-
-|
-
-Undo last commit, keep changes unstaged
-
-|
-|
-
-`git reset --hard HEAD~1`
-
-|
-
-Reset commit and tracked working files; destructive
-
-|
+|`git restore file.js`|Discard unstaged changes to a tracked file|
+|`git restore --staged file.js`|Unstage a file, keeping its working changes|
+|`git commit --amend`|Replace the latest commit|
+|`git revert <commit>`|Create a new commit that reverses another commit|
+|`git reset --soft HEAD~1`|Undo last commit, keep changes staged|
+|`git reset --mixed HEAD~1`|Undo last commit, keep changes unstaged|
+|`git reset --hard HEAD~1`|Reset commit and tracked working files; destructive|
 
 Be careful: `git restore` and `git reset --hard` can discard work. Check `git status` and make a backup before using destructive commands.
 
 ### Undo the last commit but keep your work
 
-Bash
 
-```
+
+```Bash
 git reset --soft HEAD~1
 ```
 
 ### Undo a commit that has already been shared
 
-Bash
 
-```
+
+```Bash
 git revert <commit-hash>
 git push
 ```
@@ -476,75 +240,28 @@ For shared history, `revert` is generally safer than rewriting commits that othe
 
 ## 8. Merge and rebase
 
-|
-Command
-
-|
-
-Purpose
-
-|
+|Command|Purpose|
 | --- | --- |
-|
-
-`git merge feature/login`
-
-|
-
-Merge a branch into current branch
-
-|
-|
-
-`git merge --abort`
-
-|
-
-Abort an in-progress merge
-
-|
-|
-
-`git rebase main`
-
-|
-
-Replay current branch commits on top of `main`
-
-|
-|
-
-`git rebase --continue`
-
-|
-
-Continue after resolving conflicts
-
-|
-|
-
-`git rebase --abort`
-
-|
-
-Abort a rebase
-
-|
+|`git merge feature/login`|Merge a branch into current branch|
+|`git merge --abort`|Abort an in-progress merge|
+|`git rebase main`|Replay current branch commits on top of `main`|
+|`git rebase --continue`|Continue after resolving conflicts|
+|`git rebase --abort`|Abort a rebase|
 
 ### Merge workflow
 
-Bash
 
-```
+
+```Bash
 git switch main
 git merge feature/login
 ```
 
 ### Rebase workflow
 
-Bash
 
-```
+
+```Bash
 git switch feature/login
 git fetch origin
 git rebase origin/main
@@ -578,25 +295,25 @@ How to resolve:
 
 5. Finish the merge or rebase.
 
-Bash
 
-```
+
+```Bash
 git add style.js
 ```
 
 For a merge:
 
-Bash
 
-```
+
+```Bash
 git merge --continue
 ```
 
 For a rebase:
 
-Bash
 
-```
+
+```Bash
 git rebase --continue
 ```
 
@@ -604,78 +321,15 @@ VS Code provides buttons such as Accept Current, Accept Incoming, and Accept Bot
 
 ## 10. Git log and history
 
-|
-Command
-
-|
-
-Purpose
-
-|
+|Command|Purpose|
 | --- | --- |
-|
-
-`git log`
-
-|
-
-Full commit history
-
-|
-|
-
-`git log --oneline`
-
-|
-
-Compact history
-
-|
-|
-
-`git log --graph --all --oneline`
-
-|
-
-Branch graph
-
-|
-|
-
-`git show <commit>`
-
-|
-
-Inspect a commit
-
-|
-|
-
-`git show --stat <commit>`
-
-|
-
-Show files changed
-
-|
-|
-
-`git diff main..feature/login`
-
-|
-
-Compare branches
-
-|
-|
-
-`git blame app.ts`
-
-|
-
-Show who last changed each line
-
-|
+|`git log`|Full commit history|
+|`git log --oneline`|Compact history|
+|`git log --graph --all --oneline`|Branch graph|
+|`git show <commit>`|Inspect a commit|
+|`git show --stat <commit>`|Show files changed|
+|`git diff main..feature/login`|Compare branches|
+|`git blame app.ts`|Show who last changed each line|
 
 Useful for tracking down when a bug or change was introduced.
 
@@ -683,9 +337,9 @@ Useful for tracking down when a bug or change was introduced.
 
 Use stash when you need to switch branches but aren't ready to commit your current changes.
 
-Bash
 
-```
+
+```Bash
 # Save tracked and staged changes
 git stash
 
@@ -743,18 +397,18 @@ Important: `.gitignore` does not automatically untrack files already committed.
 
 To stop tracking a file while keeping it on your computer:
 
-Bash
 
-```
+
+```Bash
 git rm --cached .env
 git commit -m "Stop tracking environment file"
 ```
 
 To remove a tracked directory from the index:
 
-Bash
 
-```
+
+```Bash
 git rm -r --cached node_modules/
 ```
 
@@ -762,9 +416,9 @@ git rm -r --cached node_modules/
 
 Tags identify specific commits, often used for releases.
 
-Bash
 
-```
+
+```Bash
 # List tags
 git tag
 
@@ -789,9 +443,9 @@ Problem: `git pull` refuses because of local changes
 
 Inspect and save your work first:
 
-Bash
 
-```
+
+```Bash
 git status
 git diff
 git stash -u
@@ -807,17 +461,17 @@ Git generally does not delete untracked files just because they are absent from 
 
 Check:
 
-Bash
 
-```
+
+```Bash
 git status --short
 ```
 
 If the file is genuinely unnecessary, delete it manually. For a preview of untracked and ignored files that a clean could remove:
 
-Bash
 
-```
+
+```Bash
 git clean -nd
 git clean -ndX
 ```
@@ -828,9 +482,9 @@ Problem: I committed to the wrong branch
 
 If the commit is local and you have not pushed it, you can create a branch at that commit:
 
-Bash
 
-```
+
+```Bash
 git branch feature/my-work
 ```
 
@@ -838,16 +492,16 @@ Then switch to that branch. If you need to remove the commit from the original b
 
 Problem: I accidentally staged a file
 
-Bash
 
-```
+
+```Bash
 git restore --staged file.js
 ```
 
 This removes it from the staging area without discarding its working changes.
 
 ## 15. Git command quick reference
-
+```
 Setup & repositories
 
 git init
@@ -941,14 +595,14 @@ Reverse commit
 git stash -u
 
 Stash incl. untracked files
-
+```
 ## 16. A daily Git workflow for your projects
 
 For your HTML/CSS/JS/TS projects, a common feature-branch workflow looks like this:
 
-Bash
 
-```
+
+```Bash
 # 1. Start from an updated main branch
 git switch main
 git pull
@@ -975,7 +629,7 @@ git pull
 ```
 
 ## 17. Test your Git knowledge
-
+```
 Question 1 / 5
 
 0 answered
@@ -991,5 +645,5 @@ Creates a commit
 Previous
 
 Next
-
+```
 My advice: For now, become comfortable with `status`, `add`, `commit`, `switch`, `pull`, `push`, `diff`, and `log`. Then practice branches, merge conflicts, and undo operations in a test repository before using destructive commands on important projects.
