@@ -7,25 +7,21 @@ Git is a distributed version control system. It tracks changes in your project, 
 ## 1. Git's basic workflow
 ```
 Working Directory
-
+    |
 Edit, create, and delete files
-
 git add
-
+    |
 Staging Area (Index)
-
+    |
 Choose changes for the next commit
-
 git commit
-
+    |
 Local Repository
-
+    |
 Saved snapshots of your project history
-
 git push / git pull
-
+    |
 Remote Repository
-
 GitHub, GitLab, or another Git server
 ```
 The most important commands to remember:
@@ -106,31 +102,24 @@ cd project
 ## 4. Everyday commands
 ```
 git status
-
 See modified, staged, and untracked files.
 
 git add index.html
-
 Stage one specific file.
 
 git add .
-
 Stage changes under the current directory.
 
 git diff
-
 Inspect unstaged changes.
 
 git diff --staged
-
 Inspect staged changes.
 
 git commit -m "Add login page"
-
 Save staged changes in a commit.
 
 git log --oneline --graph --all
-
 View a compact history graph.
 ```
 ### Example: your first commit
