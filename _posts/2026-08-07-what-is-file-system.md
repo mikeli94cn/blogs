@@ -48,6 +48,8 @@ The file system records:
 
 Without a file system, the computer would not know where files are stored or how to find them efficiently.
 
+---
+
 # History of File Systems
 
 The history of file systems is closely connected to the history of **computers, storage devices, and operating systems**. File systems evolved because computers changed from simple machines that processed data sequentially into complex systems that store billions of files for many users and applications.
@@ -56,9 +58,9 @@ The main evolution can be understood as:
 
 **No file system → Simple sequential storage → Hierarchical file systems → Database-like modern file systems → Distributed and cloud file systems**
 
----
 
-# 1. Before File Systems (1940s–1950s): No Real File System
+
+## 1. Before File Systems (1940s–1950s): No Real File System
 
 The earliest computers did not have file systems.
 
@@ -105,7 +107,7 @@ This created the idea of the **file system**.
 
 ---
 
-# 2. Early File Systems (1950s–1960s): Sequential Files
+## 2. Early File Systems (1950s–1960s): Sequential Files
 
 The first file systems appeared in early mainframe operating systems.
 
@@ -153,7 +155,7 @@ This introduced:
 
 ---
 
-# 3. Disk File Systems (1960s–1970s)
+## 3. Disk File Systems (1960s–1970s)
 
 The invention of reliable hard disks changed everything.
 
@@ -167,7 +169,7 @@ File systems became more sophisticated.
 
 Important ideas appeared:
 
-## 3.1 File Allocation
+### 3.1 File Allocation
 
 The system needed to answer:
 
@@ -192,7 +194,7 @@ File A → 10,11,12,50
 
 ---
 
-## 3.2 Directory Structure
+### 3.2 Directory Structure
 
 Early systems often had one directory:
 
@@ -220,7 +222,7 @@ This idea became the foundation of modern file systems.
 
 ---
 
-# 4. UNIX File System (1969–1970s): A Major Turning Point
+## 4. UNIX File System (1969–1970s): A Major Turning Point
 
 The UNIX operating system introduced a very influential file system design.
 
@@ -232,7 +234,7 @@ UNIX introduced several concepts that still exist today.
 
 ---
 
-## 4.1 Everything is a File
+### 4.1 Everything is a File
 
 UNIX treated many things as files:
 
@@ -271,7 +273,7 @@ for many different resources.
 
 ---
 
-## 4.2 Inode
+### 4.2 Inode
 
 UNIX introduced the idea of an **inode**.
 
@@ -317,7 +319,7 @@ This became one of the most important file system ideas.
 
 ---
 
-# 5. FAT File System (1977–1980s)
+## 5. FAT File System (1977–1980s)
 
 Personal computers created a new requirement:
 
@@ -380,9 +382,9 @@ Disadvantages:
 
 ---
 
-# 6. Windows File Systems (1980s–Today)
+## 6. Windows File Systems (1980s–Today)
 
-## 6.1 FAT32
+### 6.1 FAT32
 
 Introduced in 1996.
 
@@ -398,7 +400,7 @@ Problems:
 
 ---
 
-## 6.2 NTFS (1993–Today)
+### 6.2 NTFS (1993–Today)
 
 Windows introduced:
 
@@ -408,7 +410,7 @@ NTFS was designed for professional operating systems.
 
 It added:
 
-### Journaling
+#### Journaling
 
 Before changing data:
 
@@ -430,7 +432,7 @@ The system can recover.
 
 ---
 
-### Permissions
+#### Permissions
 
 Example:
 
@@ -444,7 +446,7 @@ Bob:
 
 ---
 
-### Metadata
+#### Metadata
 
 NTFS stores rich information:
 
@@ -461,7 +463,7 @@ File
 
 ---
 
-# 7. Linux File Systems (1990s–Today)
+## 7. Linux File Systems (1990s–Today)
 
 Linux inherited UNIX ideas.
 
@@ -500,14 +502,14 @@ Features:
 
 Other Linux file systems include:
 
-## XFS
+### XFS
 
 Designed for:
 
 * Large servers
 * Huge files
 
-## Btrfs
+### Btrfs
 
 Designed for:
 
@@ -517,11 +519,11 @@ Designed for:
 
 ---
 
-# 8. Modern Storage Era (2000s–Today)
+## 8. Modern Storage Era (2000s–Today)
 
 Storage changed dramatically:
 
-## From:
+### From:
 
 ```
 Hard disks
@@ -529,7 +531,7 @@ Hard disks
 Mechanical movement
 ```
 
-## To:
+### To:
 
 ```
 SSD
@@ -543,7 +545,7 @@ SSDs required new techniques.
 
 ---
 
-# 9. Apple File Systems
+## 9. Apple File Systems
 
 Apple created:
 
@@ -559,7 +561,7 @@ Designed for:
 
 Features:
 
-## Copy-on-write
+### Copy-on-write
 
 Instead of:
 
@@ -583,7 +585,7 @@ Benefits:
 
 ---
 
-# 10. Distributed File Systems (1990s–Today)
+## 10. Distributed File Systems (1990s–Today)
 
 The internet created a new problem:
 
@@ -627,7 +629,7 @@ Used in:
 
 ---
 
-# 11. Cloud File Systems (2010s–Today)
+## 11. Cloud File Systems (2010s–Today)
 
 Modern applications often hide physical storage completely.
 
@@ -659,7 +661,7 @@ Thousands of disks
 
 ---
 
-# Evolution Summary
+## Evolution Summary
 
 | Era   | Main Idea                  | Examples           |
 | ----- | -------------------------- | ------------------ |
@@ -675,7 +677,7 @@ Thousands of disks
 
 ---
 
-# The Big Idea Behind File System Evolution
+## The Big Idea Behind File System Evolution
 
 The history of file systems is the history of solving increasingly difficult questions:
 
@@ -706,6 +708,8 @@ The history of file systems is the history of solving increasingly difficult que
 So the fundamental evolution is:
 
 **A file system started as a simple map from names to disk blocks, and evolved into a complex data management system that provides organization, security, reliability, and scalability.**
+
+---
 
 # The Underlying Principle of File Systems
 
