@@ -743,7 +743,7 @@ The file system bridges this gap.
 
 ---
 
-# 1. The Core Problem: Storage Is Just Raw Blocks
+## 1. The Core Problem: Storage Is Just Raw Blocks
 
 At the hardware level, a disk is extremely simple.
 
@@ -781,7 +781,7 @@ It only knows:
 
 ---
 
-# 2. File System Creates a Human Abstraction
+## 2. File System Creates a Human Abstraction
 
 The file system creates concepts:
 
@@ -811,9 +811,9 @@ Blocks:
 
 This is the first fundamental principle:
 
-## Principle 1:
+### Principle 1:
 
-## Names are separated from physical locations
+### Names are separated from physical locations
 
 A file name does not equal its storage location.
 
@@ -845,7 +845,7 @@ Physical blocks
 
 ---
 
-# 3. Metadata: The File System's Brain
+## 3. Metadata: The File System's Brain
 
 A file is more than data.
 
@@ -897,7 +897,7 @@ Metadata:
 
 ---
 
-# 4. File Allocation: Managing Space
+## 4. File Allocation: Managing Space
 
 The file system must answer:
 
@@ -930,7 +930,7 @@ Different file systems use different strategies.
 
 ---
 
-## Contiguous Allocation
+### Contiguous Allocation
 
 Store files together:
 
@@ -953,7 +953,7 @@ Problems:
 
 ---
 
-## Linked Allocation
+### Linked Allocation
 
 Each block points to the next:
 
@@ -971,7 +971,7 @@ Problems:
 
 ---
 
-## Indexed Allocation
+### Indexed Allocation
 
 Use an index:
 
@@ -988,7 +988,7 @@ Used by UNIX/Linux.
 
 ---
 
-# 5. Directory: Organizing Names
+## 5. Directory: Organizing Names
 
 A directory is actually a special file.
 
@@ -1028,7 +1028,7 @@ disk blocks
 
 ---
 
-# 6. Access Control: Protecting Data
+## 6. Access Control: Protecting Data
 
 A file system also controls access.
 
@@ -1071,7 +1071,7 @@ Allow or deny
 
 ---
 
-# 7. Reliability: Handling Failure
+## 7. Reliability: Handling Failure
 
 Storage devices fail.
 
@@ -1108,7 +1108,7 @@ The file system needs consistency mechanisms.
 
 ---
 
-## Journaling
+### Journaling
 
 Modern file systems use journals.
 
@@ -1141,7 +1141,7 @@ Examples:
 
 ---
 
-# 8. Caching: Improving Speed
+## 8. Caching: Improving Speed
 
 Disk access is slow.
 
@@ -1179,7 +1179,7 @@ RAM → faster
 
 ---
 
-# 9. Abstraction: The Most Important Principle
+## 9. Abstraction: The Most Important Principle
 
 The deepest idea of a file system is **abstraction**.
 
@@ -1208,7 +1208,7 @@ The file system hides:
 
 ---
 
-# 10. Relationship with the Operating System
+## 10. Relationship with the Operating System
 
 A file system is part of the OS kernel.
 
@@ -1253,7 +1253,7 @@ The OS:
 
 ---
 
-# 11. The Five Fundamental Principles
+## 11. The Five Fundamental Principles
 
 A modern file system is built on five major ideas:
 
@@ -1267,7 +1267,7 @@ A modern file system is built on five major ideas:
 
 ---
 
-# The Big Picture
+## The Big Picture
 
 A file system is essentially a **translator and manager**:
 
