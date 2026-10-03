@@ -5,7 +5,7 @@ A: Your question is referring to a **computer evolution model** that extends the
 A common interpretation is:
 
 | Era    | Main unit                          | Meaning                                               |
-| ------ | ---------------------------------- | ----------------------------------------------------- |
+| ------ | ---- | ----------------------- |
 | **3U** | User + manual tools                | Abacus, adding machine, paper and pen                 |
 | **3B** | bits / bytes                       | binary, bytes and batch processing                    |
 | **3K** | Kilo                               | KB memory, KIPS speed, character interface            |
@@ -136,7 +136,7 @@ To understand what came before 3K, it helps to look at how humans talked to comp
 * How it worked: As we discussed, this introduced the mouse, digital windows, clickable icons, and sharp displays.
 * The Memory Scale: Powered by Megabytes (MB) of RAM, Megapixel screens, and 1 MIPS processors. [1, 16, 17, 18, 19] 
 
-------------------------------
+
 ## 📊 Summary Table
 
 | Era | Hardware Scale | How Humans Interacted | Key Example |
@@ -146,25 +146,6 @@ To understand what came before 3K, it helps to look at how humans talked to comp
 | 3M Era | Megabytes | Graphical Interaction (Mouse, Windows, Icons) | Sun Workstation / Xerox Alto |
 
 
-[1] [https://medium.com](https://medium.com/data-science-collective/the-hidden-history-of-how-we-touch-talk-and-think-with-computers-4e38ddcc3529)
-[2] [https://www.cs.odu.edu](https://www.cs.odu.edu/~tkennedy/cs300/development/Public/M01-HistoryOfComputerMemory/index.html)
-[3] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/History_of_personal_computers)
-[4] [https://medium.com](https://medium.com/@arturormk/programming-has-been-moving-toward-ai-all-along-c85635b6a1cd)
-[5] [https://www.youtube.com](https://www.youtube.com/watch?v=gjVX47dLlN8&vl=en)
-[6] [https://www.reddit.com](https://www.reddit.com/r/Millennials/comments/1fuihe9/what_did_your_computerclass_in_school_look_like/)
-[7] [https://study.com](https://study.com/academy/lesson/computer-facts-lesson-for-kids.html)
-[8] [https://www.computerhistory.org](https://www.computerhistory.org/timeline/computers/)
-[9] [https://www.pbs.org](https://www.pbs.org/video/the-personal-computer-revolution-crash-course-computer-scie-zn1yeg/)
-[10] [https://www.edscave.com](http://www.edscave.com/the-personal-computer-revolution.html)
-[11] [https://quizlet.com](https://quizlet.com/study-guides/the-four-basic-eras-of-computer-history-de7f7607-4c62-4d1c-a347-b168baa1481f)
-[12] [https://www.vintagecomputing.com](https://www.vintagecomputing.com/index.php/archives/2580/vcg-anthology-the-evolution-of-computer-displays)
-[13] [https://www.cs.odu.edu](https://www.cs.odu.edu/~tkennedy/cs300/development/Public/M01-HistoryOfComputers/index.html)
-[14] [https://medium.com](https://medium.com/@subhranshukashyap07/ram-from-kindergarten-to-modern-machines-303515154598)
-[15] [https://www.cs.cornell.edu](https://www.cs.cornell.edu/wya/AcademicComputing/text/workstations.html)
-[16] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/3M_computer)
-[17] [https://www.sknexus.org](https://www.sknexus.org/p/the-evolution-of-computers)
-[18] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/3M_computer)
-[19] [https://www.cs.cornell.edu](https://www.cs.cornell.edu/wya/AcademicComputing/text/workstations.html)
 
 ---
 # 2. 3K computer: early electronic computers
@@ -284,7 +265,7 @@ No graphics.
 ## The switch from the 3B era to the 3K era
 The switch from punch cards (the pre-3K era) to the 3K text interaction era was driven by a shift from handling physical data to managing continuous electrical signals. It was not sparked by a single invention, but rather by the perfect alignment of three major technological and economic breakthroughs during the late 1960s and 1970s. [1, 2] 
 
-------------------------------
+
 ## 1. The Computer Was Too Expensive to Wait for Humans
 In the 1950s and early 1960s, a mainframe computer cost millions of dollars. If a programmer sat at a keyboard and took 10 seconds to think about what to type next, those 10 seconds of "idle time" wasted massive amounts of money. [1, 3, 4] 
 
@@ -306,40 +287,18 @@ By the early 1970s, the mass production of consumer televisions made cathode-ray
 
 These new devices were called Video Display Terminals (VDTs) or "Glass Teletypes". They used the exact same text-based communication protocol as the paper teletypes, meaning the computer couldn't even tell the difference between paper and a screen. However, screens cut down latency significantly because characters could be flashed onto a display instantaneously. Crucially, screens allowed programmers to delete mistakes instantly without reprinting lines. [18, 19, 20] 
 
-------------------------------
+
 ## 🚀 The Final Milestone: Microprocessors and the 3K Standard
 By the late 1970s, the invention of the microchip meant that a user no longer needed a giant terminal connected to a distant corporate mainframe. The entire computer could fit right inside the keyboard unit on a single desk. [3] 
 
 Machines like the Apple II, Commodore 64, and IBM PC arrived with their RAM memory scaled up into the Kilobytes (KB). Because text-only command lines required very little memory to operate, standardizing on a baseline of roughly 3 Kilobytes to 64 Kilobytes of RAM was the sweet spot to give everyday consumers their first highly responsive, interactive, text-driven computing experience. [1, 21] 
 
-[1] [https://www.reddit.com](https://www.reddit.com/r/explainlikeimfive/comments/1dr09w8/eli5_what_engineering_breakthrough_allowed/)
-[2] [https://medium.com](https://medium.com/data-science-collective/the-hidden-history-of-how-we-touch-talk-and-think-with-computers-4e38ddcc3529)
-[3] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/Time-sharing)
-[4] [https://www.careerera.com](https://www.careerera.com/blog/history-of-cloud-computing)
-[5] [https://www.quora.com](https://www.quora.com/How-did-the-transition-from-punch-cards-to-interactive-terminals-fundamentally-change-the-way-programmers-debugged-their-logic)
-[6] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/Computer_terminal)
-[7] [https://www.clivemaxfield.com](https://www.clivemaxfield.com/diycalculator/popup-h-qwerty.shtml)
-[8] [https://www.yahoo.com](https://www.yahoo.com/tech/teletype-terminal-window-3-eras-113013854.html)
-[9] [https://hackaday.com](https://hackaday.com/2014/02/11/retrotechtacular-where-the-linuxunix-tty-comes-from/)
-[10] [https://ed-thelen.org](https://ed-thelen.org/comp-hist/Reckoners-ch-5.html)
-[11] [https://www.youtube.com](https://www.youtube.com/shorts/iQdzvtZjdRA)
-[12] [https://www.gutenberg.org](https://www.gutenberg.org/cache/epub/53481/pg53481-images.html)
-[13] [https://blog.solidsignal.com](https://blog.solidsignal.com/news/fun-and-games/someone-invented-keyboard/)
-[14] [https://www.tameri.com](https://www.tameri.com/roguerhet/2021/02/18/rush-and-rhetoric-talk-radio-changed-politics/)
-[15] [https://www.contentstack.com](https://www.contentstack.com/blog/tech-talk/the-evolution-of-command-line-interface-cli-a-historical-insight)
-[16] [https://en.iguru.gr](https://en.iguru.gr/einai-tiletypoi-kai-giati-chrisimopoiithikan-ypologistes/)
-[17] [https://www.facebook.com](https://www.facebook.com/groups/779220482206901/posts/24101056596263294/)
-[18] [https://www.youtube.com](https://www.youtube.com/watch?v=4RPtJ9UyHS0&t=428)
-[19] [https://www.catb.org](http://www.catb.org/esr/writings/taouu/html/ch02s02.html)
-[20] [https://www.pbs.org](https://www.pbs.org/video/keyboards-command-line-interfaces-crash-course-computer-s-7zu6vh/)
-[21] [https://www.fastcompany.com](https://www.fastcompany.com/91514404/apple-founding-50th-anniversary-apple-1-apple-ii-jobs-wozniak)
-[22] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/Command-line_interface)
 
 # operating systems in the 3K era
 To support the new 3K text-interaction era, computer scientists had to throw away old software architectures and invent entirely new operating systems. The old software was designed to read a stack of cards and stop; the new software needed to sit quietly, listen to a keyboard, and instantly respond to text commands. [1, 2, 3] 
 Here is a breakdown of the most influential early operating systems built specifically for this text-driven world.
 
-------------------------------
+
 ## 🌟 1. UNIX (The Gold Standard)
 Created in 1969 at AT&T Bell Labs by Ken Thompson and Dennis Ritchie, UNIX is the most influential operating system of the text era. Almost all modern operating systems (including macOS, Linux, iOS, and Android) are direct descendants or cousins of UNIX. [4, 5, 6, 7, 8] 
 
@@ -367,7 +326,7 @@ In 1981, IBM decided to launch its own Personal Computer (the IBM PC). They aske
 * Why it was built: To give the IBM PC a standard, business-friendly text interface.
 * The Big Innovation: Because the IBM PC became a massive global success, MS-DOS became the dominant operating system of the 1980s. It used the familiar C:\> prompt and commands like CD (change directory) and TYPE (show file contents). Early versions of Microsoft Windows were actually just visual skins that sat on top of MS-DOS! [47, 48, 49, 50, 51] 
 
-------------------------------
+
 ## 📈 Core Features Invented in This Era
 Every single operating system mentioned above had to share three core design features to make the 3K text era function:
 
@@ -625,10 +584,6 @@ The 3M workstation was basically saying:
 
 That idea led directly toward modern desktop computers, Windows, macOS, and graphical programming environments. ([Wikipedia][1])
 
-[1]: https://en.wikipedia.org/wiki/3M_computer?utm_source=chatgpt.com "3M computer"
-[2]: https://www.thinvent.in/q/3k-pc?utm_source=chatgpt.com "3K PC - Compact Mini PCs For Space-Constrained Applications - Thinvent"
-[3]: https://adek.com/product/AD-386?utm_source=chatgpt.com "3U Industrial Rack Mount Computer | ADEK Industrial Computers"
-
 ---
 The phrase "3M computer" (and its related concepts) represents a historic and influential milestone in the evolution of electronic computers. [1] 
 
@@ -649,7 +604,7 @@ As technology moved forward, these letter designations became shorthand framewor
 
 * 3K Era (The Kilobyte to Early Workstation Shift): The period where standard business computing relied on kilobytes (like 64KB to 512KB) of RAM. Screens were low-resolution, blocky text displays. The transition from 3K-level computing to 3M-level computing marked the birth of modern computer graphics and multitasking. [1] 
 * 3M Era (The Megabyte Workstation Revolution): Achieving the 3M goals in the early 1980s completely transformed how humans interacted with computers. Because these computers had a megapixel screen and a megabyte of RAM, they were the first machines powerful enough to run smooth Graphical User Interfaces (GUIs), complex windows, digital mice, and early desktop internet networking. [1, 6, 7, 8] 
-------------------------------
+
 
 ## 🌟 Key Computers of the 3M Era
 Several famous historical computers were built specifically to pioneer or fulfill the 3M vision: [9] 
@@ -658,7 +613,7 @@ Several famous historical computers were built specifically to pioneer or fulfil
 * The PERQ Workstation: Built by Three Rivers Computer Corporation in 1980, this was used as the very first test machine for CMU's advanced computing projects. [9, 13] 
 * The SUN Workstation: Originally designed by Andy Bechtolsheim at Stanford University in 1980, this machine laid the groundwork for Sun Microsystems. It successfully commercialized 3M specs for high-end engineering. [9, 14] 
 * The Apollo Domain: Released in 1981, these were among the first heavily networked 3M workstations used across the tech industry. [9, 15] 
-------------------------------
+
 
 ## ➡️ How They Compare to Today
 To put the achievements of the 3M era into perspective, look at how an original 1980s 3M workstation compares to a modern budget computer:
@@ -671,21 +626,6 @@ To put the achievements of the 3M era into perspective, look at how an original 
 
 The 3M era was the bridge that took computers out of the era of text-only command lines and created the visual, mouse-driven computing world we live in today. [1, 9] 
 
-[1] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/3M_computer)
-[2] [https://medium.com](https://medium.com/tech-spectrum/the-history-of-computer-science-from-abacus-to-artificial-intelligence-551a0a398c15)
-[3] [https://www.facebook.com](https://www.facebook.com/groups/retrocomputers/posts/23981993334737222/)
-[4] [https://www.facebook.com](https://www.facebook.com/Themech.mind/posts/the-earliest-electronic-computers-developed-during-the-mid-20th-century-were-mas/1505026077857930/)
-[5] [https://www.coursehero.com](https://www.coursehero.com/file/p3pvqud1/A-PC-that-is-not-designed-for-portability-is-a-desktop-The-assumption-with-a/)
-[6] [https://www.cs.cornell.edu](https://www.cs.cornell.edu/wya/AcademicComputing/text/workstations.html)
-[7] [https://www.ebsco.com](https://www.ebsco.com/research-starters/computer-science/computer-memory)
-[8] [https://www.facebook.com](https://www.facebook.com/howtogeek/posts/the-modern-computer-desktop-can-be-traced-back-to-this-pioneering-1981-machine/10160317721691435/)
-[9] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/3M_computer)
-[10] [https://spectrum.ieee.org](https://spectrum.ieee.org/xerox-alto)
-[11] [https://www.adrc.com](http://www.adrc.com/ckr/computer_history.html)
-[12] [https://www.instagram.com](https://www.instagram.com/reel/DO5RrE2DQEo/)
-[13] [https://www.w3.org](https://www.w3.org/2010/Talks/01-08-steven-ten-euro-computer/)
-[14] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/3M_computer)
-[15] [https://en.wikipedia.org](https://en.wikipedia.org/wiki/Apollo_Computer)
 
 
 # Evolution from 3U → 3K → 3M
