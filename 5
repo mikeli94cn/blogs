@@ -1,0 +1,712 @@
+Absolutely. **RPC (Remote Procedure Call)** is one of the fundamental ideas behind distributed systems and backend development. If you're learning Java backend, it's especially useful because it helps explain technologies such as **gRPC, RMI, Thrift, Dubbo, and some microservice communication patterns**.
+
+## 1. What is RPC?
+
+**RPC = Remote Procedure Call**
+
+The basic idea is:
+
+> **Call a function that actually runs on another computer as if it were a local function.**
+
+Normally:
+
+```java
+User user = userService.findUser(123);
+```
+
+`findUser()` runs inside your own process.
+
+With RPC, conceptually:
+
+```java
+User user = remoteUserService.findUser(123);
+```
+
+The method might actually execute:
+
+```text
+Client machine
+    |
+    |  RPC request
+    ↓
+Server machine
+    |
+    |  findUser(123)
+    ↓
+Database
+```
+
+The client experiences it almost like an ordinary method call, while the RPC framework handles the networking.
+
+---
+
+# 2. Local call vs RPC
+
+This distinction is the key.
+
+### Local procedure call
+
+```text
+Application
+    |
+    | function call
+    ↓
+Function
+    |
+    ↓
+Memory
+```
+
+For example:
+
+```java
+int result = add(10, 20);
+```
+
+Everything happens inside one process.
+
+### Remote procedure call
+
+```text
+Client Application
+       |
+       | network
+       ↓
+   RPC Server
+       |
+       ↓
+   Procedure
+```
+
+For example:
+
+```java
+int result = calculator.add(10, 20);
+```
+
+But `calculator.add()` may execute on another server.
+
+---
+
+# 3. Why was RPC invented?
+
+Imagine a large system:
+
+```text
+                    ┌──────────────┐
+                    │ User Service │
+                    └──────┬───────┘
+                           │
+                           ↓
+                    ┌──────────────┐
+                    │ Order Service│
+                    └──────┬───────┘
+                           │
+                           ↓
+                    ┌──────────────┐
+                    │Payment Service│
+                    └──────────────┘
+```
+
+These services may run on different machines.
+
+The Order Service needs to ask the User Service:
+
+> "Give me user #123."
+
+Without an abstraction, the programmer has to think about:
+
+* TCP connections
+* IP addresses
+* ports
+* serialization
+* request formats
+* response formats
+* network errors
+* timeouts
+* retries
+
+RPC tries to hide much of this complexity.
+
+Conceptually, you can write:
+
+```java
+User user = userService.getUser(123);
+```
+
+instead of manually constructing a network request.
+
+---
+
+# 4. How RPC actually works
+
+Suppose the client calls:
+
+```java
+User user = userService.getUser(123);
+```
+
+Under the hood, something like this happens:
+
+```text
+Client
+  │
+  │ 1. method call
+  ↓
+RPC Client Stub
+  │
+  │ 2. serialize request
+  ↓
+Network
+  │
+  │ 3. send request
+  ↓
+RPC Server
+  │
+  │ 4. deserialize request
+  ↓
+Server Stub
+  │
+  │ 5. invoke actual method
+  ↓
+UserService
+  │
+  │ 6. return User
+  ↓
+Server Stub
+  │
+  │ 7. serialize response
+  ↓
+Network
+  │
+  ↓
+Client Stub
+  │
+  │ 8. deserialize response
+  ↓
+Client
+```
+
+So the "magic" is really a combination of:
+
+```text
+method invocation
+       ↓
+serialization
+       ↓
+network communication
+       ↓
+deserialization
+       ↓
+method invocation
+```
+
+---
+
+# 5. Stub — an important RPC concept
+
+You'll often hear the word **stub**.
+
+A stub is a local proxy representing the remote service.
+
+For example:
+
+```java
+UserService userService = ...;
+
+User user = userService.getUser(123);
+```
+
+`userService` might not actually be the real `UserService`.
+
+It could be a **client-side stub/proxy**.
+
+```text
+Your code
+   │
+   ↓
+UserService Proxy
+   │
+   ↓
+RPC framework
+   │
+   ↓
+Network
+   │
+   ↓
+Real UserService
+```
+
+This is very similar to the **proxy concept in Spring** that you've been studying.
+
+---
+
+# 6. Serialization
+
+The arguments have to travel through the network.
+
+Suppose:
+
+```java
+getUser(123)
+```
+
+The number `123` needs to become some network representation.
+
+The RPC framework might encode something conceptually like:
+
+```text
+method = "getUser"
+id = 123
+```
+
+The server decodes it and invokes:
+
+```java
+getUser(123)
+```
+
+The response:
+
+```java
+User {
+    id = 123,
+    name = "Mike"
+}
+```
+
+must also be serialized.
+
+Common serialization formats include:
+
+* JSON
+* XML
+* Protocol Buffers
+* MessagePack
+* Avro
+* custom binary formats
+
+---
+
+# 7. RPC is not one specific technology
+
+This is important.
+
+**RPC is a programming model / communication concept**, not a single protocol.
+
+Similar to:
+
+> "Database" is a concept, while MySQL and PostgreSQL are implementations.
+
+Likewise:
+
+```text
+RPC
+├── Java RMI
+├── gRPC
+├── Apache Thrift
+├── Apache Dubbo
+├── XML-RPC
+├── JSON-RPC
+└── many others
+```
+
+---
+
+# 8. Java RMI
+
+One of the classic Java RPC technologies is:
+
+**RMI = Remote Method Invocation**
+
+It allows Java programs to invoke methods on remote Java objects.
+
+Conceptually:
+
+```java
+remoteUserService.getUser(123);
+```
+
+The method executes remotely.
+
+Historically, RMI was important for Java distributed applications.
+
+However, modern backend systems generally use HTTP/gRPC-style APIs rather than building new systems around RMI.
+
+---
+
+# 9. gRPC
+
+One of the most important modern RPC technologies is **gRPC**.
+
+gRPC was originally developed by Google and is widely used for service-to-service communication.
+
+Typical architecture:
+
+```text
+Java Service A
+     │
+     │ gRPC
+     ↓
+Java Service B
+```
+
+or even:
+
+```text
+Java
+  │
+  │ gRPC
+  ↓
+Go
+  │
+  │ gRPC
+  ↓
+Python
+```
+
+This is one reason gRPC is particularly useful for **microservices**.
+
+gRPC commonly uses:
+
+* **HTTP/2**
+* **Protocol Buffers (Protobuf)**
+* strongly typed service definitions
+* generated client/server code
+* streaming
+
+For example, you can define:
+
+```protobuf
+service UserService {
+    rpc GetUser(GetUserRequest) returns (User);
+}
+```
+
+Then tools can generate client/server code for multiple languages.
+
+---
+
+# 10. RPC vs REST
+
+This is a very important backend comparison.
+
+### REST
+
+You generally think in terms of **resources**:
+
+```http
+GET /users/123
+```
+
+Conceptually:
+
+> "Give me the user resource."
+
+### RPC
+
+You generally think in terms of **operations/methods**:
+
+```text
+GetUser(123)
+```
+
+Conceptually:
+
+> "Execute the GetUser operation."
+
+So:
+
+```text
+REST
+    Resource-oriented
+
+RPC
+    Operation-oriented
+```
+
+A simplified comparison:
+
+|                    | REST             | RPC                  |
+| ------------------ | ---------------- | -------------------- |
+| Main idea          | Resources        | Procedures/actions   |
+| Example            | `GET /users/123` | `GetUser(123)`       |
+| Common transport   | HTTP             | HTTP, TCP, etc.      |
+| Data formats       | JSON commonly    | JSON, Protobuf, etc. |
+| Coupling           | Usually looser   | Often stronger       |
+| Human readability  | High             | Depends              |
+| Service-to-service | Very common      | Very common          |
+| Typical example    | REST API         | gRPC                 |
+
+But don't think **REST = HTTP** and **RPC = not HTTP**.
+
+For example:
+
+```text
+gRPC
+  ↓
+HTTP/2
+```
+
+So RPC can absolutely use HTTP.
+
+---
+
+# 11. RPC vs messaging
+
+This connects directly to the **message queue** topic you just asked about.
+
+RPC:
+
+```text
+Client ───────────────→ Server
+       request
+Client ←─────────────── Server
+       response
+```
+
+The client normally expects a response.
+
+Message queue:
+
+```text
+Producer
+   │
+   ↓
+Message Queue
+   │
+   ↓
+Consumer
+```
+
+The producer can often continue without waiting for the consumer to finish.
+
+So a useful distinction is:
+
+```text
+RPC
+= "Please execute this operation and give me the result."
+
+Message Queue
+= "Here is a message/event. Process it when you can."
+```
+
+For example:
+
+### RPC
+
+```text
+Order Service
+     │
+     │ CheckStock(productId)
+     ↓
+Inventory Service
+     │
+     └──→ available
+```
+
+### Message queue
+
+```text
+Order Service
+     │
+     │ OrderCreated
+     ↓
+Message Queue
+     │
+     ├──→ Email Service
+     ├──→ Inventory Service
+     └──→ Analytics Service
+```
+
+---
+
+# 12. The biggest problem with RPC
+
+RPC looks like a local function call:
+
+```java
+userService.getUser(123);
+```
+
+But **it is not a local function call**.
+
+This is one of the most important distributed-systems lessons.
+
+A local call:
+
+```java
+getUser(123);
+```
+
+might take:
+
+```text
+nanoseconds / microseconds
+```
+
+A remote call might take:
+
+```text
+milliseconds
+```
+
+And it can fail because of:
+
+* network failure
+* server failure
+* timeout
+* packet loss
+* DNS problems
+* overload
+* connection problems
+
+Therefore:
+
+> **A remote call is fundamentally different from a local call, even if RPC makes the syntax look similar.**
+
+This is called the **fallacy of distributed computing** territory.
+
+---
+
+# 13. RPC and microservices
+
+RPC became especially important with microservices.
+
+Imagine an e-commerce system:
+
+```text
+                    API Gateway
+                         │
+          ┌──────────────┼──────────────┐
+          ↓              ↓              ↓
+      User Service   Order Service   Product Service
+                         │
+                         ↓
+                   Payment Service
+```
+
+Services need to communicate.
+
+Possible communication styles:
+
+```text
+REST
+gRPC
+Message Queue
+Events
+```
+
+For synchronous service-to-service calls:
+
+```text
+Order Service
+      │
+      │ gRPC
+      ↓
+Payment Service
+```
+
+For asynchronous communication:
+
+```text
+Order Service
+      │
+      │ OrderCreated
+      ↓
+Kafka / RabbitMQ
+      │
+      ├──→ Inventory
+      ├──→ Email
+      └──→ Analytics
+```
+
+So RPC is one piece of the larger **distributed-systems communication toolbox**.
+
+---
+
+# 14. Where RPC fits in your Java backend learning
+
+Given your current Java backend path, I'd place it roughly here:
+
+```text
+Java Foundation
+      ↓
+Maven
+      ↓
+HTTP / Networking basics
+      ↓
+Servlet / Tomcat concepts
+      ↓
+Spring
+      ↓
+Spring Boot
+      ↓
+REST API
+      ↓
+JSON
+      ↓
+Database
+      ↓
+      ┌───────────────────────┐
+      │ Distributed Services  │
+      └───────────┬───────────┘
+                  ↓
+          Service Communication
+             /          \
+           REST          RPC
+                         ↓
+                       gRPC
+                         ↓
+                 Message Queues
+                 Kafka / RabbitMQ
+```
+
+You don't need to master RPC before learning Spring Boot.
+
+But once you understand **REST + HTTP + Spring Boot**, RPC becomes much easier to understand.
+
+---
+
+# 15. The big picture
+
+You can think of backend communication as several generations of abstraction:
+
+```text
+Raw networking
+     ↓
+TCP sockets
+     ↓
+HTTP
+     ↓
+REST APIs
+     ↓
+RPC frameworks
+     ↓
+Microservice communication
+     ↓
+RPC + messaging + events
+```
+
+And at an even higher level:
+
+```text
+                Distributed System
+                       │
+          ┌────────────┴────────────┐
+          ↓                         ↓
+     Synchronous                Asynchronous
+          │                         │
+          ↓                         ↓
+     REST / RPC              Message Queue
+          │                         │
+      ┌───┴───┐                ┌────┴────┐
+      ↓       ↓                ↓         ↓
+    REST    gRPC            Kafka     RabbitMQ
+```
+
+### The one-sentence definition
+
+> **RPC is a mechanism that makes invoking a procedure on a remote computer feel similar to invoking a local procedure, while the framework handles networking, serialization, and request/response mechanics.**
+
+For your Java backend studies, **gRPC is the modern RPC technology worth learning first**, while **RMI is useful mainly for understanding Java's historical approach to distributed objects**.
