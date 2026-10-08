@@ -1,0 +1,998 @@
+Absolutely. **JWT (JSON Web Token)** is one of the most important concepts for modern backend development, especially if you're learning **Java + Spring Boot**.
+
+# JWT — JSON Web Token
+
+![Image](https://images.openai.com/static-rsc-4/L_8111bIseBdkEP2d0gNzfYvhCS2krVnDno-Bpn_9kaK_EC7ksIF5-sEx5N9W_11qBzGdBJ_ExrrR2eXCNOSiLiSiAEWjjSb18eAtP1ABHFVSROT0MUP1MrZX_ojvT0Pr0xijS066AZHU04dYestgKPvsmGk1GyJJzYQGXlrxqECsrrXynfP6prpcjpaoW1-?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/cSM_0lBNPVjN_b1__7dSCR74XM4aW1GpfQwgLlsYBqX6yvNYOhy65xoQSpwsykqumcmmcCiNn3hUNwTORKc3PVMhdclu4aAyrBdH0vWGF6j86Zd1KgzOxKoVwxpW_RChsp8tbLYzkGCxp0mKfOKihrzwqmSmFLqWM6JrfizJ2n7OOnnqj9InoM48Tc23jJzA?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/S-UTh9mURU7gp6XztOSvitCMaSpQeZ7gk5h8hhVz29yvk78Y0S67xvNJnh9ABu2UPudnYR021F_yQe6zBVxCcvctqWXO58Cu7Bke2D0Us8J8pYRXTX_0YuEN1jjIX4ULLAVE9YBjY9dJ3mHRaIpb8QvnoLcXGR6OrRUqUE50AOQ_wOB1tLCqEjG5uzZ8mzE_?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/eRAVzuqDPi_3SZzBVYOOXqZfkirdFqU3Arj0-IXbpFeH68GZ_sjCfF6gjIgldM8khcPyPlt94mDfWCqYhQXECElHi4vj_c3i1NE3zIPUimX6L9oma2E_Uq1DcgtQQaoiy-gltiJwUMWRZiTWNVB3zXGb-S1KOA_3kmVbDY-kyYWdDxUb6PZNRDHHf-LzoqD4?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/vAWK99-ahrcJ5rVP2J5GUYmC7vOElk1K5_HEqopdzrJYFKjbxhmokM7cm8pW2rAlWhgeRU5CkZnB3_bnIJKfDzxSbzk4oqkjL3g0S1bjMsJYDF9NAB9ooOxyQviMOSCBNpwyDQCjdgpmzg1f_0Ef9QruGtshsfHv5IBg_Y9Dtc0GxMkijWsPkxw3e2hjr16y?purpose=fullsize)
+
+## 1. What is JWT?
+
+**JWT = JSON Web Token**.
+
+It is a compact, digitally signed token that is commonly used to carry information between a client and a server.
+
+The most common use is:
+
+> **Authentication and authorization for Web APIs**
+
+For example:
+
+```text
+Browser / Mobile App
+        |
+        | username + password
+        v
+   Spring Boot
+        |
+        | authentication successful
+        v
+     JWT Token
+        |
+        | token
+        v
+Browser / Mobile App
+        |
+        | Authorization: Bearer <JWT>
+        v
+   Spring Boot API
+```
+
+Instead of sending your username and password with every request, the client sends the JWT.
+
+---
+
+# 2. Why do we need JWT?
+
+Imagine a user logs into a website:
+
+```text
+POST /login
+
+username = mike
+password = 123456
+```
+
+The server verifies the credentials.
+
+Now the user wants:
+
+```text
+GET /api/orders
+GET /api/profile
+GET /api/products
+```
+
+The server needs to know:
+
+> "Who is making this request?"
+
+There are several ways to maintain authentication.
+
+### Traditional session authentication
+
+The server can create a session:
+
+```text
+Client
+  |
+  | login
+  v
+Server
+  |
+  | sessionId = ABC123
+  v
+Client
+```
+
+The server stores:
+
+```text
+ABC123 -> User Mike
+```
+
+Then the client sends:
+
+```text
+Cookie: sessionId=ABC123
+```
+
+The server looks up the session.
+
+### JWT authentication
+
+Instead, the server gives the client a token:
+
+```text
+eyJhbGciOiJIUzI1NiJ9...
+```
+
+The client sends:
+
+```http
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
+```
+
+The server verifies the token.
+
+This is particularly convenient for **REST APIs, mobile applications, SPAs, and distributed systems**.
+
+---
+
+# 3. What does a JWT look like?
+
+A JWT usually looks like this:
+
+```text
+xxxxx.yyyyy.zzzzz
+```
+
+There are **three parts**:
+
+```text
+HEADER.PAYLOAD.SIGNATURE
+```
+
+For example:
+
+```text
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+.
+eyJzdWIiOiIxMjMiLCJyb2xlIjoiVVNFUiJ9
+.
+SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+The three sections are:
+
+1. Header
+2. Payload
+3. Signature
+
+---
+
+# 4. JWT Header
+
+The header describes the token.
+
+For example:
+
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+
+`alg` means the signing algorithm.
+
+For example:
+
+```text
+HS256
+RS256
+ES256
+```
+
+`typ` indicates the token type:
+
+```text
+JWT
+```
+
+The header is Base64URL-encoded.
+
+---
+
+# 5. JWT Payload
+
+The payload contains **claims**.
+
+For example:
+
+```json
+{
+  "sub": "12345",
+  "username": "mike",
+  "role": "USER",
+  "iat": 1791350400,
+  "exp": 1791354000
+}
+```
+
+Common claims include:
+
+| Claim | Meaning    |
+| ----- | ---------- |
+| `sub` | Subject    |
+| `iss` | Issuer     |
+| `aud` | Audience   |
+| `iat` | Issued At  |
+| `exp` | Expiration |
+| `nbf` | Not Before |
+| `jti` | JWT ID     |
+
+You can also have application-specific claims:
+
+```json
+{
+    "userId": 1001,
+    "username": "mike",
+    "role": "ADMIN"
+}
+```
+
+---
+
+# 6. Very important: JWT is NOT encrypted by default
+
+This is one of the most important things to understand.
+
+A JWT's payload is normally **encoded, not encrypted**.
+
+For example:
+
+```json
+{
+    "username": "mike",
+    "role": "ADMIN"
+}
+```
+
+Anyone who possesses the token can generally decode and read this information.
+
+Therefore:
+
+❌ Don't put passwords into JWT.
+
+❌ Don't put credit-card numbers into JWT.
+
+❌ Don't put secrets into JWT.
+
+JWT provides **integrity/authenticity through the signature**, not confidentiality.
+
+Think:
+
+```text
+Base64URL encoding
+        ↓
+        readable
+
+Digital signature
+        ↓
+        tamper detection
+```
+
+If you need confidentiality, that's a different problem and typically involves encryption.
+
+---
+
+# 7. JWT Signature
+
+The signature protects the token from modification.
+
+Conceptually:
+
+```text
+signature =
+    sign(
+        base64url(header) + "." + base64url(payload),
+        secret/private key
+    )
+```
+
+For HMAC:
+
+```text
+HMAC-SHA256(
+    header.payload,
+    secret
+)
+```
+
+The server can verify:
+
+```text
+Is this token really signed by the trusted issuer?
+Has somebody modified it?
+```
+
+Suppose the original payload says:
+
+```json
+{
+    "username": "mike",
+    "role": "USER"
+}
+```
+
+An attacker changes it to:
+
+```json
+{
+    "username": "mike",
+    "role": "ADMIN"
+}
+```
+
+The signature will no longer match.
+
+Therefore the server rejects the token.
+
+---
+
+# 8. Symmetric vs asymmetric JWT signing
+
+This is especially important for backend developers.
+
+## HS256 — symmetric
+
+There is one secret:
+
+```text
+Server
+  |
+  | SECRET
+  |
+  +---- sign
+  |
+  +---- verify
+```
+
+The same secret is used for signing and verification.
+
+Example:
+
+```text
+HMAC-SHA256
+```
+
+---
+
+## RS256 — asymmetric
+
+There are two keys:
+
+```text
+Private Key
+     |
+     | sign
+     v
+   JWT
+     |
+     | verify
+     v
+Public Key
+```
+
+The private key is kept secret.
+
+The public key can be distributed.
+
+This is particularly useful in systems with multiple services:
+
+```text
+Authentication Server
+        |
+        | private key
+        v
+      JWT
+        |
+        v
++-------+-------+-------+
+|       |       |       |
+API 1   API 2   API 3
+ |       |       |
+ +-------+-------+
+       public key
+```
+
+Each API can verify the JWT without possessing the private signing key.
+
+---
+
+# 9. How JWT authentication works
+
+A typical flow looks like this.
+
+### Step 1 — Login
+
+Client sends:
+
+```http
+POST /login
+Content-Type: application/json
+
+{
+    "username": "mike",
+    "password": "123456"
+}
+```
+
+---
+
+### Step 2 — Server authenticates
+
+Spring Security checks:
+
+```text
+username
+   ↓
+database
+   ↓
+password hash
+   ↓
+match?
+```
+
+If successful:
+
+```text
+Authentication successful
+```
+
+---
+
+### Step 3 — Server creates JWT
+
+For example:
+
+```json
+{
+    "sub": "1001",
+    "role": "USER",
+    "exp": 1791354000
+}
+```
+
+Then signs it.
+
+---
+
+### Step 4 — Server returns JWT
+
+```http
+HTTP/1.1 200 OK
+
+{
+    "accessToken": "eyJhbGciOi..."
+}
+```
+
+---
+
+### Step 5 — Client stores the token
+
+Depending on the application architecture, it might be stored in:
+
+* memory
+* a secure browser mechanism
+* a cookie
+
+Storage has important security implications, especially for browser applications.
+
+---
+
+### Step 6 — Client calls an API
+
+```http
+GET /api/orders
+Authorization: Bearer eyJhbGciOi...
+```
+
+Notice:
+
+```text
+Bearer <token>
+```
+
+This is the standard HTTP authorization scheme commonly used with JWT access tokens.
+
+---
+
+### Step 7 — Server verifies JWT
+
+The server checks things such as:
+
+```text
+✓ Signature
+✓ Expiration
+✓ Issuer
+✓ Audience
+✓ Not-before time
+✓ Required claims
+```
+
+Then:
+
+```text
+JWT valid
+    ↓
+Who is the user?
+    ↓
+What roles/permissions does the user have?
+    ↓
+Allow or deny request
+```
+
+---
+
+# 10. Authentication vs authorization
+
+JWT is often used for both, but they are conceptually different.
+
+### Authentication
+
+> **Who are you?**
+
+Example:
+
+```text
+JWT → userId = 1001
+```
+
+Therefore:
+
+```text
+This request comes from Mike.
+```
+
+### Authorization
+
+> **What are you allowed to do?**
+
+For example:
+
+```json
+{
+    "sub": "1001",
+    "role": "USER"
+}
+```
+
+The server might allow:
+
+```text
+GET /api/profile
+GET /api/orders
+```
+
+but reject:
+
+```text
+DELETE /api/users/500
+```
+
+because the user isn't an administrator.
+
+So:
+
+```text
+Authentication
+     ↓
+Who are you?
+
+Authorization
+     ↓
+What can you do?
+```
+
+---
+
+# 11. JWT and stateless authentication
+
+One major idea behind JWT is **stateless authentication**.
+
+With traditional sessions:
+
+```text
+Client
+  |
+session ID
+  |
+  v
+Server
+  |
+Session Store
+  |
+user information
+```
+
+The server needs session state.
+
+With JWT:
+
+```text
+Client
+  |
+JWT
+  |
+  v
+Server
+  |
+verify JWT
+  |
+  v
+user information
+```
+
+The authentication information is carried by the token itself.
+
+This can make horizontal scaling easier:
+
+```text
+             Load Balancer
+                  |
+       +----------+----------+
+       |          |          |
+       v          v          v
+     API 1      API 2      API 3
+       |          |          |
+       +----------+----------+
+              verify JWT
+```
+
+Any API instance can verify the token.
+
+---
+
+# 12. But JWT is not automatically better than sessions
+
+This is a very important nuance.
+
+You will sometimes hear:
+
+> "JWT is modern, sessions are old."
+
+That's too simplistic.
+
+JWT has advantages:
+
+```text
+✓ Good for APIs
+✓ Good for distributed systems
+✓ Easy to pass between services
+✓ Can carry claims
+✓ Can be verified without centralized session storage
+```
+
+But it also has disadvantages:
+
+```text
+✗ Token revocation is harder
+✗ Token theft is dangerous
+✗ Poorly designed tokens can contain too much information
+✗ Token management can become complicated
+✗ Statelessness is sometimes unnecessary
+```
+
+For a traditional server-rendered web application, ordinary secure sessions can still be an excellent choice.
+
+---
+
+# 13. Access token and refresh token
+
+Modern authentication systems commonly use **two types of tokens**.
+
+### Access token
+
+Short-lived:
+
+```text
+Access Token
+     ↓
+5 minutes
+15 minutes
+30 minutes
+```
+
+Used to access APIs.
+
+### Refresh token
+
+Longer-lived:
+
+```text
+Refresh Token
+     ↓
+days / weeks
+```
+
+Used to obtain a new access token.
+
+For example:
+
+```text
+             Login
+               |
+               v
+       +---------------+
+       | Access Token  |-----> API
+       | short-lived   |
+       +---------------+
+               |
+       +---------------+
+       | Refresh Token |
+       | long-lived    |
+       +---------------+
+```
+
+When the access token expires:
+
+```text
+Client
+  |
+  | refresh token
+  v
+Auth Server
+  |
+  | new access token
+  v
+Client
+```
+
+This limits the lifetime of the access token.
+
+---
+
+# 14. JWT in Spring Boot
+
+Since you're learning Java backend, this is where JWT becomes especially useful.
+
+A typical Spring Boot architecture looks like:
+
+```text
+                    ┌─────────────────┐
+                    │     Client      │
+                    └────────┬────────┘
+                             │
+                        POST /login
+                             │
+                             v
+                    ┌─────────────────┐
+                    │ Spring Security │
+                    └────────┬────────┘
+                             │
+                        authenticate
+                             │
+                             v
+                       ┌───────────┐
+                       │ Database  │
+                       └───────────┘
+                             │
+                         success
+                             │
+                             v
+                       Create JWT
+                             │
+                             v
+                    ┌─────────────────┐
+                    │     Client      │
+                    └────────┬────────┘
+                             │
+              Authorization: Bearer JWT
+                             │
+                             v
+                    ┌─────────────────┐
+                    │ JWT Filter      │
+                    │ / Security     │
+                    └────────┬────────┘
+                             │
+                         validate
+                             │
+                             v
+                    ┌─────────────────┐
+                    │ Controller      │
+                    └─────────────────┘
+```
+
+Spring Security is responsible for much of the security infrastructure.
+
+JWT itself is **not a Spring technology**.
+
+It's a general web/security standard that can be used with Spring Security.
+
+---
+
+# 15. JWT vs OAuth 2.0 vs OpenID Connect
+
+These three are often confused.
+
+They are different concepts.
+
+### JWT
+
+A **token format**.
+
+```text
+JWT
+↓
+How information is packaged into a token
+```
+
+### OAuth 2.0
+
+An **authorization framework**.
+
+```text
+OAuth 2.0
+↓
+How applications obtain authorization
+```
+
+### OpenID Connect
+
+An **authentication/identity layer built on OAuth 2.0**.
+
+```text
+OpenID Connect
+↓
+Who is the user?
+```
+
+So:
+
+```text
+JWT       = token format
+OAuth 2.0 = authorization framework
+OIDC      = authentication/identity protocol
+```
+
+OAuth 2.0 tokens don't necessarily have to be JWTs.
+
+That's a useful distinction to remember for interviews.
+
+---
+
+# 16. JWT security checklist
+
+When implementing JWT authentication, remember:
+
+### ① Use HTTPS
+
+Never send authentication tokens over plain HTTP.
+
+```text
+HTTPS
+  ↓
+encrypted transport
+```
+
+### ② Use short-lived access tokens
+
+Don't make access tokens unnecessarily long-lived.
+
+### ③ Protect signing keys
+
+Your private key/secret must never be committed to Git.
+
+Bad:
+
+```java
+String secret = "my-super-secret-key";
+```
+
+Better:
+
+```text
+environment variable
+secret manager
+configuration management
+```
+
+### ④ Validate claims
+
+Don't only check the signature.
+
+Also validate:
+
+```text
+exp
+iss
+aud
+nbf
+```
+
+as appropriate for your architecture.
+
+### ⑤ Don't put sensitive data in the payload
+
+Remember:
+
+```text
+JWT payload ≠ encrypted storage
+```
+
+### ⑥ Protect refresh tokens carefully
+
+A stolen refresh token can be especially powerful.
+
+---
+
+# 17. The most important mental model
+
+If you're learning backend development, I would remember JWT like this:
+
+```text
+                JWT
+                 │
+       ┌─────────┴─────────┐
+       │                   │
+    Structure            Purpose
+       │                   │
+ Header.Payload       Authentication
+ .Signature           Authorization
+       │
+       ├── Header
+       │
+       ├── Payload
+       │    └── Claims
+       │
+       └── Signature
+            └── Integrity
+```
+
+And the complete authentication picture:
+
+```text
+User
+ │
+ │ username + password
+ ▼
+Authentication Server
+ │
+ │ authenticate
+ ▼
+JWT
+ │
+ │ Authorization: Bearer JWT
+ ▼
+API Server
+ │
+ ├── verify signature
+ ├── verify expiration
+ ├── verify issuer/audience
+ ├── identify user
+ └── check permissions
+        │
+        ▼
+     Resource
+```
+
+## Where JWT fits in your Java backend roadmap
+
+For your current **Java → Spring → Spring Boot** learning path, I'd put it here:
+
+```text
+Java fundamentals
+      ↓
+HTTP / Web fundamentals
+      ↓
+Servlet / Tomcat concepts
+      ↓
+Spring Framework
+      ↓
+Spring Boot
+      ↓
+REST API
+      ↓
+HTTP + JSON
+      ↓
+Spring Security
+      ↓
+Authentication
+      ↓
+JWT
+      ↓
+OAuth 2.0 / OpenID Connect
+      ↓
+Production security
+```
+
+So I wouldn't start with JWT immediately. **First understand HTTP, REST, authentication, sessions/cookies, and Spring Security; then JWT becomes much easier to understand instead of just memorizing configuration.**
