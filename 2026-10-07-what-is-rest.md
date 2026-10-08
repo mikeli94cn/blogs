@@ -1,4 +1,4 @@
-## REST — Representational State Transfer
+# 1.REST — Representational State Transfer
 
 **REST** is an architectural style for designing network APIs, especially **Web APIs**.
 
@@ -836,7 +836,8 @@ HTTP Method + URL + JSON
 ```
 
 That model will connect many of the topics you've been asking about—**Servlet, Tomcat, Spring, Spring Boot, HTTP, JSON, JWT, databases, RPC, message queues, and microservices**.
-# RESTful API
+
+# 2.RESTful API
 
 A **RESTful API** is an API designed according to the principles of **REST (Representational State Transfer)**, usually using **HTTP** to communicate between a client and a server.
 
