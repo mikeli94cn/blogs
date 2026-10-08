@@ -1,4 +1,4 @@
-Absolutely. **RPC (Remote Procedure Call)** is one of the fundamental ideas behind distributed systems and backend development. If you're learning Java backend, it's especially useful because it helps explain technologies such as **gRPC, RMI, Thrift, Dubbo, and some microservice communication patterns**.
+**RPC (Remote Procedure Call)** is one of the fundamental ideas behind distributed systems and backend development. If you're learning Java backend, it's especially useful because it helps explain technologies such as **gRPC, RMI, Thrift, Dubbo, and some microservice communication patterns**.
 
 ## 1. What is RPC?
 
