@@ -393,7 +393,7 @@ And C#/.NET became another major enterprise/application ecosystem.
 
 ---
 
-# 6. Data & AI Era — Python / SQL / R / C++ / Rust
+### 6. Data & AI Era — Python / SQL / R / C++ / Rust
 
 This is the part where I'd modify your classification the most.
 
@@ -443,7 +443,7 @@ Instead, new layers have accumulated.
 
 ---
 
-# The model I would personally use
+## The model I would personally use
 
 If I were building a **"History of Computing + Programming Languages"** study map for you, I'd make it:
 
