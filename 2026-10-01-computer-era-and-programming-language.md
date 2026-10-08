@@ -1,5 +1,5 @@
-# computer-era-and-mainstream-programming-language
-|computer era|time|programming language|
+# computer era and programming language
+|computer era|time|programming languages|
 |---|---|---|
 |early era|40-50|machine-code, assembly|
 |mainframe era|50-60|fortran, cobol, lisp|
