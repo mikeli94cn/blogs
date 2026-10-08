@@ -1,4 +1,4 @@
-Absolutely. **Message Queue (MQ)** is one of the most important concepts in backend development, especially once you move from a simple Spring Boot application toward **distributed systems and microservices**.
+**Message Queue (MQ)** is one of the most important concepts in backend development, especially once you move from a simple Spring Boot application toward **distributed systems and microservices**.
 
 # 1. What is a Message Queue?
 
