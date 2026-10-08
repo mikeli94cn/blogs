@@ -1,4 +1,4 @@
-Absolutely. **Simula** is one of the most important languages in programming-language history because it is widely regarded as the **first programming language to introduce the fundamental ideas of object-oriented programming**.
+**Simula** is one of the most important languages in programming-language history because it is widely regarded as the **first programming language to introduce the fundamental ideas of object-oriented programming**.
 
 If Smalltalk shows us a *pure, dynamic* vision of OOP, **Simula shows us where the original class/object/inheritance model came from**.
 
