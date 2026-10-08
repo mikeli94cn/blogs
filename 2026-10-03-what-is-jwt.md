@@ -1,4 +1,4 @@
-Absolutely. **JWT (JSON Web Token)** is one of the most important concepts for modern backend development, especially if you're learning **Java + Spring Boot**.
+**JWT (JSON Web Token)** is one of the most important concepts for modern backend development, especially if you're learning **Java + Spring Boot**.
 
 # JWT — JSON Web Token
 
