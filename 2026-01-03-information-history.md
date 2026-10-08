@@ -1,47 +1,47 @@
 with google
 # information
 ## storage
-punch cards
-magnetic disk
-hg delay line
-magnetic drum
-floppy disk
-hdd
-sdd
-optical
+- punch cards
+- magnetic disk
+- hg delay line
+- magnetic drum
+- floppy disk
+- hdd
+- sdd
+- optical
 
 ## computation
-programming language
-datastructure
-algorithm
-operating system
-programming language generation
-compute
-symbolic
-interact
-personality
-connect
-analyse
-generate
-code
-moose code
-ascii code
+- programming language
+- datastructure
+- algorithm
+- operating system
+#### programming language generation
+- compute
+- symbolic
+- interact
+- personality
+- connect
+- analyse
+- generate
+#### code
+- moose code
+- ascii code
 
 ## communication
-wire
-wireless
-1G
-2G
-3G
-4G
-5G
-optical
+- wire
+- wireless
+- 1G
+- 2G
+- 3G
+- 4G
+- 5G
+- optical
 
 ## expression
-paper
-caythronic line
-liquid screen
-virtual reality
+- paper
+- caythronic line
+- liquid screen
+- virtual reality
 
 
 ### The cycle of information involves four fundamental, interconnected pillars: 
