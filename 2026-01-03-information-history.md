@@ -7,7 +7,7 @@ with google
 - magnetic drum
 - floppy disk
 - hdd
-- sdd
+- ssd
 - optical
 
 Magnetic disks, magnetic drums, and solid-state drives (SSDs) represent different generations of computer data storage, evolving from slow acoustic pulses to high-speed silicon chips.
