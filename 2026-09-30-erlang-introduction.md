@@ -23,8 +23,11 @@ Lisp
 But Erlang has a somewhat different emphasis from Scheme, ML, and Haskell:
 
 > **Scheme → simplicity and language concepts**
+
 > **ML → functional programming + strong types**
+
 > **Haskell → pure functional programming + advanced types**
+
 > **Erlang → functional programming + concurrency + distributed systems + fault tolerance**
 
 That last combination is what makes Erlang historically important.
