@@ -1,4 +1,4 @@
-Absolutely. **Adobe Flash** is a very important piece of Internet history, especially if you're studying the evolution from **HTML → JavaScript → Flash → modern Web applications**.
+**Adobe Flash** is a very important piece of Internet history, especially if you're studying the evolution from **HTML → JavaScript → Flash → modern Web applications**.
 
 ## 1. What was Adobe Flash?
 
