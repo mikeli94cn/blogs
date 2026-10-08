@@ -836,3 +836,1114 @@ HTTP Method + URL + JSON
 ```
 
 That model will connect many of the topics you've been asking about—**Servlet, Tomcat, Spring, Spring Boot, HTTP, JSON, JWT, databases, RPC, message queues, and microservices**.
+# RESTful API
+
+A **RESTful API** is an API designed according to the principles of **REST (Representational State Transfer)**, usually using **HTTP** to communicate between a client and a server.
+
+The simplest mental model is:
+
+> **RESTful API = Resources + URLs + HTTP methods + representations + HTTP status codes**
+
+For a Java backend developer, RESTful APIs are one of the most important things to learn because **Spring Boot is very commonly used to build them**.
+
+---
+
+## 1. What is an API?
+
+API means **Application Programming Interface**.
+
+Suppose you have:
+
+```text
+Frontend
+   │
+   │ HTTP
+   ▼
+Backend
+   │
+   ▼
+Database
+```
+
+The frontend needs to ask the backend:
+
+```text
+"Give me student #123."
+```
+
+Instead of directly accessing the database, it calls an API:
+
+```http
+GET /students/123
+```
+
+The backend responds:
+
+```json
+{
+  "id": 123,
+  "name": "Alice",
+  "age": 20
+}
+```
+
+So an API provides a **communication interface between software systems**.
+
+---
+
+# 2. What makes an API RESTful?
+
+A RESTful API organizes the backend around **resources**.
+
+For a Student Management System, your resources might be:
+
+```text
+/students
+/courses
+/teachers
+/departments
+```
+
+Individual resources can be identified with IDs:
+
+```text
+/students/123
+/courses/456
+/teachers/789
+```
+
+The HTTP method tells the server what you want to do.
+
+For example:
+
+```text
+GET     /students/123
+```
+
+means:
+
+> Retrieve student 123.
+
+While:
+
+```text
+DELETE  /students/123
+```
+
+means:
+
+> Delete student 123.
+
+The **URL identifies the resource**, while the **HTTP method expresses the operation**.
+
+---
+
+# 3. The four basic CRUD operations
+
+RESTful APIs map naturally to CRUD.
+
+| Operation | HTTP method | Example                |
+| --------- | ----------- | ---------------------- |
+| Create    | POST        | `POST /students`       |
+| Read      | GET         | `GET /students/123`    |
+| Update    | PUT         | `PUT /students/123`    |
+| Delete    | DELETE      | `DELETE /students/123` |
+
+This is probably the most important pattern to memorize.
+
+### Create
+
+```http
+POST /students
+```
+
+```json
+{
+  "name": "Alice",
+  "age": 20
+}
+```
+
+### Read
+
+```http
+GET /students/123
+```
+
+### Update
+
+```http
+PUT /students/123
+```
+
+```json
+{
+  "name": "Alice Smith",
+  "age": 21
+}
+```
+
+### Delete
+
+```http
+DELETE /students/123
+```
+
+---
+
+# 4. Collection vs individual resource
+
+This distinction is very useful.
+
+### Collection
+
+```text
+/students
+```
+
+means:
+
+> The collection of students.
+
+For example:
+
+```http
+GET /students
+```
+
+might return:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Alice"
+  },
+  {
+    "id": 2,
+    "name": "Bob"
+  }
+]
+```
+
+### Individual resource
+
+```text
+/students/1
+```
+
+means:
+
+> Student #1.
+
+```http
+GET /students/1
+```
+
+might return:
+
+```json
+{
+  "id": 1,
+  "name": "Alice"
+}
+```
+
+This gives you a very clean structure:
+
+```text
+/students       → collection
+/students/1     → one student
+/students/2     → one student
+/students/3     → one student
+```
+
+---
+
+# 5. URL design
+
+A good RESTful API usually uses **nouns**, not verbs.
+
+Prefer:
+
+```text
+GET /students/123
+```
+
+rather than:
+
+```text
+GET /getStudent/123
+```
+
+Prefer:
+
+```text
+POST /students
+```
+
+rather than:
+
+```text
+POST /createStudent
+```
+
+Prefer:
+
+```text
+DELETE /students/123
+```
+
+rather than:
+
+```text
+POST /deleteStudent/123
+```
+
+Why?
+
+Because REST separates:
+
+```text
+WHAT?
+  ↓
+/students/123
+
+ACTION?
+  ↓
+GET / DELETE / PUT / PATCH
+```
+
+So the URL represents the **resource**, and HTTP provides the **operation**.
+
+---
+
+# 6. HTTP request structure
+
+A RESTful API request generally looks like:
+
+```text
+HTTP method
+     +
+URL
+     +
+Headers
+     +
+Body
+```
+
+For example:
+
+```http
+POST /students HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+  "name": "Alice",
+  "age": 20
+}
+```
+
+Conceptually:
+
+```text
+┌─────────────────────────┐
+│ HTTP Method             │
+│ POST                    │
+├─────────────────────────┤
+│ URL                     │
+│ /students               │
+├─────────────────────────┤
+│ Headers                 │
+│ Content-Type            │
+│ Authorization           │
+├─────────────────────────┤
+│ Body                    │
+│ { ... JSON ... }        │
+└─────────────────────────┘
+```
+
+---
+
+# 7. HTTP response
+
+The server sends a response:
+
+```text
+Status Code
+     +
+Headers
+     +
+Body
+```
+
+For example:
+
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
+{
+  "id": 123,
+  "name": "Alice",
+  "age": 20
+}
+```
+
+---
+
+# 8. HTTP status codes
+
+RESTful APIs make extensive use of HTTP status codes.
+
+### Success
+
+```text
+200 OK
+```
+
+Request succeeded.
+
+```text
+201 Created
+```
+
+A new resource was created.
+
+```text
+204 No Content
+```
+
+Request succeeded but there's no response body.
+
+### Client errors
+
+```text
+400 Bad Request
+```
+
+The request is invalid.
+
+```text
+401 Unauthorized
+```
+
+Authentication is required or failed.
+
+```text
+403 Forbidden
+```
+
+The client is authenticated but doesn't have permission.
+
+```text
+404 Not Found
+```
+
+The requested resource doesn't exist.
+
+```text
+409 Conflict
+```
+
+The request conflicts with the current state.
+
+### Server error
+
+```text
+500 Internal Server Error
+```
+
+Something went wrong on the server.
+
+---
+
+# 9. JSON
+
+RESTful APIs commonly use **JSON** to represent resources.
+
+For example:
+
+```json
+{
+  "id": 123,
+  "name": "Alice",
+  "email": "alice@example.com"
+}
+```
+
+But an important technical point:
+
+> **REST does not require JSON.**
+
+REST is an architectural style. JSON is simply the most common representation used by modern REST APIs.
+
+Historically, XML was also very common.
+
+---
+
+# 10. Path parameters
+
+Suppose we have:
+
+```http
+GET /students/123
+```
+
+Here:
+
+```text
+123
+```
+
+is a **path parameter**.
+
+In Spring Boot:
+
+```java
+@GetMapping("/students/{id}")
+public Student getStudent(@PathVariable Long id) {
+    return studentService.findById(id);
+}
+```
+
+Spring extracts:
+
+```text
+123
+```
+
+and puts it into:
+
+```java
+Long id
+```
+
+---
+
+# 11. Query parameters
+
+You can also use query parameters.
+
+For example:
+
+```http
+GET /students?page=2&size=20
+```
+
+Here:
+
+```text
+page = 2
+size = 20
+```
+
+are query parameters.
+
+They're commonly used for:
+
+* filtering
+* searching
+* sorting
+* pagination
+
+For example:
+
+```text
+GET /students?name=Alice
+```
+
+or:
+
+```text
+GET /students?age=20
+```
+
+or:
+
+```text
+GET /students?page=2&size=20
+```
+
+or:
+
+```text
+GET /students?sort=name
+```
+
+---
+
+# 12. Nested resources
+
+Suppose students belong to courses.
+
+You might have:
+
+```text
+/students/123/courses
+```
+
+meaning:
+
+> Courses associated with student 123.
+
+For example:
+
+```http
+GET /students/123/courses
+```
+
+You could also have:
+
+```text
+/courses/456/students
+```
+
+meaning:
+
+> Students enrolled in course 456.
+
+However, you shouldn't make URLs excessively nested.
+
+This:
+
+```text
+/students/123/courses/456/teachers/789
+```
+
+can become difficult to understand.
+
+Good REST API design tries to keep resource relationships clear and reasonably simple.
+
+---
+
+# 13. PUT vs PATCH
+
+This is a common interview question.
+
+### PUT
+
+Generally represents replacing the resource with the supplied representation.
+
+```http
+PUT /students/123
+```
+
+```json
+{
+  "name": "Alice",
+  "age": 21
+}
+```
+
+### PATCH
+
+Generally represents a partial modification.
+
+```http
+PATCH /students/123
+```
+
+```json
+{
+  "age": 21
+}
+```
+
+The distinction is conceptually:
+
+```text
+PUT
+↓
+Replace/update the resource representation
+
+PATCH
+↓
+Modify part of the resource
+```
+
+---
+
+# 14. Statelessness
+
+RESTful APIs are normally **stateless**.
+
+Suppose:
+
+```text
+Client → Server
+```
+
+Every request should contain the information necessary for the server to process it.
+
+For example:
+
+```http
+GET /students/123
+Authorization: Bearer eyJ...
+```
+
+The server shouldn't need to remember a previous request just to understand this request.
+
+This is particularly useful when you have multiple backend servers:
+
+```text
+                 Load Balancer
+                 /     |     \
+                /      |      \
+               ↓       ↓       ↓
+           Server A Server B Server C
+```
+
+A request can potentially go to any server.
+
+---
+
+# 15. RESTful API and authentication
+
+REST itself doesn't specify authentication.
+
+A RESTful API can use mechanisms such as:
+
+```text
+Session + Cookie
+Basic Authentication
+OAuth 2.0
+JWT
+API Key
+```
+
+A common modern architecture is:
+
+```text
+Client
+   │
+   │ Authorization: Bearer <JWT>
+   ▼
+REST API
+   │
+   ▼
+Spring Security
+```
+
+For example:
+
+```http
+GET /students/123
+Authorization: Bearer eyJhbGciOi...
+```
+
+This connects directly to the **JWT** topic you asked about earlier.
+
+---
+
+# 16. RESTful API in Spring Boot
+
+This is where REST becomes especially relevant to your Java backend learning.
+
+A simple Spring Boot controller might look like:
+
+```java
+@RestController
+@RequestMapping("/students")
+public class StudentController {
+
+    @GetMapping
+    public List<Student> getStudents() {
+        return studentService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Student getStudent(@PathVariable Long id) {
+        return studentService.findById(id);
+    }
+
+    @PostMapping
+    public Student createStudent(@RequestBody Student student) {
+        return studentService.create(student);
+    }
+
+    @PutMapping("/{id}")
+    public Student updateStudent(
+            @PathVariable Long id,
+            @RequestBody Student student) {
+
+        return studentService.update(id, student);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable Long id) {
+        studentService.delete(id);
+    }
+}
+```
+
+This gives you:
+
+```text
+HTTP Request             Java method
+────────────────────────────────────────
+GET /students       →    getStudents()
+
+GET /students/1     →    getStudent(1)
+
+POST /students      →    createStudent()
+
+PUT /students/1     →    updateStudent()
+
+DELETE /students/1  →    deleteStudent()
+```
+
+This is the core connection between **HTTP and Spring MVC**.
+
+---
+
+# 17. The complete request flow
+
+Suppose a frontend sends:
+
+```http
+GET /students/123
+```
+
+The flow might be:
+
+```text
+Browser / React / Mobile App
+            │
+            │ HTTP
+            ▼
+       Tomcat Server
+            │
+            ▼
+   Spring MVC DispatcherServlet
+            │
+            ▼
+    StudentController
+            │
+            ▼
+      StudentService
+            │
+            ▼
+   StudentRepository
+            │
+            ▼
+         Database
+```
+
+Then the result travels back:
+
+```text
+Database
+   ↓
+Repository
+   ↓
+Service
+   ↓
+Controller
+   ↓
+Jackson → JSON
+   ↓
+HTTP Response
+   ↓
+Client
+```
+
+For example:
+
+```json
+{
+  "id": 123,
+  "name": "Alice"
+}
+```
+
+---
+
+# 18. RESTful API vs REST
+
+There is a subtle distinction:
+
+### REST
+
+An **architectural style**.
+
+It describes principles such as:
+
+```text
+Client-server
+Statelessness
+Cacheability
+Uniform interface
+Layered system
+```
+
+### RESTful API
+
+An actual **API designed using those REST principles**.
+
+So:
+
+```text
+REST
+ ↓
+Architectural principles
+ ↓
+RESTful API
+ ↓
+HTTP endpoints
+ ↓
+Spring Boot implementation
+```
+
+---
+
+# 19. RESTful API vs RPC
+
+Since you just asked about RPC, this comparison is particularly useful.
+
+### RPC
+
+Think:
+
+```text
+"What operation do I want to execute?"
+```
+
+```text
+getStudent(123)
+createStudent(...)
+deleteStudent(123)
+```
+
+### REST
+
+Think:
+
+```text
+"What resource am I manipulating?"
+```
+
+```text
+GET    /students/123
+POST   /students
+DELETE /students/123
+```
+
+Conceptually:
+
+```text
+RPC                         REST
+────────────────────────────────────────
+Action-oriented             Resource-oriented
+
+getStudent(123)             GET /students/123
+
+createStudent()             POST /students
+
+deleteStudent(123)          DELETE /students/123
+
+Custom operations           HTTP methods
+```
+
+---
+
+# 20. RESTful API vs GraphQL
+
+You also recently asked about GraphQL, so these two are worth comparing.
+
+### REST
+
+The server defines endpoints:
+
+```text
+GET /users/123
+GET /users/123/orders
+GET /products/456
+```
+
+The client chooses which endpoint to call.
+
+### GraphQL
+
+Usually there is one main endpoint:
+
+```text
+POST /graphql
+```
+
+The client specifies what data it wants.
+
+For example:
+
+```graphql
+query {
+    user(id: 123) {
+        name
+        orders {
+            id
+        }
+    }
+}
+```
+
+Conceptually:
+
+```text
+REST
+Client → predefined resources/endpoints → Server
+
+GraphQL
+Client → query describing required data → Server
+```
+
+---
+
+# 21. RESTful API vs WebSocket
+
+These are also different.
+
+### REST
+
+Usually:
+
+```text
+Client → Request → Server
+Client ← Response ← Server
+```
+
+Good for:
+
+```text
+CRUD
+business APIs
+data retrieval
+normal web applications
+```
+
+### WebSocket
+
+Creates a persistent two-way connection:
+
+```text
+Client ←────────────→ Server
+```
+
+Both sides can send messages whenever necessary.
+
+Good for:
+
+```text
+chat
+real-time notifications
+online games
+live dashboards
+```
+
+So REST and WebSocket aren't really competitors; they often coexist in the same application.
+
+---
+
+# 22. A practical REST API design
+
+For your Student Management System, I'd recommend eventually building this:
+
+```text
+Students
+──────────────────────────
+
+GET     /api/students
+GET     /api/students/{id}
+POST    /api/students
+PUT     /api/students/{id}
+PATCH   /api/students/{id}
+DELETE  /api/students/{id}
+```
+
+Then add:
+
+```text
+Courses
+──────────────────────────
+
+GET     /api/courses
+GET     /api/courses/{id}
+POST    /api/courses
+PUT     /api/courses/{id}
+DELETE  /api/courses/{id}
+```
+
+Then relationships:
+
+```text
+GET /api/students/123/courses
+POST /api/students/123/courses/456
+```
+
+And eventually:
+
+```text
+Authentication
+       ↓
+JWT / Spring Security
+       ↓
+REST API
+       ↓
+Service
+       ↓
+JPA / MyBatis
+       ↓
+MySQL / PostgreSQL
+```
+
+That would make an excellent **Phase 2 project after your Java foundation project**.
+
+---
+
+## The key mental model
+
+If you remember only one thing, remember this:
+
+```text
+                    RESTful API
+                         │
+       ┌─────────────────┼─────────────────┐
+       │                 │                 │
+   Resources         HTTP Methods       Representations
+       │                 │                 │
+   /students          GET              JSON
+   /students/1        POST             JSON
+   /courses            PUT
+   /orders             PATCH
+                       DELETE
+                         │
+                         ▼
+                  HTTP Status Codes
+                         │
+                  200 / 201 / 204
+                  400 / 401 / 403
+                  404 / 409 / 500
+```
+
+And from the perspective of a **Java backend developer**:
+
+```text
+Java
+  ↓
+HTTP
+  ↓
+Servlet / Tomcat
+  ↓
+Spring MVC
+  ↓
+Spring Boot
+  ↓
+RESTful API
+  ↓
+JSON
+  ↓
+Database
+```
+
+So **REST is the architectural idea**, while a **RESTful API is the concrete HTTP API you build according to that idea**.
