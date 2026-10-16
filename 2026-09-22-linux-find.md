@@ -175,3 +175,32 @@ To give you the exact, safe command you need, please let me know:
 
 * What is the name, extension, or pattern of the files you want to delete?
 * Are you filtering by a specific condition like file age or file size?
+
+
+
+# how to use find all python file exclude one directory in bash?
+To find all Python (.py) files while excluding a specific directory in Bash, the most efficient and robust way is to use the find command with the -prune operator. 
+
+Here is the best way to do it:
+```bash
+find . -path "./dir_to_exclude" -prune -o -type f -name "*.py" -print
+```
+
+How It Works
+
+• find .: Starts the search in the current directory.
+• -path "./dir_to_exclude" -prune: If find encounters the directory ./dir_to_exclude, it prunes it, meaning it completely skips descending into it.
+• -o: A logical OR operator. It tells the command: "If the first condition (the directory to skip) isn't met, evaluate the next condition."
+• -type f: Restricts the search results only to regular files.
+• -name "*.py": Filters for files ending with the .py extension.
+• -print: Prints the matching file paths to the terminal. 
+
+Alternative: Using -not -path (Slower but simpler syntax)
+
+If you prefer a simpler syntax, you can use the -not (or !) operator. However, note that this is slower on large projects because find will still scan the inside of the excluded directory before filtering it out of the final results. 
+```bash
+find . -type f -name "*.py" -not -path "./dir_to_exclude/*"
+```
+If you need a more advanced search, let me know:
+• Do you need to exclude multiple directories?
+• Are you looking to run a specific command on these files (like grep or rm) using -exec or xargs?
