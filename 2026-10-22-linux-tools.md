@@ -87,3 +87,27 @@ rg "your_search_text"
 Let me know if you need to refine your search:
 * Do you want to exclude certain folders (like node_modules or .git)?
 * Do you need to filter the search to specific file types (like only .txt or .py files)?
+
+
+## exclude certain folder
+To search for a specific text string in all files while excluding the .git folder, the best method depends on the tool you are using.
+
+1. Using the Command Line (Linux / macOS)
+
+Using grep (Recommended)
+
+GNU grep includes a built-in flag specifically designed to skip directories. Run this command in your terminal: 
+```bash
+grep -rn --exclude-dir=".git" "your_search_string" .
+```
+* -r: Searches recursively through all subdirectories.
+* -n: Displays the line number where the match was found.
+* --exclude-dir=".git": Tells grep to completely ignore the .git folder.
+* . : Points to the current directory as the starting location.
+
+Using ripgrep (rg)
+
+If you have ripgrep installed, it is extremely fast and automatically excludes .git and anything listed in your .gitignore by default. You only need to run:
+```bash
+rg "your_search_string"
+```
