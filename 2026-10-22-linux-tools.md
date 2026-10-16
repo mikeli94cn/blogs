@@ -89,7 +89,7 @@ Let me know if you need to refine your search:
 * Do you need to filter the search to specific file types (like only .txt or .py files)?
 
 
-## exclude certain folder
+## exclude certain folder (e.g. .git)
 To search for a specific text string in all files while excluding the .git folder, the best method depends on the tool you are using.
 
 1. Using the Command Line (Linux / macOS)
