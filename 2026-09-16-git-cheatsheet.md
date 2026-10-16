@@ -636,3 +636,73 @@ Previous
 Next
 ```
 My advice: For now, become comfortable with `status`, `add`, `commit`, `switch`, `pull`, `push`, `diff`, and `log`. Then practice branches, merge conflicts, and undo operations in a test repository before using destructive commands on important projects.
+
+
+## issue handling
+### why intellij idea can push to github but when push in terminal occuring error?
+
+This error happens because GitHub discontinued password authentication for command-line Git operations, meaning you cannot use your standard account password in the terminal.
+
+IntelliJ avoids this error because it securely authenticates through an OAuth browser popup or its built-in GitHub integration. To fix your Linux terminal, you need to authenticate using either a Personal Access Token (PAT) or an SSH Key.
+
+Here are the two best ways to fix it:
+
+### Method 1: Use a Personal Access Token (Easiest)
+
+Instead of your password, you generate a temporary secret token on GitHub and paste it into the terminal.
+
+#### Step 1: Generate the token on GitHub
+
+1. Go to GitHub, click your profile picture in the top-right corner, and select Settings.
+2. Scroll down on the left sidebar and click <> Developer settings.
+3. Click Personal access tokens -> Tokens (classic).
+4. Click Generate new token -> Generate new token (classic).
+5. Give it a name (e.g., "Linux Terminal"), set an expiration, and check the box for repo (this allows pushing/pulling code).
+6. Click Generate token at the bottom. Copy the token immediately—you won't be able to see it again.
+
+#### Step 2: Use it in your Linux terminal
+
+1. Try to push your code again:
+```bash
+git push
+```
+2. When prompted for your Username, type your GitHub username.
+3. When prompted for your Password, paste your Personal Access Token instead of your password. (Note: The terminal won't show any characters while pasting, which is normal. Just press Enter).
+
+### Method 2: Set up an SSH Key (Best for the long run)
+
+If you don't want to keep pasting a token, setting up an SSH key allows your terminal to securely and automatically log you in without any prompts.
+
+#### Step 1: Generate an SSH Key
+
+Open your terminal and run the following command (replace with your GitHub email):
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+Press Enter to accept the default file location, and optionally type a passphrase.
+
+#### Step 2: Copy your public key
+
+Print your public key to the terminal and copy it to your clipboard:
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+#### Step 3: Add it to GitHub
+
+1. Go to GitHub Settings -> SSH and GPG keys.
+2. Click New SSH key.
+3. Give it a title (like "Linux Laptop") and paste the public key you copied into the Key field.
+4. Click Add SSH key.
+
+#### Step 4: Change your project to use SSH
+
+Because you originally cloned the project using HTTPS (which requires a password/token), you need to tell your local project folder to look for GitHub via SSH instead:
+```bash
+# Inside your git project directory, swap the URL structure:
+git remote set-url origin git@github.com:your-username/your-repository-name.git
+```
+
+Now, when you type git push, your terminal will instantly authenticate using your machine's SSH key without asking for a password.
+
+Would you prefer to stick with Method 1 (Token) and want to know how to save the token so you don't have to paste it every single time, or did you hit any permission blocks while running Method 2 (SSH)?
