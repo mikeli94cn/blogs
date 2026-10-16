@@ -1160,7 +1160,8 @@ If the above doesn't work, use a match_phrase query instead. It is automatically
     }
   }
 }
-```If this doesn't return the results you expect, let me know:
+```
+If this doesn't return the results you expect, let me know:
 * What is the mapping type of your message field (text or keyword)?
 * Do you need to match partial words (like "ultimate x7") or just the exact phrase "mate x7"?
 I can help you optimize the query based on your index structure!
