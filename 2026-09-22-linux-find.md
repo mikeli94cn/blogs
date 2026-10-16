@@ -188,12 +188,12 @@ find . -path "./dir_to_exclude" -prune -o -type f -name "*.py" -print
 
 How It Works
 
-• find .: Starts the search in the current directory.
-• -path "./dir_to_exclude" -prune: If find encounters the directory ./dir_to_exclude, it prunes it, meaning it completely skips descending into it.
-• -o: A logical OR operator. It tells the command: "If the first condition (the directory to skip) isn't met, evaluate the next condition."
-• -type f: Restricts the search results only to regular files.
-• -name "*.py": Filters for files ending with the .py extension.
-• -print: Prints the matching file paths to the terminal. 
+* find .: Starts the search in the current directory.
+* -path "./dir_to_exclude" -prune: If find encounters the directory ./dir_to_exclude, it prunes it, meaning it completely skips descending into it.
+* -o: A logical OR operator. It tells the command: "If the first condition (the directory to skip) isn't met, evaluate the next condition."
+* -type f: Restricts the search results only to regular files.
+* -name "*.py": Filters for files ending with the .py extension.
+* -print: Prints the matching file paths to the terminal. 
 
 Alternative: Using -not -path (Slower but simpler syntax)
 
@@ -202,5 +202,5 @@ If you prefer a simpler syntax, you can use the -not (or !) operator. However, n
 find . -type f -name "*.py" -not -path "./dir_to_exclude/*"
 ```
 If you need a more advanced search, let me know:
-• Do you need to exclude multiple directories?
-• Are you looking to run a specific command on these files (like grep or rm) using -exec or xargs?
+* Do you need to exclude multiple directories?
+* Are you looking to run a specific command on these files (like grep or rm) using -exec or xargs?
