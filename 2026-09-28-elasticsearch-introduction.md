@@ -1126,4 +1126,61 @@ So if you remember only one sentence:
 
 > **Elasticsearch is a distributed search and analytics engine, built on Apache Lucene, that indexes documents so applications can perform fast, sophisticated searches and aggregations.**
 
-For your **Java backend learning path**, I would learn **PostgreSQL → Redis → Elasticsearch** after you have the basic Spring Boot REST/API and persistence concepts down. Elasticsearch is especially worth learning once you understand what problem a normal relational database solves and why an application needs a separate search engine.
+For your **Java backend learning path**, I would learn **PostgreSQL → Redis → Elasticsearch** after you have the basic Spring Boot REST/API and persistence concepts down. 
+
+Elasticsearch is especially worth learning once you understand what problem a normal relational database solves and why an application needs a separate search engine.
+
+
+
+## elasticsearch query demos
+### query case-insensitive
+To make an Elasticsearch wildcard query case-insensitive, you need to add the "case_insensitive": true parameter inside the wildcard clause.
+
+Here is your modified query:
+```json
+{
+  "wildcard": {
+    "message": {
+      "value": "*mate x7*",
+      "case_insensitive": true
+    }
+  }
+}
+```
+💡 Key Alternative (Best Practice)
+
+If your message field is mapped as a text field (which uses a standard analyzer that converts text to lowercase), a wildcard query might fail because it looks at the exact raw tokens.
+
+If the above doesn't work, use a match_phrase query instead. It is automatically case-insensitive and much faster than wildcard searches:
+```json
+{
+  "query": {
+    "match_phrase": {
+      "message": "mate x7"
+    }
+  }
+}
+```If this doesn't return the results you expect, let me know:
+* What is the mapping type of your message field (text or keyword)?
+* Do you need to match partial words (like "ultimate x7") or just the exact phrase "mate x7"?
+I can help you optimize the query based on your index structure!
+
+
+### how to make elasticsearch only return certain fields?
+Use a better option source filter. If you're searching with JSON it'll look something like this:
+```json
+{
+    "_source": ["user", "message", ...],
+    "query": ...,
+    "size": ...
+}
+```
+In ES 2.4 and earlier, you could also use the fields option to the search API:
+```json
+{
+    "fields": ["user", "message", ...],
+    "query": ...,
+    "size": ...
+}
+```
+This is deprecated in ES 5+. And source filters are more powerful anyway!
