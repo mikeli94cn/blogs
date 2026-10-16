@@ -1,4 +1,4 @@
-To search through several directories at one time using the find command, list the directory paths sequentially right after the find keyword, separated by spaces. [1, 2] 
+# To search through several directories at one time using the find command, list the directory paths sequentially right after the find keyword, separated by spaces. [1, 2] 
 ## Basic Syntax
 ```
 find /path/to/dir1 /path/to/dir2 /path/to/dir3 -type f -name "pattern"
@@ -30,7 +30,7 @@ If you want to customize this further, let me know:
 ---
 
 
-To match several patterns at one time using the find command, use the -o (OR) operator to combine multiple -name or -iname arguments.
+# To match several patterns at one time using the find command, use the -o (OR) operator to combine multiple -name or -iname arguments.
 
 You must enclose the pattern criteria in escaped parentheses \( ... \) so the entire group is evaluated together before other actions.
 ## Basic Syntax
@@ -62,7 +62,7 @@ If you want to refine this, let me know:
 * Do you want to exclude certain patterns from the results?
 
 
-## how to use bash rm to remove all directories exclude one directory
+# how to use bash rm to remove all directories exclude one directory
 To remove all directories except one using the Bash rm command, you can use extended globbing (extglob) to exclude the target directory.
 Here is the quickest and safest way to do it:
 ```
@@ -147,9 +147,9 @@ find /path/to/search_dir -name "filename_or_pattern" -delete
 ## 💡 Crucial Best Practice: Test Before Deleting
 The -delete action is immediate and cannot be undone. Always run the command without -delete first to see exactly what files will be removed:
 
-# 1. Preview the files safely
+### 1. Preview the files safely
 find /path/to/search_dir -name "filename_or_pattern"
-# 2. Delete them once you verify the list is correct
+### 2. Delete them once you verify the list is correct
 find /path/to/search_dir -name "filename_or_pattern" -delete
 
 ## Common Usage Examples
