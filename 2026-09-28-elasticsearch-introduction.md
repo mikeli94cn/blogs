@@ -1168,7 +1168,7 @@ I can help you optimize the query based on your index structure!
 
 
 ### how to make elasticsearch only return certain fields?
-Use a better option source filter. If you're searching with JSON it'll look something like this:
+Use a better option [source filter](https://www.elastic.co/guide/en/elasticsearch/reference/7.0/search-request-source-filtering.html). If you're searching with JSON it'll look something like this:
 ```json
 {
     "_source": ["user", "message", ...],
@@ -1176,7 +1176,7 @@ Use a better option source filter. If you're searching with JSON it'll look some
     "size": ...
 }
 ```
-In ES 2.4 and earlier, you could also use the fields option to the search API:
+In ES 2.4 and earlier, you could also use the [fields option to the search API](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/search-request-fields.html):
 ```json
 {
     "fields": ["user", "message", ...],
