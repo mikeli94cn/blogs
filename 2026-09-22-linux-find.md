@@ -181,12 +181,12 @@ To give you the exact, safe command you need, please let me know:
 # how to use find all python file exclude one directory in bash?
 To find all Python (.py) files while excluding a specific directory in Bash, the most efficient and robust way is to use the find command with the -prune operator. 
 
-Here is the best way to do it:
+## Here is the best way to do it:
 ```bash
 find . -path "./dir_to_exclude" -prune -o -type f -name "*.py" -print
 ```
 
-How It Works
+## How It Works
 
 * find .: Starts the search in the current directory.
 * -path "./dir_to_exclude" -prune: If find encounters the directory ./dir_to_exclude, it prunes it, meaning it completely skips descending into it.
@@ -195,7 +195,7 @@ How It Works
 * -name "*.py": Filters for files ending with the .py extension.
 * -print: Prints the matching file paths to the terminal. 
 
-Alternative: Using -not -path (Slower but simpler syntax)
+## Alternative: Using -not -path (Slower but simpler syntax)
 
 If you prefer a simpler syntax, you can use the -not (or !) operator. However, note that this is slower on large projects because find will still scan the inside of the excluded directory before filtering it out of the final results. 
 ```bash
