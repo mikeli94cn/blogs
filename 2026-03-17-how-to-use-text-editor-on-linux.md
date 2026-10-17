@@ -165,7 +165,7 @@ In terminals:
 If you want, I can show you how to remap paste keys or check what your Insert key is on your specific keyboard.
 
 
-# paste into vim's comman mode
+# paste into vim's command mode
 
 To paste copied text into Vim's command mode (after typing :), press Ctrl + R followed by the double-quote key ".
 Here is the quick step-by-step workflow:
