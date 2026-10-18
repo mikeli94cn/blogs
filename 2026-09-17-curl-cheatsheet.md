@@ -48,3 +48,70 @@ To narrow down the exact issue, could you let me know:
 *
 
 With that info, I can give you the exact command or configuration fix.
+
+
+
+
+
+To download a web page's HTML using Git Bash, you can use either the curl or wget commands, which come built-in or are easily supported.
+
+Method 1: Using curl (Best for just the HTML file)
+
+The curl command downloads the raw HTML source of the page. Use the -o or -O flag to save it to a file.
+• Save with a custom filename:bash
+curl -o homepage.html https://example.com
+Use code with caution.
+• Save with the default filename (uses the name from the URL):bash
+curl -O https://example.com
+Use code with caution.
+
+Method 2: Using wget (Best for offline viewing)
+
+If you want to view the page offline, a single HTML file usually isn't enough because the CSS, JavaScript, and images will be missing. One point of agreement among users on SuperUser is that you can pass specific flags to wget to save the page along with its required assets. [1] (/goto?url=CAESlQEB6zswFbIT9Pfyxf3QxctpN6tVAY3I79qrBdPNVET9_C5Q4G_vhxKgQSjQMKth_nsaM-GyByM-BYEyovFNduktamnKAtP48UnaPsHsB_bekQ83S5eFuRIQz6KH5BVNg-GYnaA4BagvKG2trXUhDipVqrUoygntUn0mVWuRddNHQyYQE4rMmHO64V35YMpSNaSL0mdJFA)
+• Download just the HTML file:bash
+wget https://example.com
+Use code with caution.
+• Download the page and all assets (images, CSS, JS) for offline viewing:bash
+wget -E -H -k -p https://example.com
+Use code with caution.
+
+	• -p (--page-requisites): Downloads all images, CSS, and scripts needed to display the page.
+	• -k (--convert-links): Converts links so they point to your local downloaded files.
+	• -E (--adjust-extension): Ensures files are properly saved with .html extensions.
+	• -H (--span-hosts): Grabs assets even if they are hosted on a different domain or CDN. [1] (/goto?url=CAESjAEB6zswFQ3jGZWNLkMr3j4z5j4Hb0qCMj1xHqFtTtfsmSBx9YZSQ1V-exQh2hGatN8EX0BkdDGXp6kTlHPapZZbR_oFCm4SWW1TeaJIwyImjfMA8GfImrXDftV1G5CvoprzVz9WkaSNQohntzGJBDjw9PES9porH3HC5azrpddjao53-5V8KYggr0QKRA), [2] (/goto?url=CAESaAHrOzAVvRfxAU-CwKE1nJ_TnJg8WCO3aFb7EJLl8iheJ2qNftMM53C2xhIgSv5fgVyzRoUx-IlGd6G_dPqRmRVzJrSMZIY8QOwfnzduLkyAr6bQ2TErbl_j4pdi8Ro8aQzc9XHpsmas), [3] (/goto?url=CAESfQHrOzAVlrlhbn3FRP7l5cqSVWyDa9U_gXUqbyj6XrK7npv-woxlmpvEHtsUU3kUaYdNF319TaPXsBfyhcOWRcQ_ObykPfa0wJv7ZhkXQLVSoLjPcM4QXFM--mASAWiC_d0KGa-O1GU8-crPTP4TiWF6uIVtSOJtQcykfEAP)
+Are you trying to download just a single page, or do you need to recursively clone an entire website? Let me know if the page requires a login or cookies!
+
+
+
+
+
+
+To install wget for Git Bash on Windows, you have to manually add the Windows binary to Git Bash's folder, because Git Bash doesn't include it by default. [1] (/goto?url=CAEScgHrOzAV2Lw9RbDM8vuN3mSpfgdFfxITpTjkIgB85pGw24_ZdJG94bbBMpym0_ZUJUBZ6zOkZs-IOEFthWw-QEWJhvSt1wid1BBQDigm5dNMS1YwnqyySHlCM7YaOfuUF5AsIuE4xGdgVNnfpIcjT8IjCA)
+
+Step 1: Download the wget Binary
+
+1. Go to the Eternally Bored Wget for Windows page (the standard, trusted source for Windows wget builds).
+2. Download the 64-bit binary (or 32-bit if you have an older 32-bit system). You can download either the .exe directly or the .zip.
+3. If you downloaded the .zip, extract it. If the executable is named something like wget64.exe, rename it to wget.exe. [1] (/goto?url=CAESeQHrOzAVdr-V2dvL8AgAVILT6VnwKQlSusewWIuif4Mek9XmZJ3WahMEWhTEMBTLLgPankdl6C_-Bx9Mo6JZ_psG8mK6xjOsC9FrFw28fJceS483Dh_y1gwEXXtls8_V1egc6bIl-HwVaqdTiuomZRUEM5mHhs-TDRk), [2] (/goto?url=CAESfwHrOzAVn1YS31m--TlMkufr3WJT9hWBCbPTdumsJtWnkVqPA8JWlHIeHWQPj5TJ5mD_PnMZ90JsQiJHCRSo1pMtvxwNk_lVZ0H8pM7c3BCvFdWzmWzPh3cP_nwHX9sP66UUzcckMuRWQEPVuzKLahd4OAXuopx5J9Au7smVyW0), [3] (/goto?url=CAESYwHrOzAV5cDPS_8_yWTZOuut070retg9hLF22DTpVChEywjwiztsZksXUXQoLeYEwupZxBpYBVS2AIqNdKvVXhCAYESxtTMkYECB0Dpwm7QbpPXuhmX12oilzHCMrufe_rwKlA), [4] (/goto?url=CAESkAEB6zswFXo3TyxiorgAA-vb82iQzStUjzyXN85eHrO1ndnoSi7VB1gSqgJ-DS1lvuxVUlDm6upKEOv_RBnM3H-khFNte8LXmSVwnCVIAIYjYpdyvngcs6T9m3yfX-HYqOCmuBvnRmGhTD4ri9yFbApOeje92yH8jlVHmVeX0tWnLOkcRA3fDaknyiLwHF72wCs)
+
+Step 2: Move wget.exe to Git Bash's Bin Folder
+
+You need to drop this file into Git's executable directory so Git Bash can see it. [1] (/goto?url=CAESgwEB6zswFZNx_-KuHLRZmu3b9uvBK_VdOyKFFNc2wTp0FJhKgBhsei01Ks7QkrZ4eCvpHl1ycgJPTa3bF3eKQtdGxHtrBzv6Z-bxAsoJIseTWeWQGcQNXAMrL7_dx5WRsiZnDzgtddLwEs4cZOcq57logRZ4ONZV1i2txH28C1K6x36kuw)
+1. Open your Windows File Explorer and navigate to your Git installation path. By default, it is usually located at:
+C:\Program Files\Git\mingw64\bin\
+(Note: If you installed Git only for your user account, it might be in C:\Users\YourName\AppData\Local\Programs\Git\mingw64\bin\)
+2. Copy and paste your downloaded wget.exe into that bin folder.
+3. Windows will likely ask for Administrator permission—click Continue. [1] (/goto?url=CAEShwEB6zswFbCTDw8KL9QQAw_nXtHZoef38WjZHw5-UKw2maocwoyq6WOM1PXMSbCPvDDgGioPzFa_95TidvOKH8s1SPgLVgLvB9up-x6yGGeEeVpwGGEcVsJPUK2tkSn5Ab0Fn5Vo4syUqN6T_eLgQ5g5cSkiqOjVZc_lbP6B8PvWIgJ1vcPMaOI), [2] (/goto?url=CAESYwHrOzAVP9Jd_vfKLSWaTE4VaP99zW2HcYgwTsLAAqmKs_6xTonlSpY9K2RwkeXZzM3_rR9q1lNG3v13a8r1zZ5Ju5aqPtA4BQf_X1o0k1zHmOkG72GdUXjO6KQGmHDP0OVpWg), [3] (/goto?url=CAESlgEB6zswFd-rtvBAYGJl_ncTumQctbKx-JprXY3QiAneQr5Lj6KErA-xkyFVNXyELWHxSkBj63H0ovZdZiUQQhY_FZxAxe4Y-cQqIA4ipqyG1qdWWniq_-XhmVXEhYku0t807yKRPvnL9ydsoONLLX4-IJ2WH67q2almDxWpGrXAyBHUq9YWd9V9XEi0-Fj26u7f7Dj90hY), [4] (/goto?url=CAESgQEB6zswFRyc3bnqar0iLDHvVT2WEWxrpDZzlmtdJkCNl3fa9eDvcbM5b_ST5MHBa7sZy2kg1BDDk1izJZMqy_z-kzZ6HJPlWc8dKvYgKrpVEK66huQ9HnrFLQ0lUKJMck8gQJ2kGhZXDA-ParsQ_hDOYSZR-9DRchQ9_AJGRFcl5Bg), [5] (/goto?url=CAESkAEB6zswFXo3TyxiorgAA-vb82iQzStUjzyXN85eHrO1ndnoSi7VB1gSqgJ-DS1lvuxVUlDm6upKEOv_RBnM3H-khFNte8LXmSVwnCVIAIYjYpdyvngcs6T9m3yfX-HYqOCmuBvnRmGhTD4ri9yFbApOeje92yH8jlVHmVeX0tWnLOkcRA3fDaknyiLwHF72wCs), [6] (/goto?url=CAESYwHrOzAV5cDPS_8_yWTZOuut070retg9hLF22DTpVChEywjwiztsZksXUXQoLeYEwupZxBpYBVS2AIqNdKvVXhCAYESxtTMkYECB0Dpwm7QbpPXuhmX12oilzHCMrufe_rwKlA)
+
+Step 3: Verify the Installation
+
+Close any active Git Bash windows and open a fresh one, then type:
+bash
+wget --version
+Use code with caution.
+If configured correctly, it will output the version number of wget instead of a "command not found" error! [1] (/goto?url=CAESYwHrOzAVP9Jd_vfKLSWaTE4VaP99zW2HcYgwTsLAAqmKs_6xTonlSpY9K2RwkeXZzM3_rR9q1lNG3v13a8r1zZ5Ju5aqPtA4BQf_X1o0k1zHmOkG72GdUXjO6KQGmHDP0OVpWg), [2] (/goto?url=CAESYwHrOzAV5cDPS_8_yWTZOuut070retg9hLF22DTpVChEywjwiztsZksXUXQoLeYEwupZxBpYBVS2AIqNdKvVXhCAYESxtTMkYECB0Dpwm7QbpPXuhmX12oilzHCMrufe_rwKlA)
+
+💡 Quick Alternative: Just use curl
+
+If you don't want to deal with moving files around, remember that Git Bash comes with curl pre-installed. You can achieve almost identical results for downloading web pages or files using curl -O. [1] (/goto?url=CAEScQHrOzAVFvVmjTDefNBFNW-ZeJGyvbH2-xRawbdZZuPUCuWDDgxMxluta7JjIONaCnvBvChvS34NTGzG7c-tESGa1M0T-I_sUBAKznf4hd4csVF9aG9-VWGXURrn6j7Z-dVjuD0gWGbsQDnlJZLSgGhw), [2] (/goto?url=CAESYgHrOzAVVmKXvSEBiGAYKbdy9RwAfjBtlaaIGPwTGYp4tsFLHBBG-F_WQavy4CQNcm3sOlzBSJsLjJC85LyqgNqX6WeiCOW1OOLvhJF4tE4RWhs81yt1GKTH4yArdHzg-zU6), [3] (/goto?url=CAEScgHrOzAV2Lw9RbDM8vuN3mSpfgdFfxITpTjkIgB85pGw24_ZdJG94bbBMpym0_ZUJUBZ6zOkZs-IOEFthWw-QEWJhvSt1wid1BBQDigm5dNMS1YwnqyySHlCM7YaOfuUF5AsIuE4xGdgVNnfpIcjT8IjCA)
+Did you run into any permission errors while pasting the file, or is wget working smoothly now?
