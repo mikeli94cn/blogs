@@ -1,3 +1,8 @@
+handling
+store
+display
+connect
+
 with google
 # information
 ## storage
