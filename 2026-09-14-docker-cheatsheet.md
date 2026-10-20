@@ -1540,3 +1540,48 @@ EOF
 sudo apt update
 
 ```
+
+[aliyun guide]https://www.alibabacloud.com/help/en/ecs/user-guide/install-and-use-docker#59d024a3e32um
+
+configure repository
+
+Configure the Docker daemon
+Either pass the --registry-mirror option when starting dockerd manually, or edit /etc/docker/daemon.json and add the registry-mirrors key and value, to make the change persistent.
+
+
+{
+  "registry-mirrors": ["https://<my-docker-mirror-host>"]
+}
+Save the file and reload Docker for the change to take effect.
+
+
+After installation, verify that Docker is running:
+
+
+ sudo systemctl status docker
+If Docker is not running, start it manually:
+
+
+ sudo systemctl start docker
+Verify that the installation is successful by running the hello-world image:
+
+
+ sudo docker run hello-world
+This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.
+
+You have now successfully installed and started Docker Engine.
+
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+
+docker info | grep -A 4 "Registry Mirrors"
+
+{
+  "registry-mirrors": [
+    "https://g1ql67ap.mirror.aliyuncs.com",
+    "https://619ee45a04da47a4b3d0e0b482d0cc03.mirror.swr.myhuaweicloud.com"
+  ]
+}
+
+
