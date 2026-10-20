@@ -1516,3 +1516,27 @@ Are you using a corporate network, a school network, or an active VPN? If so, Do
    Environment="HTTPS_PROXY=http://127.0.0.1:10809"
 ```
    3. Reload and restart Docker as shown in Solution 1.
+
+### how to install docker from china mainland mirror
+[offical guide](https://docs.docker.com/engine/install/debian/)
+
+just change download.docker.com to mirrors.aliyun.com/docker-ce
+```bash
+# Update the package management tool
+sudo apt update
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the Docker package repository
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: http://mirrors.aliyun.com/docker-ce/linux/debian
+Suites: $(. /etc/os-release && echo "$VERSION_CODENAME")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+sudo apt update
+
+```
