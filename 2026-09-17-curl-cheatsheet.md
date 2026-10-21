@@ -5,10 +5,10 @@ When the VPN forces traffic through a specific local proxy port, curl tries to c
 
 ## How to Fix It## 1. Pass the Proxy Manually to curl
 If your VPN uses a local proxy (common with shadow-socks, corporate VPNs, or secure web gateways), you need to tell curl explicitly where to look.
+
 First, find your system proxy settings (e.g., 127.0.0.1:7890 or 127.0.0.1:1080). Then run your command like this:
 
-
-* For HTTP Proxies:
+For HTTP Proxies:
 ```bash
 curl -x http://127.0.0.1:7890 -I https://example.com
 ```
@@ -16,7 +16,7 @@ curl -x http://127.0.0.1:7890 -I https://example.com
 ```bash
 curl -x socks5://127.0.0.1:1080 -I https://example.com
 ```
-*
+
 
 ## 2. Set Terminal Environment Variables
 Instead of typing the proxy flag every time, you can temporarily export the proxy settings to your current terminal session:
@@ -24,17 +24,22 @@ Instead of typing the proxy flag every time, you can temporarily export the prox
 export http_proxy="http://127.0.0.1:7890"
 export https_proxy="http://127.0.0.1:7890"
 ```
+
 (If you are using Windows PowerShell, use $env:http_proxy="http://127.0.0.1:7890" instead).
+
 After exporting, try your standard command again:
+
 ```bash
 curl -I https://example.com
 ```
 ## 3. Check for MTU Size / Packet Dropping
 If your VPN uses a standard TUN/TAP adapter (like OpenVPN or WireGuard) rather than a proxy, the timeout might be caused by an MTU (Maximum Transmission Unit) mismatch. VPN headers make packets larger, and if they exceed the allowable size, they get dropped. Browsers naturally optimize for this, but curl does not. [3, 5]
+
 You can force curl to use a specific interface or resolve over IPv4 to rule out network mismatches:
 ```
 curl -4 -I https://example.com
 ```
+
 ## How to Debug Further
 If it still fails, run curl in verbose mode to see exactly where the connection is hanging (DNS resolution, TCP handshake, or SSL negotiation): [4, 5, 6]
 ```
@@ -42,10 +47,8 @@ curl -vI https://example.com
 ```
 To narrow down the exact issue, could you let me know:
 
-*
 * What VPN client you are using (e.g., Clash, OpenVPN, Cisco, AnyConnect)?
 * What the verbose output (curl -vI ...) shows right before it hangs?
-*
 
 With that info, I can give you the exact command or configuration fix.
 
@@ -58,27 +61,29 @@ To download a web page's HTML using Git Bash, you can use either the curl or wge
 Method 1: Using curl (Best for just the HTML file)
 
 The curl command downloads the raw HTML source of the page. Use the -o or -O flag to save it to a file.
-• Save with a custom filename:bash
+* Save with a custom filename:bash
 curl -o homepage.html https://example.com
-Use code with caution.
-• Save with the default filename (uses the name from the URL):bash
+```
+* Save with the default filename (uses the name from the URL):bash
 curl -O https://example.com
-Use code with caution.
+```
 
 Method 2: Using wget (Best for offline viewing)
 
-If you want to view the page offline, a single HTML file usually isn't enough because the CSS, JavaScript, and images will be missing. One point of agreement among users on SuperUser is that you can pass specific flags to wget to save the page along with its required assets. [1] (/goto?url=CAESlQEB6zswFbIT9Pfyxf3QxctpN6tVAY3I79qrBdPNVET9_C5Q4G_vhxKgQSjQMKth_nsaM-GyByM-BYEyovFNduktamnKAtP48UnaPsHsB_bekQ83S5eFuRIQz6KH5BVNg-GYnaA4BagvKG2trXUhDipVqrUoygntUn0mVWuRddNHQyYQE4rMmHO64V35YMpSNaSL0mdJFA)
-• Download just the HTML file:bash
-wget https://example.com
-Use code with caution.
-• Download the page and all assets (images, CSS, JS) for offline viewing:bash
-wget -E -H -k -p https://example.com
-Use code with caution.
+If you want to view the page offline, a single HTML file usually isn't enough because the CSS, JavaScript, and images will be missing. One point of agreement among users on SuperUser is that you can pass specific flags to wget to save the page along with its required assets. 
 
-	• -p (--page-requisites): Downloads all images, CSS, and scripts needed to display the page.
-	• -k (--convert-links): Converts links so they point to your local downloaded files.
-	• -E (--adjust-extension): Ensures files are properly saved with .html extensions.
-	• -H (--span-hosts): Grabs assets even if they are hosted on a different domain or CDN. [1] (/goto?url=CAESjAEB6zswFQ3jGZWNLkMr3j4z5j4Hb0qCMj1xHqFtTtfsmSBx9YZSQ1V-exQh2hGatN8EX0BkdDGXp6kTlHPapZZbR_oFCm4SWW1TeaJIwyImjfMA8GfImrXDftV1G5CvoprzVz9WkaSNQohntzGJBDjw9PES9porH3HC5azrpddjao53-5V8KYggr0QKRA), [2] (/goto?url=CAESaAHrOzAVvRfxAU-CwKE1nJ_TnJg8WCO3aFb7EJLl8iheJ2qNftMM53C2xhIgSv5fgVyzRoUx-IlGd6G_dPqRmRVzJrSMZIY8QOwfnzduLkyAr6bQ2TErbl_j4pdi8Ro8aQzc9XHpsmas), [3] (/goto?url=CAESfQHrOzAVlrlhbn3FRP7l5cqSVWyDa9U_gXUqbyj6XrK7npv-woxlmpvEHtsUU3kUaYdNF319TaPXsBfyhcOWRcQ_ObykPfa0wJv7ZhkXQLVSoLjPcM4QXFM--mASAWiC_d0KGa-O1GU8-crPTP4TiWF6uIVtSOJtQcykfEAP)
+* Download just the HTML file:bash
+wget https://example.com
+```
+* Download the page and all assets (images, CSS, JS) for offline viewing:bash
+wget -E -H -k -p https://example.com
+```
+
+	* -p (--page-requisites): Downloads all images, CSS, and scripts needed to display the page.
+	* -k (--convert-links): Converts links so they point to your local downloaded files.
+	* -E (--adjust-extension): Ensures files are properly saved with .html extensions.
+	* -H (--span-hosts): Grabs assets even if they are hosted on a different domain or CDN.
+	
 Are you trying to download just a single page, or do you need to recursively clone an entire website? Let me know if the page requires a login or cookies!
 
 
@@ -86,7 +91,7 @@ Are you trying to download just a single page, or do you need to recursively clo
 
 
 
-To install wget for Git Bash on Windows, you have to manually add the Windows binary to Git Bash's folder, because Git Bash doesn't include it by default. [1] (/goto?url=CAEScgHrOzAV2Lw9RbDM8vuN3mSpfgdFfxITpTjkIgB85pGw24_ZdJG94bbBMpym0_ZUJUBZ6zOkZs-IOEFthWw-QEWJhvSt1wid1BBQDigm5dNMS1YwnqyySHlCM7YaOfuUF5AsIuE4xGdgVNnfpIcjT8IjCA)
+To install wget for Git Bash on Windows, you have to manually add the Windows binary to Git Bash's folder, because Git Bash doesn't include it by default. 
 
 Step 1: Download the wget Binary
 
@@ -96,22 +101,26 @@ Step 1: Download the wget Binary
 
 Step 2: Move wget.exe to Git Bash's Bin Folder
 
-You need to drop this file into Git's executable directory so Git Bash can see it. [1] (/goto?url=CAESgwEB6zswFZNx_-KuHLRZmu3b9uvBK_VdOyKFFNc2wTp0FJhKgBhsei01Ks7QkrZ4eCvpHl1ycgJPTa3bF3eKQtdGxHtrBzv6Z-bxAsoJIseTWeWQGcQNXAMrL7_dx5WRsiZnDzgtddLwEs4cZOcq57logRZ4ONZV1i2txH28C1K6x36kuw)
+You need to drop this file into Git's executable directory so Git Bash can see it. 
+
 1. Open your Windows File Explorer and navigate to your Git installation path. By default, it is usually located at:
+
 C:\Program Files\Git\mingw64\bin\
+
 (Note: If you installed Git only for your user account, it might be in C:\Users\YourName\AppData\Local\Programs\Git\mingw64\bin\)
+
 2. Copy and paste your downloaded wget.exe into that bin folder.
-3. Windows will likely ask for Administrator permission—click Continue. [1] (/goto?url=CAEShwEB6zswFbCTDw8KL9QQAw_nXtHZoef38WjZHw5-UKw2maocwoyq6WOM1PXMSbCPvDDgGioPzFa_95TidvOKH8s1SPgLVgLvB9up-x6yGGeEeVpwGGEcVsJPUK2tkSn5Ab0Fn5Vo4syUqN6T_eLgQ5g5cSkiqOjVZc_lbP6B8PvWIgJ1vcPMaOI), [2] (/goto?url=CAESYwHrOzAVP9Jd_vfKLSWaTE4VaP99zW2HcYgwTsLAAqmKs_6xTonlSpY9K2RwkeXZzM3_rR9q1lNG3v13a8r1zZ5Ju5aqPtA4BQf_X1o0k1zHmOkG72GdUXjO6KQGmHDP0OVpWg), [3] (/goto?url=CAESlgEB6zswFd-rtvBAYGJl_ncTumQctbKx-JprXY3QiAneQr5Lj6KErA-xkyFVNXyELWHxSkBj63H0ovZdZiUQQhY_FZxAxe4Y-cQqIA4ipqyG1qdWWniq_-XhmVXEhYku0t807yKRPvnL9ydsoONLLX4-IJ2WH67q2almDxWpGrXAyBHUq9YWd9V9XEi0-Fj26u7f7Dj90hY), [4] (/goto?url=CAESgQEB6zswFRyc3bnqar0iLDHvVT2WEWxrpDZzlmtdJkCNl3fa9eDvcbM5b_ST5MHBa7sZy2kg1BDDk1izJZMqy_z-kzZ6HJPlWc8dKvYgKrpVEK66huQ9HnrFLQ0lUKJMck8gQJ2kGhZXDA-ParsQ_hDOYSZR-9DRchQ9_AJGRFcl5Bg), [5] (/goto?url=CAESkAEB6zswFXo3TyxiorgAA-vb82iQzStUjzyXN85eHrO1ndnoSi7VB1gSqgJ-DS1lvuxVUlDm6upKEOv_RBnM3H-khFNte8LXmSVwnCVIAIYjYpdyvngcs6T9m3yfX-HYqOCmuBvnRmGhTD4ri9yFbApOeje92yH8jlVHmVeX0tWnLOkcRA3fDaknyiLwHF72wCs), [6] (/goto?url=CAESYwHrOzAV5cDPS_8_yWTZOuut070retg9hLF22DTpVChEywjwiztsZksXUXQoLeYEwupZxBpYBVS2AIqNdKvVXhCAYESxtTMkYECB0Dpwm7QbpPXuhmX12oilzHCMrufe_rwKlA)
+
+3. Windows will likely ask for Administrator permission—click Continue.
 
 Step 3: Verify the Installation
 
 Close any active Git Bash windows and open a fresh one, then type:
-bash
+```bash
 wget --version
-Use code with caution.
-If configured correctly, it will output the version number of wget instead of a "command not found" error! [1] (/goto?url=CAESYwHrOzAVP9Jd_vfKLSWaTE4VaP99zW2HcYgwTsLAAqmKs_6xTonlSpY9K2RwkeXZzM3_rR9q1lNG3v13a8r1zZ5Ju5aqPtA4BQf_X1o0k1zHmOkG72GdUXjO6KQGmHDP0OVpWg), [2] (/goto?url=CAESYwHrOzAV5cDPS_8_yWTZOuut070retg9hLF22DTpVChEywjwiztsZksXUXQoLeYEwupZxBpYBVS2AIqNdKvVXhCAYESxtTMkYECB0Dpwm7QbpPXuhmX12oilzHCMrufe_rwKlA)
+```
+If configured correctly, it will output the version number of wget instead of a "command not found" error! 
 
 💡 Quick Alternative: Just use curl
 
-If you don't want to deal with moving files around, remember that Git Bash comes with curl pre-installed. You can achieve almost identical results for downloading web pages or files using curl -O. [1] (/goto?url=CAEScQHrOzAVFvVmjTDefNBFNW-ZeJGyvbH2-xRawbdZZuPUCuWDDgxMxluta7JjIONaCnvBvChvS34NTGzG7c-tESGa1M0T-I_sUBAKznf4hd4csVF9aG9-VWGXURrn6j7Z-dVjuD0gWGbsQDnlJZLSgGhw), [2] (/goto?url=CAESYgHrOzAVVmKXvSEBiGAYKbdy9RwAfjBtlaaIGPwTGYp4tsFLHBBG-F_WQavy4CQNcm3sOlzBSJsLjJC85LyqgNqX6WeiCOW1OOLvhJF4tE4RWhs81yt1GKTH4yArdHzg-zU6), [3] (/goto?url=CAEScgHrOzAV2Lw9RbDM8vuN3mSpfgdFfxITpTjkIgB85pGw24_ZdJG94bbBMpym0_ZUJUBZ6zOkZs-IOEFthWw-QEWJhvSt1wid1BBQDigm5dNMS1YwnqyySHlCM7YaOfuUF5AsIuE4xGdgVNnfpIcjT8IjCA)
-Did you run into any permission errors while pasting the file, or is wget working smoothly now?
+If you don't want to deal with moving files around, remember that Git Bash comes with curl pre-installed. You can achieve almost identical results for downloading web pages or files using curl -O. 
