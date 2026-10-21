@@ -1,9 +1,10 @@
-**why broswer is ok over a VPN but curl is time-out**
+# why broswer is ok over a VPN but curl is time-out
 When your browser works normally over a VPN but curl times out, it is almost always because your browser is automatically picking up a system proxy configuration set by the VPN, whereas your command-line terminal (curl) does not inherit those proxy settings by default. [1, 2]
 
 When the VPN forces traffic through a specific local proxy port, curl tries to connect directly to the internet via the standard network interface and gets blocked or dropped by the VPN routing rules, resulting in a timeout. [3, 4, 5]
 
-## How to Fix It## 1. Pass the Proxy Manually to curl
+## How to Fix It
+## 1. Pass the Proxy Manually to curl
 If your VPN uses a local proxy (common with shadow-socks, corporate VPNs, or secure web gateways), you need to tell curl explicitly where to look.
 
 First, find your system proxy settings (e.g., 127.0.0.1:7890 or 127.0.0.1:1080). Then run your command like this:
@@ -52,13 +53,13 @@ To narrow down the exact issue, could you let me know:
 
 With that info, I can give you the exact command or configuration fix.
 
+---
 
-
-
+# download a web page's HTML using Git Bash
 
 To download a web page's HTML using Git Bash, you can use either the curl or wget commands, which come built-in or are easily supported.
 
-Method 1: Using curl (Best for just the HTML file)
+## Method 1: Using curl (Best for just the HTML file)
 
 The curl command downloads the raw HTML source of the page. Use the -o or -O flag to save it to a file.
 * Save with a custom filename:bash
@@ -68,7 +69,7 @@ curl -o homepage.html https://example.com
 curl -O https://example.com
 ```
 
-Method 2: Using wget (Best for offline viewing)
+## Method 2: Using wget (Best for offline viewing)
 
 If you want to view the page offline, a single HTML file usually isn't enough because the CSS, JavaScript, and images will be missing. One point of agreement among users on SuperUser is that you can pass specific flags to wget to save the page along with its required assets. 
 
@@ -86,20 +87,20 @@ wget -E -H -k -p https://example.com
 	
 Are you trying to download just a single page, or do you need to recursively clone an entire website? Let me know if the page requires a login or cookies!
 
+---
 
-
-
+# install wget
 
 
 To install wget for Git Bash on Windows, you have to manually add the Windows binary to Git Bash's folder, because Git Bash doesn't include it by default. 
 
-Step 1: Download the wget Binary
+## Step 1: Download the wget Binary
 
 1. Go to the Eternally Bored Wget for Windows page (the standard, trusted source for Windows wget builds).
 2. Download the 64-bit binary (or 32-bit if you have an older 32-bit system). You can download either the .exe directly or the .zip.
-3. If you downloaded the .zip, extract it. If the executable is named something like wget64.exe, rename it to wget.exe. [1] (/goto?url=CAESeQHrOzAVdr-V2dvL8AgAVILT6VnwKQlSusewWIuif4Mek9XmZJ3WahMEWhTEMBTLLgPankdl6C_-Bx9Mo6JZ_psG8mK6xjOsC9FrFw28fJceS483Dh_y1gwEXXtls8_V1egc6bIl-HwVaqdTiuomZRUEM5mHhs-TDRk), [2] (/goto?url=CAESfwHrOzAVn1YS31m--TlMkufr3WJT9hWBCbPTdumsJtWnkVqPA8JWlHIeHWQPj5TJ5mD_PnMZ90JsQiJHCRSo1pMtvxwNk_lVZ0H8pM7c3BCvFdWzmWzPh3cP_nwHX9sP66UUzcckMuRWQEPVuzKLahd4OAXuopx5J9Au7smVyW0), [3] (/goto?url=CAESYwHrOzAV5cDPS_8_yWTZOuut070retg9hLF22DTpVChEywjwiztsZksXUXQoLeYEwupZxBpYBVS2AIqNdKvVXhCAYESxtTMkYECB0Dpwm7QbpPXuhmX12oilzHCMrufe_rwKlA), [4] (/goto?url=CAESkAEB6zswFXo3TyxiorgAA-vb82iQzStUjzyXN85eHrO1ndnoSi7VB1gSqgJ-DS1lvuxVUlDm6upKEOv_RBnM3H-khFNte8LXmSVwnCVIAIYjYpdyvngcs6T9m3yfX-HYqOCmuBvnRmGhTD4ri9yFbApOeje92yH8jlVHmVeX0tWnLOkcRA3fDaknyiLwHF72wCs)
+3. If you downloaded the .zip, extract it. If the executable is named something like wget64.exe, rename it to wget.exe. 
 
-Step 2: Move wget.exe to Git Bash's Bin Folder
+## Step 2: Move wget.exe to Git Bash's Bin Folder
 
 You need to drop this file into Git's executable directory so Git Bash can see it. 
 
