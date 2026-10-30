@@ -1518,9 +1518,7 @@ Are you using a corporate network, a school network, or an active VPN? If so, Do
    3. Reload and restart Docker as shown in Solution 1.
 
 ### how to install docker from china mainland mirror
-[offical guide](https://docs.docker.com/engine/install/debian/)
 
-just change download.docker.com to mirrors.aliyun.com/docker-ce
 ```bash
 # Update the package management tool
 sudo apt update
@@ -1541,20 +1539,19 @@ sudo apt update
 
 ```
 
-[aliyun guide]https://www.alibabacloud.com/help/en/ecs/user-guide/install-and-use-docker#59d024a3e32um
 
-#### configure repository
+#### configure daemon repository
 
 Configure the Docker daemon
 
-Either pass the --registry-mirror option when starting dockerd manually, or edit /etc/docker/daemon.json and add the registry-mirrors key and value, to make the change persistent.
+Either pass the `--registry-mirror` option when starting dockerd manually, or edit `/etc/docker/daemon.json` and add the registry-mirrors key and value, to make the change persistent.
 
 ```
 {
   "registry-mirrors": ["https://<my-docker-mirror-host>"]
 }
 ```
-
+valid china mainland dcoker mirror : (actually you can login your aliyun or huaweicloud console, visit SWR service to get the mirror url)
 ```
 {
   "registry-mirrors": [
@@ -1567,6 +1564,20 @@ Either pass the --registry-mirror option when starting dockerd manually, or edit
 
 Save the file and reload Docker for the change to take effect.
 
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+you can check registry mirrors by the command below : 
+```
+docker info | grep -A 4 "Registry Mirrors"
+```
+
+
+install docker engine
+```bash
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
 
 After installation, verify that Docker is running:
 
@@ -1586,11 +1597,9 @@ sudo docker run hello-world
 This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.
 
 You have now successfully installed and started Docker Engine.
-```bash
-sudo systemctl daemon-reload
-sudo systemctl restart docker
-```
-```
-docker info | grep -A 4 "Registry Mirrors"
-```
 
+
+##### reference
+1. [offical guide](https://docs.docker.com/engine/install/debian/)  just change `download.docker.com` to `mirrors.aliyun.com/docker-ce`
+
+2. [aliyun guide](https://www.alibabacloud.com/help/en/ecs/user-guide/install-and-use-docker#59d024a3e32um)
