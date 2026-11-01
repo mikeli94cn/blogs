@@ -1598,6 +1598,49 @@ This command downloads a test image and runs it in a container. When the contain
 
 You have now successfully installed and started Docker Engine.
 
+# install Docker on Windows
+To install Docker on Windows, you will need to install Docker Desktop, which is the official and easiest way to manage your containers. [1] (/goto?url=CAESdgHrOzAVFWGO2BSsHV25mUMXNsFIsDujCGuxzaE74P0CLT5AzQIzh90OqMBtSFb19ZypGCP8F4qATEYjEIw5PjMe7bKWSTCQMLNUItmEtFBV1EA5XpVSHYRXS6pH5jP2XNh5hWM-3Kibu4yuBXOMon8cQKyUTJU), [2] (/goto?url=CAESaQHrOzAVdCxkHSLswnvu8Dkr54gi2eKo1HIbAh2uCPGmI4sfc4TRtl5EfS2cRWdGCrqArWVwdekIhlSmjmUlzLSTSUisBrXYT5fmzqEBYjWYAen1P_4CzNsl9BjcDhgXFjxUoCTBFOtywg)
+
+Here is the step-by-step installation guide:
+
+Step 1: Verify System Requirements
+
+Before installing, ensure your PC meets these baseline specifications: [1] (/goto?url=CAESdgHrOzAVFWGO2BSsHV25mUMXNsFIsDujCGuxzaE74P0CLT5AzQIzh90OqMBtSFb19ZypGCP8F4qATEYjEIw5PjMe7bKWSTCQMLNUItmEtFBV1EA5XpVSHYRXS6pH5jP2XNh5hWM-3Kibu4yuBXOMon8cQKyUTJU)
+• OS: Windows 10 (64-bit, version 22H2 or higher) or Windows 11 (64-bit, version 23H2 or higher).
+• RAM: At least 8GB of system RAM.
+• Hardware Virtualization: Must be enabled in your BIOS/UEFI. You can check this by pressing Ctrl + Shift + Esc to open Task Manager, navigating to the Performance tab, and looking for Virtualization: Enabled. [1] (/goto?url=CAESYwHrOzAV5quqaEMMSjGzbkNGmbmRrZIT2CA2pqeGxKXuI9PGA_cXzoxv39S4dl5rNFG-B07u4NOLVrGBYWJ3QdqRXKzMCDkMfQuXOkQsZOSinhqC-P5ysDQI8asXQdvBytArlA), [2] (/goto?url=CAESaQHrOzAVKINPgydf4O5zqurtOe2_WqA04wM1SnNijpaZ4mJWapg9Dp8-ftphaZn_l5X2GNCQFo5MjZ_2caD3Umq8DlcCaJtigYbaoRgShnh8pYWsj7Y8D_CtkBSe8z078VSuM5_ldhLlyg), [3] (/goto?url=CAESdgHrOzAVFWGO2BSsHV25mUMXNsFIsDujCGuxzaE74P0CLT5AzQIzh90OqMBtSFb19ZypGCP8F4qATEYjEIw5PjMe7bKWSTCQMLNUItmEtFBV1EA5XpVSHYRXS6pH5jP2XNh5hWM-3Kibu4yuBXOMon8cQKyUTJU)
+
+Step 2: Install or Update WSL 2
+
+Docker Desktop uses Windows Subsystem for Linux (WSL 2) as its default backend. [1] (/goto?url=CAESdgHrOzAVFWGO2BSsHV25mUMXNsFIsDujCGuxzaE74P0CLT5AzQIzh90OqMBtSFb19ZypGCP8F4qATEYjEIw5PjMe7bKWSTCQMLNUItmEtFBV1EA5XpVSHYRXS6pH5jP2XNh5hWM-3Kibu4yuBXOMon8cQKyUTJU)
+1. Open PowerShell or Command Prompt as an Administrator (Right-click -> Run as administrator).
+2. Run the following command to install WSL and a default Linux distribution:bash
+wsl --install
+Use code with caution.
+3. If you already have WSL installed, ensure it is fully updated to the latest version by running:bash
+wsl --update
+Use code with caution.
+4. Restart your computer if prompted. [1] (/goto?url=CAESaQHrOzAVKINPgydf4O5zqurtOe2_WqA04wM1SnNijpaZ4mJWapg9Dp8-ftphaZn_l5X2GNCQFo5MjZ_2caD3Umq8DlcCaJtigYbaoRgShnh8pYWsj7Y8D_CtkBSe8z078VSuM5_ldhLlyg), [2] (/goto?url=CAESaQHrOzAVdCxkHSLswnvu8Dkr54gi2eKo1HIbAh2uCPGmI4sfc4TRtl5EfS2cRWdGCrqArWVwdekIhlSmjmUlzLSTSUisBrXYT5fmzqEBYjWYAen1P_4CzNsl9BjcDhgXFjxUoCTBFOtywg), [3] (/goto?url=CAESYwHrOzAV5quqaEMMSjGzbkNGmbmRrZIT2CA2pqeGxKXuI9PGA_cXzoxv39S4dl5rNFG-B07u4NOLVrGBYWJ3QdqRXKzMCDkMfQuXOkQsZOSinhqC-P5ysDQI8asXQdvBytArlA)
+
+Step 3: Download and Run the Docker Installer
+
+1. Head over to the official Docker Desktop for Windows Installation Page and download the Docker Desktop for Windows installer.
+2. Locate the downloaded file (Docker Desktop Installer.exe) in your Downloads folder, right-click it, and select Run as administrator.
+3. When prompted, make sure the checkbox for Use WSL 2 instead of Hyper-V is checked.
+4. Click OK to let the installer unpack the binaries and finish the setup.
+5. Once complete, click Close and restart to reboot your computer and finalize the process. [1] (/goto?url=CAESaQHrOzAVdCxkHSLswnvu8Dkr54gi2eKo1HIbAh2uCPGmI4sfc4TRtl5EfS2cRWdGCrqArWVwdekIhlSmjmUlzLSTSUisBrXYT5fmzqEBYjWYAen1P_4CzNsl9BjcDhgXFjxUoCTBFOtywg), [2] (/goto?url=CAESdgHrOzAVFWGO2BSsHV25mUMXNsFIsDujCGuxzaE74P0CLT5AzQIzh90OqMBtSFb19ZypGCP8F4qATEYjEIw5PjMe7bKWSTCQMLNUItmEtFBV1EA5XpVSHYRXS6pH5jP2XNh5hWM-3Kibu4yuBXOMon8cQKyUTJU), [3] (/goto?url=CAESYwHrOzAV5quqaEMMSjGzbkNGmbmRrZIT2CA2pqeGxKXuI9PGA_cXzoxv39S4dl5rNFG-B07u4NOLVrGBYWJ3QdqRXKzMCDkMfQuXOkQsZOSinhqC-P5ysDQI8asXQdvBytArlA)
+
+Step 4: Launch and Test Docker
+
+1. After your PC restarts, open the Docker Desktop app from your Start Menu.
+2. Accept the Docker Subscription Service Agreement.
+3. To confirm everything is functioning perfectly, open a fresh Command Prompt or PowerShell window and execute the following universal test command:bash
+docker run hello-world
+Use code with caution.
+If Docker is working correctly, it will pull a small image from Docker Hub and print a message saying "Hello from Docker!" [1] (/goto?url=CAESYwHrOzAV5quqaEMMSjGzbkNGmbmRrZIT2CA2pqeGxKXuI9PGA_cXzoxv39S4dl5rNFG-B07u4NOLVrGBYWJ3QdqRXKzMCDkMfQuXOkQsZOSinhqC-P5ysDQI8asXQdvBytArlA)
+If you prefer a visual, step-by-step walk-through of this exact process, you can watch this setup guide:
+Are you planning to run Linux containers or do you specifically need to switch over to Windows containers? Let me know if you run into any WSL errors during initialization!
+
 
 ##### reference
 1. [offical guide](https://docs.docker.com/engine/install/debian/)  just change `download.docker.com` to `mirrors.aliyun.com/docker-ce`
