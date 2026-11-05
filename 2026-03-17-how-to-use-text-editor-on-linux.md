@@ -1006,3 +1006,24 @@ chmod +x clean.sh
 If you want to tweak this script, let me know:
 • Do you want the script to overwrite the original file or save the results into a new, separate output file?
 • Do you need to process multiple files at once inside a folder?
+
+
+
+
+
+# how to use vim to combine the multiple lines above into 1 line?
+
+To quickly combine the SQL query into a single line using Vim, you can use either a simple command-line shortcut or a visual selection approach.
+The most efficient way is to use the global join command. While in Normal Mode, type the following command and press Enter:
+text
+:%j
+Use code with caution.
+
+Alternative Ways in Vim
+
+If you prefer to see it happen step-by-step or want more control, you can use these alternatives:
+• Using Visual Mode: Press V (capital V) to enter Visual Line mode, use your arrow keys or j/k to highlight all the lines, and then press J (capital J).
+• Keeping exactly one space: By default, Vim replaces line breaks with a single space. If you want to join lines without Vim inserting any extra padding spaces, you can use :%j! instead.
+If you are running into issues, let me know:
+• Did Vim leave too many spaces or remove spaces you needed?
+• Do you want to remove the SQL comments (--) first? (Leaving them in a single line will break the SQL script).
