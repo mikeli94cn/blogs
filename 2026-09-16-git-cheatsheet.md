@@ -706,3 +706,456 @@ git remote set-url origin git@github.com:your-username/your-repository-name.git
 Now, when you type git push, your terminal will instantly authenticate using your machine's SSH key without asking for a password.
 
 Would you prefer to stick with Method 1 (Token) and want to know how to save the token so you don't have to paste it every single time, or did you hit any permission blocks while running Method 2 (SSH)?
+
+---
+## git installation and configuration
+## How to Install Git on Ubuntu
+
+Git is a **free, open-source distributed version control system** widely used in software development.
+
+Since you are setting up Ubuntu for Java, Python, and Node.js development, Git is an essential tool.
+
+The easiest and recommended installation method is using Ubuntu's **APT package manager**.
+
+## 1. Check whether Git is already installed
+
+Open a terminal (`Ctrl + Alt + T`) and execute:
+
+```bash
+git --version
+```
+
+If Git is installed, you will see something similar to:
+
+```text
+git version 2.43.0
+```
+
+If Git is not installed, Ubuntu may display:
+
+```text
+Command 'git' not found
+```
+
+---
+
+## 2. Install Git using APT (Recommended)
+
+### Step 1: Update package information
+
+```bash
+sudo apt update
+```
+
+### Step 2: Install Git
+
+```bash
+sudo apt install git
+```
+
+APT will automatically download and install Git and its required dependencies.
+
+### Step 3: Verify installation
+
+```bash
+git --version
+```
+
+Example output:
+
+```text
+git version 2.43.0
+```
+
+The exact version depends on your Ubuntu release.
+
+**Congratulations! Git is installed.**
+
+---
+
+## 3. Configure Git (Important)
+
+After installing Git, you should configure your username and email address.
+
+Git uses this information to identify the author of commits.
+
+### Step 1: Configure username
+
+```bash
+git config --global user.name "Your Name"
+```
+
+### Step 2: Configure email
+
+```bash
+git config --global user.email "you@example.com"
+```
+
+Replace these values with your actual name and email address.
+
+### Step 3: Configure the default branch name
+
+Modern Git projects commonly use `main` as the default branch:
+
+```bash
+git config --global init.defaultBranch main
+```
+
+### Step 4: Configure the default editor
+
+If you prefer Vim:
+
+```bash
+git config --global core.editor "vim"
+```
+
+If you prefer Nano:
+
+```bash
+git config --global core.editor "nano"
+```
+
+If you use VS Code:
+
+```bash
+git config --global core.editor "code --wait"
+```
+
+The VS Code command requires `code` to be available in your terminal.
+
+### Step 5: Verify configuration
+
+```bash
+git config --global --list
+```
+
+Example output:
+
+```text
+user.name=Your Name
+user.email=you@example.com
+init.defaultbranch=main
+core.editor=vim
+```
+
+Git stores these global settings in:
+
+```text
+~/.gitconfig
+```
+
+You can inspect the file:
+
+```bash
+cat ~/.gitconfig
+```
+
+---
+
+## 4. Create your first Git repository
+
+Let's create a simple project to understand Git.
+
+### Step 1: Create a directory
+
+```bash
+mkdir -p ~/GitProjects/hello-git
+cd ~/GitProjects/hello-git
+```
+
+### Step 2: Initialize Git
+
+```bash
+git init
+```
+
+This creates a hidden directory:
+
+```text
+hello-git/
+└── .git/
+```
+
+The `.git` directory contains Git's repository data, including commit history and configuration.
+
+### Step 3: Create a file
+
+```bash
+echo "Hello Git!" > README.md
+```
+
+### Step 4: Check repository status
+
+```bash
+git status
+```
+
+Git will show that `README.md` is an untracked file.
+
+### Step 5: Stage the file
+
+```bash
+git add README.md
+```
+
+### Step 6: Commit the file
+
+```bash
+git commit -m "Initial commit"
+```
+
+### Step 7: View commit history
+
+```bash
+git log --oneline
+```
+
+Example output:
+
+```text
+a1b2c3d Initial commit
+```
+
+You have now created your first Git repository!
+
+---
+
+## 5. Understand the Git workflow
+
+Git has three important areas:
+
+```text
+                  Git Workflow
+
+   Working Directory
+          |
+          | git add
+          v
+     Staging Area
+          |
+          | git commit
+          v
+    Local Repository
+          |
+          | git push
+          v
+    Remote Repository
+       (GitHub)
+```
+
+| Area | Description |
+|---|---|
+| Working directory | Files you are currently editing |
+| Staging area | Changes selected for the next commit |
+| Local repository | Commit history stored on your computer |
+| Remote repository | Repository hosted on another server |
+
+The typical development workflow is:
+
+```bash
+git status
+
+git add .
+
+git commit -m "Add new feature"
+
+git push
+```
+
+The final command requires a configured remote repository and appropriate access.
+
+---
+
+## 6. Essential Git commands
+
+Here is a quick Git cheatsheet.
+
+| Command | Purpose |
+|---|---|
+| `git init` | Create a repository |
+| `git clone URL` | Clone an existing repository |
+| `git status` | Show working tree status |
+| `git add .` | Stage changes |
+| `git commit -m "message"` | Create a commit |
+| `git log` | View commit history |
+| `git diff` | View unstaged changes |
+| `git branch` | List local branches |
+| `git switch -c feature` | Create and switch to a branch |
+| `git switch main` | Switch to the main branch |
+| `git merge feature` | Merge a branch |
+| `git pull` | Fetch and integrate remote changes |
+| `git push` | Push commits to a remote |
+| `git remote -v` | Show configured remotes |
+
+---
+
+## 7. Connect Git to GitHub using SSH (Optional)
+
+Git is the version control software, while [GitHub](https://github.com?utm_source=chatgpt.com) is a platform for hosting Git repositories.
+
+You can use Git locally without GitHub.
+
+If you want to upload your projects to GitHub, I recommend configuring SSH authentication.
+
+### Step 1: Install OpenSSH client
+
+```bash
+sudo apt install openssh-client
+```
+
+### Step 2: Generate an SSH key
+
+```bash
+ssh-keygen -t ed25519 -C "you@example.com"
+```
+
+Press Enter to accept the default location:
+
+```text
+~/.ssh/id_ed25519
+```
+
+Set a passphrase for additional security.
+
+### Step 3: Start the SSH agent and add your key
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+### Step 4: Display your public key
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+Copy the displayed public key.
+
+**Never share your private key** (`~/.ssh/id_ed25519`).
+
+### Step 5: Add the public key to GitHub
+
+Open:
+
+[GitHub SSH key settings](https://github.com/settings/keys?utm_source=chatgpt.com)
+
+Choose **New SSH key**, paste your public key, and save it.
+
+### Step 6: Test the SSH connection
+
+```bash
+ssh -T git@github.com
+```
+
+On your first connection, verify GitHub's SSH host key fingerprint before accepting it.
+
+After successful authentication, GitHub will display a message similar to:
+
+```text
+Hi username! You've successfully authenticated,
+but GitHub does not provide shell access.
+```
+
+For more details, see the [official GitHub SSH documentation](https://docs.github.com/en/authentication/connecting-to-github-with-ssh?utm_source=chatgpt.com).
+
+---
+
+## 8. Use Git with IntelliJ IDEA and VS Code
+
+Since you are using multiple programming languages, Git integrates well with your development tools.
+
+| IDE / Editor | Git support |
+|---|---|
+| IntelliJ IDEA | Built-in Git integration |
+| VS Code | Built-in Git integration |
+| PyCharm | Built-in Git integration |
+| Vim / Neovim | Git commands and optional plugins |
+
+For IntelliJ IDEA, you can configure Git under:
+
+**Settings → Version Control → Git**
+
+Set the Git executable path to:
+
+```text
+/usr/bin/git
+```
+
+For VS Code, Git is normally detected automatically.
+
+---
+
+## 9. Recommended Git configuration for your development projects
+
+Since you are developing Java, Python, and Node.js projects, you should use `.gitignore` files.
+
+A `.gitignore` tells Git which files should not be tracked.
+
+For example:
+
+**Java / Spring Boot**
+
+```gitignore
+target/
+build/
+.idea/
+*.class
+```
+
+**Python**
+
+```gitignore
+.venv/
+__pycache__/
+*.pyc
+```
+
+**Node.js**
+
+```gitignore
+node_modules/
+dist/
+.env
+```
+
+These rules help prevent generated files, dependencies, and sensitive configuration from being accidentally committed.
+
+You can find language-specific templates in the [official GitHub gitignore repository](https://github.com/github/gitignore?utm_source=chatgpt.com).
+
+---
+
+## 10. My recommendation
+
+For your Ubuntu development environment, I recommend the following:
+
+| Software | Purpose |
+|---|---|
+| OpenJDK 21 | Java development |
+| Python 3 + pip + venv | Python development |
+| Node.js + npm + NVM | JavaScript / TypeScript development |
+| Git | Version control |
+| IntelliJ IDEA | Java / Spring Boot IDE |
+| VS Code | Python / JavaScript editor |
+| Maven | Java dependency management |
+| Docker | Container development |
+
+You can install Git immediately with:
+
+```bash
+sudo apt update
+sudo apt install git
+```
+
+Then configure your identity:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main
+```
+
+**One additional suggestion:** Since you are learning Java backend development, I recommend practicing Git with your Spring Boot Student Management System project. It is a good opportunity to learn branching, committing, merging, and pushing code to GitHub.
+
+
+
