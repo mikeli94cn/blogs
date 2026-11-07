@@ -1508,7 +1508,7 @@ Are you using a corporate network, a school network, or an active VPN? If so, Do
 ```
    sudo mkdir -p /etc/systemd/system/docker.service.d
 ```
-   2. Create a file named /etc/systemd/system/docker.service.d/http-proxy.conf and paste the following text into it (replace with your actual proxy details):
+   2. Create a file named `/etc/systemd/system/docker.service.d/http-proxy.conf` and paste the following text into it (replace with your actual proxy details):
     find your system proxy settings (e.g., 127.0.0.1:7890 or 127.0.0.1:1080). 
 ```
    [Service]
