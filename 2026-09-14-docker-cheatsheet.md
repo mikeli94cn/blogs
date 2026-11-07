@@ -1462,7 +1462,7 @@ Update your package listings one more time to recognize the new Docker files, th
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
-## Step 4: Verify the Installation
+#### Step 4: Verify the Installation
 To make sure everything is installed and running successfully, run the official test container:
 ```bash
 sudo docker run hello-world
@@ -1511,9 +1511,9 @@ Are you using a corporate network, a school network, or an active VPN? If so, Do
    2. Create a file named `/etc/systemd/system/docker.service.d/http-proxy.conf` and paste the following text into it (replace with your actual proxy details):
     find your system proxy settings (e.g., 127.0.0.1:7890 or 127.0.0.1:1080). 
 ```
-   [Service]
-   Environment="HTTP_PROXY=http://127.0.0.1:10809"
-   Environment="HTTPS_PROXY=http://127.0.0.1:10809"
+[Service]
+Environment="HTTP_PROXY=http://127.0.0.1:10809"
+Environment="HTTPS_PROXY=http://127.0.0.1:10809"
 ```
    3. Reload and restart Docker as shown in Solution 1.
 
