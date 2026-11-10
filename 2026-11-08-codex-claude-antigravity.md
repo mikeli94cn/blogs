@@ -831,3 +831,359 @@ claude
 **My recommendation:** Use IntelliJ IDEA for writing and debugging Java, and run Claude Code in IntelliJ's integrated terminal. This gives you the benefits of a full Java IDE and an AI coding agent in the same development environment.
 
 Official documentation: [Claude Code Documentation](https://code.claude.com/docs/en/overview?utm_source=chatgpt.com)
+
+
+--
+
+# How to Install and Use Google Antigravity on Ubuntu
+
+**Google Antigravity** is an AI-powered development environment from [Google](https://www.google.com?utm_source=chatgpt.com). It is designed to help developers build, debug, test, and maintain software with AI coding agents.
+
+Since you have been exploring **OpenAI Codex, Claude Code, and Gemini**, Antigravity is another tool worth trying.
+
+For your Java Spring Boot, Python, and JavaScript projects, Antigravity can help with tasks such as understanding existing code, implementing features, debugging errors, and running tests.
+
+## 1. Understand Antigravity
+
+Antigravity is more than a traditional code editor. Its central idea is *agent-assisted development*.
+
+A traditional IDE workflow looks like this:
+
+```text
+Developer
+    |
+    v
+Code Editor
+    |
+    +-- Write code
+    +-- Run commands
+    +-- Debug errors
+    +-- Test application
+```
+
+An AI-agent workflow looks like this:
+
+```text
+Developer
+    |
+    v
+Antigravity
+    |
+    +-- AI Coding Agent
+    |      |
+    |      +-- Understand project
+    |      +-- Generate code
+    |      +-- Modify files
+    |      +-- Execute commands
+    |      +-- Run tests
+    |
+    +-- Code Editor
+    |
+    +-- Terminal
+```
+
+You describe a development task, review the agent's proposed actions, and inspect the resulting code changes.
+
+---
+
+## 2. Choose an Antigravity installation method
+
+Google currently provides several ways to use Antigravity on Ubuntu.
+
+| Method | Description | Recommended for |
+|---|---|---|
+| Antigravity CLI | Terminal-based AI coding agent | Codex/Claude Code users |
+| Antigravity App | Desktop application for managing AI agents | Agent-based workflows |
+| Antigravity IDE | Standalone graphical development environment | GUI development |
+| IDE extension | Integration with VS Code or IntelliJ IDEA | Existing IDE users |
+
+All these options support Linux. Google's current documentation lists Ubuntu 20.04 and newer among supported systems. [Google Antigravity](https://antigravity.google/docs/getting-started?tab=cli\&utm_source=chatgpt.com)
+
+**For your development environment, I recommend starting with Antigravity CLI.** It is straightforward to install and can work alongside IntelliJ IDEA.
+
+---
+
+## 3. Method 1: Install Antigravity CLI (Recommended)
+
+### Step 1: Install prerequisites
+
+Open Ubuntu's terminal:
+
+```bash
+sudo apt update
+sudo apt install curl git
+```
+
+### Step 2: Install Antigravity CLI
+
+Google provides an official installation script:
+
+```bash
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+```
+
+For additional security, you can download and inspect the script before executing it.
+
+The default installation location is:
+
+```text
+~/.local/bin/agy
+```
+
+Unlike Gemini CLI, **Antigravity CLI does not require Node.js or npm**. [Google Antigravity](https://antigravity.google/docs/cli/install?authuser=01\&utm_source=chatgpt.com)
+
+### Step 3: Configure PATH if necessary
+
+If Ubuntu reports `agy: command not found`, add the installation directory to your PATH.
+
+Open:
+
+```bash
+nano ~/.bashrc
+```
+
+Add:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+Save and execute:
+
+```bash
+source ~/.bashrc
+```
+
+### Step 4: Verify installation
+
+```bash
+agy --version
+```
+
+### Step 5: Launch Antigravity
+
+```bash
+agy
+```
+
+During the initial setup, follow the authentication instructions.
+
+You may be asked to configure your terminal appearance, rendering mode, and workspace trust settings.
+
+Official guide:
+
+[Google Antigravity CLI installation](https://antigravity.google/docs/cli/install?authuser=01&utm_source=chatgpt.com)
+
+---
+
+## 4. Method 2: Install the Antigravity desktop application
+
+If you prefer a graphical interface, download the Linux application.
+
+### Step 1: Download Antigravity
+
+Visit:
+
+[Google Antigravity Downloads](https://antigravity.google/download?utm_source=chatgpt.com)
+
+Choose the Linux x64 version for a typical Intel or AMD Ubuntu computer.
+
+### Step 2: Extract the archive
+
+Assuming the downloaded archive is named `Antigravity.tar.gz`, execute:
+
+```bash
+cd ~/Downloads
+tar -xzf Antigravity.tar.gz
+```
+
+The actual downloaded filename may differ.
+
+### Step 3: Launch Antigravity
+
+From the extracted directory containing the executable:
+
+```bash
+./Antigravity
+```
+
+The official Linux instructions use this archive-based installation method. [Google Antigravity](https://antigravity.google/docs/getting-started?tab=cli\&utm_source=chatgpt.com)
+
+### Step 4: Sign in
+
+Follow the application's authentication instructions using your supported Google account.
+
+You can then create a project, add your existing source-code directory, and begin working with an AI agent.
+
+---
+
+## 5. Method 3: Use Antigravity with VS Code
+
+If you already installed VS Code, you do not need another editor.
+
+Open VS Code:
+
+```bash
+code
+```
+
+Press:
+
+`Ctrl + Shift + X`
+
+Search for **Google Antigravity** and install the official extension.
+
+Follow the authentication instructions.
+
+The official extension requires VS Code 1.90 or later. [Google Antigravity](https://antigravity.google/docs/getting-started?tab=cli\&utm_source=chatgpt.com)
+
+---
+
+## 6. Method 4: Use Antigravity with IntelliJ IDEA
+
+This option is especially relevant to your Java backend development.
+
+Google provides an Antigravity integration for JetBrains IDEs.
+
+For a supported IntelliJ IDEA version:
+
+1. Open IntelliJ IDEA.
+2. Open **JetBrains AI → Settings → Agents**.
+3. Find Antigravity.
+4. Select Install.
+5. Complete authentication.
+
+Google's current documentation specifies IntelliJ-based IDE version 2026.2.1 or later. [Google Antigravity](https://antigravity.google/docs/getting-started?tab=cli\&utm_source=chatgpt.com)
+
+If your installed IntelliJ IDEA version is older, you can still use Antigravity CLI in IntelliJ's integrated terminal.
+
+---
+
+## 7. Use Antigravity with your Spring Boot project
+
+Suppose your project is located at:
+
+```text
+~/JavaProjects/student-management
+```
+
+Navigate to it:
+
+```bash
+cd ~/JavaProjects/student-management
+```
+
+Start Antigravity:
+
+```bash
+agy
+```
+
+You can now ask the agent to help with your Java project.
+
+### Example 1: Understand the project
+
+Enter:
+
+> Analyze this Spring Boot project. Explain its Maven dependencies, Controller, Service, Repository, and Entity layers. Do not modify any files.
+
+### Example 2: Implement a feature
+
+Enter:
+
+> Implement a Student REST API using Java 21, Spring Boot, Spring Data JPA, and MySQL. Follow a layered architecture and write unit tests.
+
+### Example 3: Debug Maven errors
+
+Enter:
+
+> Run Maven tests, identify compilation or test failures, and explain their causes before making changes.
+
+### Example 4: Improve code quality
+
+Enter:
+
+> Review this Java project for potential bugs, security problems, and poor coding practices. Suggest improvements without modifying the source code.
+
+These examples are useful for learning Spring Boot while working with an AI coding assistant.
+
+---
+
+## 8. Protect your source code
+
+Because Antigravity can modify files and execute commands, I recommend using Git to track changes.
+
+Before starting:
+
+```bash
+git status
+```
+
+After the agent modifies your project:
+
+```bash
+git diff
+```
+
+Run Maven tests:
+
+```bash
+mvn test
+```
+
+Review changes before committing them.
+
+Avoid giving an AI agent unrestricted access to production servers, database credentials, or sensitive files.
+
+---
+
+## 9. Compare Antigravity, Codex, and Claude Code
+
+| Feature | Antigravity | Codex | Claude Code |
+|---|---|---|---|
+| Developer | Google | OpenAI | Anthropic |
+| Ubuntu CLI | `agy` | `codex` | `claude` |
+| AI coding agent | Yes | Yes | Yes |
+| Project analysis | Yes | Yes | Yes |
+| Code modification | Yes | Yes | Yes |
+| Terminal execution | Yes | Yes | Yes |
+| Java/Spring Boot | Yes | Yes | Yes |
+| Python | Yes | Yes | Yes |
+| JavaScript/TypeScript | Yes | Yes | Yes |
+| IDE integration | Yes | Yes | Yes |
+
+The tools have different interfaces, models, permissions, and account requirements.
+
+For learning Java backend development, you can use any of them alongside IntelliJ IDEA.
+
+---
+
+## 10. My recommendation
+
+For your Ubuntu development environment, I suggest:
+
+**IntelliJ IDEA + OpenJDK 21 + Maven + Git + Antigravity CLI**
+
+You can install Antigravity with:
+
+```bash
+# Install prerequisites
+sudo apt update
+sudo apt install curl git
+
+# Install Antigravity CLI
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+
+# Verify installation
+agy --version
+
+# Open your Java project
+cd ~/JavaProjects/student-management
+
+# Start Antigravity
+agy
+```
+
+**One important distinction:** If you want an AI agent similar to Codex CLI or Claude Code, choose **Antigravity CLI**. If you want a complete graphical development environment, choose **Antigravity IDE**.
+
+For further instructions, see [Google's official Antigravity getting-started guide](https://antigravity.google/docs/getting-started?tab=cli&utm_source=chatgpt.com).
