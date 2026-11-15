@@ -366,160 +366,216 @@ For more advanced usage, refer to the [official Codex documentation](https://dev
 
 ---
 
-# How to Install and Use Claude Code on Ubuntu
+# How to Install and Use Cursor AI on Ubuntu
 
-**Claude Code** is an AI coding agent developed by [Anthropic](https://www.anthropic.com?utm_source=chatgpt.com). It allows you to write, understand, debug, test, and modify code using natural language.
+**Cursor** is an AI-powered code editor designed to help developers write, understand, debug, and maintain software.
 
-Claude Code is similar to OpenAI Codex. Both can work directly with your project files, execute terminal commands, and help you develop software.
+It combines a familiar code-editing environment with AI coding agents that can inspect your project, modify source files, execute terminal commands, and help fix errors.
 
-Since you are setting up Ubuntu with **Java, Maven, Python, Node.js, Git, VS Code, and IntelliJ IDEA**, Claude Code can be a useful addition to your development environment.
+Since you are learning **Java, Spring Boot, MySQL, Python, and JavaScript**, Cursor is a useful tool for your Ubuntu development environment.
 
-## 1. What is Claude Code?
+## 1. What is Cursor?
 
-Claude Code is primarily a terminal-based AI coding assistant, although it also supports integrations with development tools.
+Cursor is based on the open-source VS Code codebase, so its interface and many of its features will be familiar if you have used VS Code.
 
-For example, you can ask it to:
+Its main capabilities include:
 
-- Explain the architecture of an existing Java project.
-- Generate Spring Boot controllers, services, and repositories.
-- Find and fix programming errors.
-- Execute Maven tests and analyze failures.
-- Refactor Java, Python, or JavaScript code.
-- Write unit tests.
-- Review Git changes.
+- **AI Chat:** Ask questions about your source code.
+- **Agent Mode:** Let an AI agent implement features across multiple files.
+- **Tab Completion:** Receive AI-powered code suggestions while typing.
+- **Inline Editing:** Select code and ask AI to modify it.
+- **Terminal Integration:** Execute commands and inspect their output.
+- **Project Understanding:** Analyze relationships between files and components.
 
-A typical workflow looks like this:
+### Cursor vs. other AI coding tools
 
-```text
-Ubuntu
-   │
-   ├── IntelliJ IDEA / VS Code
-   │        │
-   │        └── Your Project
-   │
-   ├── Claude Code
-   │        │
-   │        ├── Read source code
-   │        ├── Modify files
-   │        ├── Execute commands
-   │        ├── Run tests
-   │        └── Explain results
-   │
-   ├── Git
-   ├── Maven
-   └── Java / Python / Node.js
-```
+| Tool | Primary interface | Main purpose |
+|---|---|---|
+| Cursor | Graphical code editor | AI-assisted software development |
+| Claude Code | Terminal | Agentic coding |
+| OpenAI Codex | Terminal, IDE, and other interfaces | Agentic coding |
+| Gemini CLI | Terminal | Agentic coding |
+| IntelliJ IDEA | Full-featured IDE | Java development |
 
-Claude Code works with many programming languages. You do not need to install a separate version for Java, Python, or JavaScript.
+**The main difference:** Cursor provides a complete graphical coding environment, whereas terminal-based tools such as Claude Code focus on working inside your existing development environment.
+
+For Java backend development, you can use Cursor alongside IntelliJ IDEA rather than replacing IntelliJ completely.
 
 ---
 
-## 2. Install Claude Code on Ubuntu (Recommended)
+## 2. Install Cursor on Ubuntu (Recommended: APT)
 
-According to Anthropic's official documentation, Claude Code supports Ubuntu 20.04 and newer.
+Cursor officially provides Linux `.deb`, RPM, and AppImage packages. It also offers an APT repository for Ubuntu and Debian.
 
-The native installer is the recommended installation method. **You do not need Node.js or npm to use this method.** [Claude](https://code.claude.com/docs/en/setup?utm_source=chatgpt.com)
+**I recommend the APT installation**, because it integrates with Ubuntu's package manager and makes updating easier. [Cursor](https://prod.cursor.com/docs/get-started/quickstart?utm_source=chatgpt.com)
 
-### Step 1: Install curl and Git
+### Step 1: Install prerequisites
 
-Open a terminal:
+Open your Ubuntu terminal:
 
 ```bash
 sudo apt update
-sudo apt install curl git
+sudo apt install curl gnupg
 ```
 
-Git is optional for Claude Code itself but highly recommended for software development.
-
-### Step 2: Download and install Claude Code
-
-Execute the official installation command:
+### Step 2: Add Cursor's signing key
 
 ```bash
-curl -fsSL https://claude.ai/install.sh | bash
+sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://downloads.cursor.com/keys/anysphere.asc \
+  | gpg --dearmor \
+  | sudo tee /etc/apt/keyrings/cursor.gpg > /dev/null
 ```
 
-This downloads and executes Anthropic's installation script.
+The signing key allows APT to verify packages from Cursor's repository.
 
-If you prefer to inspect the script before executing it, download it first:
+### Step 3: Add the official Cursor repository
 
 ```bash
-curl -fsSL https://claude.ai/install.sh -o install-claude.sh
+echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main" \
+  | sudo tee /etc/apt/sources.list.d/cursor.list
 ```
 
-Inspect it:
+### Step 4: Install Cursor
 
 ```bash
-less install-claude.sh
+sudo apt update
+sudo apt install cursor
 ```
 
-Then execute:
+### Step 5: Launch Cursor
 
 ```bash
-bash install-claude.sh
+cursor
 ```
 
-### Step 3: Verify installation
+Alternatively, find **Cursor** in Ubuntu's Applications menu.
 
-Close and reopen your terminal.
-
-Execute:
-
-```bash
-claude --version
-```
-
-Expected output resembles:
-
-```text
-2.x.x (Claude Code)
-```
-
-You can also check installation health:
-
-```bash
-claude doctor
-```
-
-This checks for installation and configuration problems.
-
-### Step 4: Start Claude Code
-
-Execute:
-
-```bash
-claude
-```
-
-Claude Code should open its interactive terminal interface.
+When Cursor starts, follow the instructions to sign in or create an account.
 
 ---
 
-## 3. Authenticate Claude Code
+## 3. Alternative: Install Cursor using a DEB package
 
-On your first launch, Claude Code will ask you to authenticate.
+If you prefer not to add another APT repository, download Cursor's `.deb` package.
 
-You can use a supported Claude subscription or a Claude Console account with API billing.
+Visit the official download page:
 
-**Important:** Claude Code requires eligible paid access. A free Claude account alone does not provide Claude Code access. API usage is billed separately from Claude subscriptions. [Claude](https://code.claude.com/docs/en/quickstart?utm_source=chatgpt.com)
+[Download Cursor for Linux](https://cursor.com/en-US/download?utm_source=chatgpt.com)
 
-Follow the browser authentication instructions.
+Choose **Linux .deb (x64)** for a typical Intel or AMD Ubuntu computer.
 
-After authentication, you can start using Claude Code.
+After downloading, open a terminal:
 
-Inside Claude Code, enter:
-
-```text
-/help
+```bash
+cd ~/Downloads
 ```
 
-This displays available commands.
+Install the downloaded package:
+
+```bash
+sudo apt install ./cursor*.deb
+```
+
+If the filename differs, replace `cursor*.deb` with the actual filename.
+
+Launch Cursor:
+
+```bash
+cursor
+```
+
+**Note:** The DEB package and APT repository are alternative installation methods. You only need one.
 
 ---
 
-## 4. Use Claude Code with a Java Spring Boot project
+## 4. Alternative: Install Cursor using AppImage
 
-Suppose you have the following project:
+Cursor also provides an AppImage, which is a portable Linux application.
+
+Download the AppImage from the official website.
+
+Then:
+
+```bash
+cd ~/Downloads
+```
+
+Make it executable:
+
+```bash
+chmod +x Cursor-*.AppImage
+```
+
+Run it:
+
+```bash
+./Cursor-*.AppImage
+```
+
+Some Ubuntu versions may require additional FUSE compatibility packages to run AppImages.
+
+For normal daily development, I recommend the APT installation instead.
+
+---
+
+## 5. Configure Cursor for Java development
+
+Since you are learning Java backend development, configure Cursor with your existing Java environment.
+
+### Step 1: Verify Java
+
+```bash
+java -version
+javac -version
+```
+
+If Java is not installed:
+
+```bash
+sudo apt install openjdk-21-jdk
+```
+
+### Step 2: Verify Maven
+
+```bash
+mvn -version
+```
+
+If Maven is missing:
+
+```bash
+sudo apt install maven
+```
+
+### Step 3: Install Java extensions
+
+Open Cursor's Extensions panel:
+
+`Ctrl + Shift + X`
+
+Search for Java development extensions such as:
+
+- Extension Pack for Java
+- Language Support for Java
+- Maven for Java
+- Spring Boot Extension Pack
+
+**Compatibility note:** Cursor supports many VS Code extensions, but extension availability and compatibility can differ. Search its extension marketplace for the versions available to you.
+
+### Step 4: Open your Spring Boot project
+
+For example:
+
+```bash
+cd ~/JavaProjects/student-management
+cursor .
+```
+
+The `cursor .` command opens the current directory in Cursor, provided its shell command is installed and available in your PATH.
+
+You should see your project files:
 
 ```text
 student-management/
@@ -532,306 +588,255 @@ student-management/
 └── README.md
 ```
 
-Navigate to the project directory:
-
-```bash
-cd ~/JavaProjects/student-management
-```
-
-Launch Claude Code:
-
-```bash
-claude
-```
-
-You can now interact with your project using natural language.
-
-### Example 1: Understand the project
-
-Enter:
-
-> Examine this Spring Boot project and explain its architecture. Describe the Controller, Service, Repository, and Entity layers. Do not modify any files.
-
-Claude Code can read your project files and explain their relationships.
-
-### Example 2: Generate a REST API
-
-Enter:
-
-> Create a Student REST API using Spring Boot, Spring Data JPA, and MySQL. Implement CRUD operations and organize the code into Controller, Service, Repository, and Entity layers.
-
-Claude Code can generate the required Java classes.
-
-### Example 3: Debug Maven errors
-
-Enter:
-
-> Run `mvn test`, identify any compilation or test errors, explain their causes, and suggest fixes before modifying the source code.
-
-Claude Code can execute Maven commands with appropriate permissions.
-
-### Example 4: Learn Java
-
-Enter:
-
-> Explain how Spring dependency injection works in this project. Show examples from the existing source code and explain each annotation.
-
-This is particularly useful while learning Spring Boot.
-
 ---
 
-## 5. Use Claude Code with VS Code
+## 6. How to use Cursor AI coding features
 
-Claude Code supports VS Code integration.
+### Feature A: Ask AI about your code
 
-Open VS Code:
+Open the Agent panel using:
 
-```bash
-code
-```
+**Ctrl + I**
 
-Open the Extensions panel:
+Enter a question such as:
 
-`Ctrl + Shift + X`
+> Analyze this Java Spring Boot project. Explain its architecture, dependencies, and the relationships between controllers, services, repositories, and entities. Do not modify any files.
 
-Search for **Claude Code**, and install the official extension published by Anthropic.
+Cursor can inspect your project and explain its structure.
 
-You can then authenticate and use Claude Code inside VS Code.
+### Feature B: Generate code with Agent Mode
 
-Official guide:
+Ask Cursor:
 
-[Claude Code for VS Code](https://code.claude.com/docs/en/vs-code?utm_source=chatgpt.com)
+> Implement a Student REST API using Java 21, Spring Boot, Spring Data JPA, Hibernate, and MySQL. Follow a layered architecture and create unit tests.
 
----
+Cursor can inspect existing files, propose changes, and implement the feature.
 
-## 6. Use Claude Code with IntelliJ IDEA
+Review its modifications before accepting them.
 
-Since IntelliJ IDEA is your primary Java IDE, this is particularly relevant.
+### Feature C: Use Plan Mode
 
-### Method A: Use IntelliJ's integrated terminal
+For larger tasks, use **Plan Mode**.
 
-Open your Spring Boot project in IntelliJ IDEA.
+In the Agent input, press `Shift + Tab` to switch modes.
 
-Navigate to:
+Then enter:
 
-**View → Tool Windows → Terminal**
+> Plan the implementation of a physical DVD rental website using Spring Boot, MySQL, and Hibernate. Identify the required database tables, REST endpoints, services, and business rules. Do not write code yet.
 
-Execute:
+Cursor can examine your project, prepare an implementation plan, and wait for your approval before proceeding. [Cursor](https://prod.cursor.com/docs/get-started/quickstart?utm_source=chatgpt.com)
 
-```bash
-claude
-```
-
-You can now use Claude Code without leaving IntelliJ IDEA.
-
-### Method B: Use the JetBrains integration
-
-Claude Code also supports JetBrains IDE integration.
-
-Official documentation:
-
-[Claude Code for JetBrains IDEs](https://code.claude.com/docs/en/jetbrains?utm_source=chatgpt.com)
-
-For your Java backend development, I recommend starting with the integrated terminal because it is straightforward and works with your existing project.
-
----
-
-## 7. Essential Claude Code commands
-
-There are two categories of commands.
-
-### Terminal commands
-
-| Command | Purpose |
-|---|---|
-| `claude` | Start interactive mode |
-| `claude --version` | Display installed version |
-| `claude --help` | Display command-line help |
-| `claude doctor` | Diagnose installation issues |
-| `claude -p "question"` | Ask a question and exit |
-| `claude -c` | Continue the most recent conversation |
-| `claude -r` | Resume a previous conversation |
+### Feature D: Debug errors
 
 For example:
 
-```bash
-claude -p "Explain what Maven is."
-```
+> Run `mvn test`, investigate the failures, explain the root causes, and fix them after reviewing the proposed changes.
 
-### Commands inside Claude Code
+Cursor can use the terminal to execute commands, subject to its permission settings.
 
-| Command | Purpose |
-|---|---|
-| `/help` | Display help |
-| `/clear` | Clear conversation history |
-| `/login` | Authenticate or change accounts |
-| `/model` | Select an available model |
-| `/status` | Show session and configuration information |
-| `/exit` | Exit Claude Code |
+### Feature E: Review generated code
 
-These commands are documented in Anthropic's [Claude Code Quickstart](https://code.claude.com/docs/en/quickstart?utm_source=chatgpt.com).
+After the agent finishes, open the diff view to inspect its changes.
 
----
-
-## 8. Configure project instructions with CLAUDE.md
-
-Claude Code supports project-specific instructions through a file named `CLAUDE.md`.
-
-For example, create this file in your Spring Boot project:
-
-```bash
-nano CLAUDE.md
-```
-
-Add:
-
-```markdown
-# Project Instructions
-
-This is a Java Spring Boot student management project.
-
-## Technology Stack
-
-- Java 21
-- Spring Boot
-- Maven
-- Spring Data JPA
-- Hibernate
-- MySQL
-
-## Coding Rules
-
-- Follow Java naming conventions.
-- Use Controller, Service, Repository, and Entity layers.
-- Prefer constructor injection.
-- Write unit tests for business logic.
-- Explain important code changes.
-- Do not modify database schemas without approval.
-- Do not delete files without approval.
-
-## Build Commands
-
-- Compile: mvn compile
-- Test: mvn test
-- Package: mvn clean package
-```
-
-When working in the project, Claude Code can use these instructions to understand your preferred development practices.
-
-This is useful when you want consistent code generation across multiple sessions.
-
----
-
-## 9. Update Claude Code
-
-Native installations automatically check for updates and install them in the background.
-
-You can verify installation health using:
-
-```bash
-claude doctor
-```
-
-For other installation methods, updates may require using the corresponding package manager. [Claude](https://code.claude.com/docs/en/setup?utm_source=chatgpt.com)
-
----
-
-## 10. Compare Claude Code and OpenAI Codex
-
-Since you have also explored Codex, here is a comparison.
-
-| Feature | Claude Code | OpenAI Codex |
-|---|---|---|
-| Developer | Anthropic | OpenAI |
-| Primary purpose | AI coding agent | AI coding agent |
-| Ubuntu CLI | Yes | Yes |
-| Read project files | Yes | Yes |
-| Modify source code | Yes | Yes |
-| Execute terminal commands | Yes | Yes |
-| Java / Spring Boot | Supported | Supported |
-| Python | Supported | Supported |
-| JavaScript / TypeScript | Supported | Supported |
-| Git integration | Yes | Yes |
-| VS Code integration | Yes | Yes |
-| IntelliJ workflow | Supported | Supported |
-
-Both tools can assist with coding, debugging, refactoring, and testing.
-
-Their models, permission systems, integrations, and pricing differ, so neither is universally better for every project.
-
----
-
-## 11. Security recommendations
-
-Claude Code can execute commands and modify files, so use it carefully.
-
-I recommend the following precautions:
-
-1. **Use Git:** Commit your project before significant AI-assisted changes.
-2. **Review permissions:** Avoid granting unrestricted command execution unnecessarily.
-3. **Protect credentials:** Keep database passwords, API keys, and other secrets out of prompts and unnecessary file access.
-4. **Review changes:** Examine generated code before committing.
-5. **Avoid running as root:** Use your normal Ubuntu account.
-
-For example, before asking Claude Code to modify a project:
+You can also use Git:
 
 ```bash
 git status
-```
-
-After Claude Code makes changes:
-
-```bash
 git diff
 ```
 
-Then run your tests:
+Then run:
 
 ```bash
 mvn test
 ```
 
-This is a good workflow for learning Java while maintaining control over your source code.
+This is especially important when AI generates database migrations, authentication code, or other security-sensitive components.
 
 ---
 
-## 12. My recommendation for your Ubuntu development environment
+# 7. Cursor CLI: Use Cursor directly from the Ubuntu terminal
 
-For your Java backend development, I suggest:
+Cursor also provides a standalone terminal coding agent.
 
-| Tool | Responsibility |
-|---|---|
-| IntelliJ IDEA | Java IDE |
-| OpenJDK 21 | Java compiler and runtime |
-| Maven | Build and dependency management |
-| Git | Version control |
-| Claude Code | AI-assisted coding |
-| OpenAI Codex | Alternative AI coding agent |
-| Docker | MySQL and application deployment |
+This is particularly interesting because you have been using **Claude Code, Codex, and Gemini CLI**.
 
-### Quick installation summary
+You can use Cursor without opening its graphical editor.
 
-You only need these commands:
+### Step 1: Install Cursor CLI
+
+The official installation command is:
 
 ```bash
-# Install prerequisites
-sudo apt update
-sudo apt install curl git
-
-# Install Claude Code
-curl -fsSL https://claude.ai/install.sh | bash
-
-# Verify installation (after reopening the terminal)
-claude --version
-
-# Start Claude Code
-claude
+curl https://cursor.com/install -fsS | bash
 ```
 
-**My recommendation:** Use IntelliJ IDEA for writing and debugging Java, and run Claude Code in IntelliJ's integrated terminal. This gives you the benefits of a full Java IDE and an AI coding agent in the same development environment.
+For additional security, you can download and inspect the script before executing it.
 
-Official documentation: [Claude Code Documentation](https://code.claude.com/docs/en/overview?utm_source=chatgpt.com)
+### Step 2: Configure PATH
 
+For Bash:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+### Step 3: Verify installation
+
+```bash
+agent --version
+```
+
+### Step 4: Start Cursor Agent
+
+```bash
+agent
+```
+
+The current official documentation uses the command **`agent`** for Cursor CLI. [Cursor](https://prod.cursor.com/docs/cli/installation?utm_source=chatgpt.com)
+
+### Step 5: Use Cursor Agent in your project
+
+```bash
+cd ~/JavaProjects/student-management
+agent
+```
+
+Then enter:
+
+> Analyze this Spring Boot project and explain its architecture.
+
+Or start with an instruction directly:
+
+```bash
+agent "Explain the structure of this Spring Boot project"
+```
+
+### Useful Cursor CLI commands
+
+| Command | Description |
+|---|---|
+| `agent` | Start interactive coding agent |
+| `agent --version` | Check installed version |
+| `agent --help` | Display available options |
+| `agent --mode=ask` | Explore code without modifying files |
+| `agent --mode=plan` | Plan a task before implementation |
+| `agent ls` | List previous sessions |
+| `agent resume` | Resume a previous session |
+| `agent update` | Update Cursor CLI |
+
+These commands are documented in the [Cursor CLI documentation](https://prod.cursor.com/docs/cli/overview?utm_source=chatgpt.com).
+
+---
+
+## 8. Cursor GUI vs Cursor CLI
+
+| Feature | Cursor GUI | Cursor CLI |
+|---|---|---|
+| Interface | Graphical editor | Terminal |
+| Code editor | Built in | Uses your existing editor |
+| AI coding agent | Yes | Yes |
+| Read and modify files | Yes | Yes |
+| Run terminal commands | Yes | Yes |
+| Java/Spring Boot | Yes | Yes |
+| Best for | Daily coding | Terminal-based workflows |
+| Similar to | VS Code with AI | Claude Code / Codex CLI |
+
+You can install both.
+
+For example:
+
+```bash
+# Open the graphical editor
+cursor .
+```
+
+Or:
+
+```bash
+# Start the terminal coding agent
+agent
+```
+
+---
+
+## 9. Recommended workflow for your Java projects
+
+For your Spring Boot student management system or physical DVD rental website, I recommend this workflow:
+
+**Step 1:** Open the project in Cursor.
+
+```bash
+cursor ~/JavaProjects/student-management
+```
+
+**Step 2:** Ask the AI agent to analyze the project before modifying anything.
+
+**Step 3:** Use Plan Mode to design a new feature.
+
+**Step 4:** Approve the implementation plan and let the agent generate code.
+
+**Step 5:** Review the modified files and run Maven tests.
+
+```bash
+mvn clean test
+```
+
+**Step 6:** Commit verified changes with Git.
+
+```bash
+git add .
+git commit -m "Implement student management feature"
+```
+
+Avoid committing generated files until you have reviewed them, and keep passwords and API keys out of Git.
+
+---
+
+## 10. Quick installation summary
+
+### Install Cursor graphical editor
+
+```bash
+sudo apt update
+sudo apt install curl gnupg
+
+sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://downloads.cursor.com/keys/anysphere.asc \
+  | gpg --dearmor \
+  | sudo tee /etc/apt/keyrings/cursor.gpg > /dev/null
+
+echo "deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main" \
+  | sudo tee /etc/apt/sources.list.d/cursor.list
+
+sudo apt update
+sudo apt install cursor
+
+cursor
+```
+
+### Install Cursor CLI
+
+```bash
+curl https://cursor.com/install -fsS | bash
+
+export PATH="$HOME/.local/bin:$PATH"
+
+agent --version
+
+agent
+```
+
+### Official resources
+
+- [Cursor official website](https://cursor.com?utm_source=chatgpt.com)
+- [Cursor download page](https://cursor.com/en-US/download?utm_source=chatgpt.com)
+- [Cursor getting-started guide](https://prod.cursor.com/docs/get-started/quickstart?utm_source=chatgpt.com)
+- [Cursor CLI installation guide](https://prod.cursor.com/docs/cli/installation?utm_source=chatgpt.com)
+
+**My recommendation:** For your Java backend learning, keep **IntelliJ IDEA** as your primary Java IDE and try **Cursor GUI** for AI-assisted feature development. If you prefer the terminal workflow of Claude Code and Codex, install **Cursor CLI** as well.
 
 --
 
