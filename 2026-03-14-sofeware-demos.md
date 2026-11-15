@@ -3,4 +3,25 @@
 - clock
 - music player
 - each program write in java, js, python
-- online film renting system
+
+- colleage
+  - student mgmt
+  - dvd rental website
+- first job
+  - construction contract mgmt
+  - accounting mgmt and bi analysis
+  - boat location mgmt
+- secodn job
+  - consumer phone spare parts mgmt
+  - consumer online service chat
+  - consumer online service hotline
+  - consumer online service ticket mgmt
+  - consumer online service bot
+
+- spare time projects
+  - jd mall
+  - meituan outsend order
+  - baidu search
+  - didi
+  - youku video
+  - wechat
