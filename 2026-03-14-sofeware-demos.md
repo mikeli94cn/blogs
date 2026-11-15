@@ -25,3 +25,4 @@
   - didi
   - youku video
   - wechat
+  - douyu online broadcast
