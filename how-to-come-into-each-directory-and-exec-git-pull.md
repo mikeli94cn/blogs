@@ -47,3 +47,29 @@
 
 ---
 
+```bash
+#!/usr/bin/env bash
+
+code_dir="$HOME/code"
+
+if [[ ! -d "$code_dir" || ! -r "$code_dir" || ! -x "$code_dir" ]]; then
+    printf 'Cannot access %s\n' "$code_dir" >&2
+    exit 1
+fi
+
+shopt -s dotglob nullglob
+status=0
+
+for dir in "$code_dir"/*/; do
+    [[ -e "${dir}.git" ]] || continue
+
+    printf '\nPulling %s\n' "${dir%/}"
+    if ! git -C "$dir" pull; then
+        printf 'Pull failed in %s\n' "${dir%/}" >&2
+        status=1
+    fi
+done
+
+exit "$status"
+
+```
