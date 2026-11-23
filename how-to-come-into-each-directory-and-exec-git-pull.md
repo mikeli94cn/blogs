@@ -1,5 +1,5 @@
   Here is a bash script that loops through every directory inside ~/code, checks if it's a Git repository, and runs git pull:
-
+```bash
     #!/usr/bin/env bash
 
     CODE_DIR="$HOME/code"
@@ -25,7 +25,7 @@
 
     echo "========================================"
     echo "Done!"
-
+```
   ### Key Details
 
   • git -C "$dir" pull: Runs git pull inside "$dir" without needing to cd back and forth (which avoids directory change
