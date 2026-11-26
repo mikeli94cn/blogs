@@ -130,3 +130,31 @@ If you tell me:
 • Whether you are using Cursor's subscription or paying per token via API
 • The type of coding you do most (such as front-end UI, large backend refactors, or quick scripting)
 I can recommend the best model setup for your workflow.
+
+
+---
+
+Open-weight models from DeepSeek (V4.1 Flash / V4 Pro), Zhipu AI (GLM-5.4 / GLM-5.3), and Mistral AI (Mistral Large 4) generally match or outperform Cursor's proprietary Composer 2.5 on deep coding, bug-hunting, and reasoning benchmarks, while Composer 2.5 remains tighter-integrated for fast interactive editor loops. Notably, Composer 2.5 itself was built on top of an open-weight foundation (Moonshot's Kimi K2.5 checkpoint) before Cursor added proprietary reinforcement learning on editor sessions. [1] (https://flaviocopes.com/ai-coding-landscape/)
+
+How Cursor's models stack up against leading open-weight models
+
+
+Model	Creator & Weights	API Pricing (per 1M tokens)	Key Strengths & Trade-Offs vs. Cursor
+Composer 2.5	Cursor (Proprietary, based on Kimi K2.5)	$0.50 input / $2.50 output (or included in Cursor pool)	Tuned specifically for ultra-fast interactive write-run-fix loops inside Cursor; trails frontier open-weight models on complex multi-file planning and deep reasoning.
+Grok 4.7	xAI / SpaceX (Proprietary, included in Cursor pool)	Included in Cursor's subscription pool	Cursor's strongest built-in model for sustained coding and knowledge work without third-party credit burn, though open-weight leaders beat it on several terminal/SWE benchmarks.
+DeepSeek V4.1 Flash & V4 Pro	DeepSeek (Open-weight, MIT license)	V4.1 Flash: $0.30 / $1.20
+V4 Pro: $1.32 / $3.96	V4.1 Flash outperforms Composer 2.5 on Terminal-Bench 2.1 (90.6% vs. ~69.3%), DeepSWE (77.0%), and AutomationBench (60.5%) at lower API token costs with a 1M context window. V4 Pro excels at factual recall and isolated code generation.
+GLM-5.4 & GLM-5.3	Zhipu AI / Z.ai (Open-weight; GLM-5.4 weights pending safety release)	Available via Z.ai Coding Plan / API	GLM-5.4 uses a Loop Transformer architecture with vision and 1M context; testers praise its deep code review, bug-hunting, and security auditing, though it runs slowly due to long reasoning loops.
+Mistral Large 4	Mistral AI (Open-weight, modified MIT license; 1T total / 52B active)	Public API & self-hosting	Strong native multimodality, tool calling, instruction following, and European data-sovereignty compliance; commenters on Reddit have mixed opinions, noting it trails top coding-agent rivals on autonomous multi-step coding.
+
+
+Key differences in practice
+
+• DeepSeek leads on price-to-performance. DeepSeek V4.1 Flash (MIT-licensed) costs less per token than Composer 2.5 ($0.30/$1.20 vs. $0.50/$2.50), offers a 5x larger context window (1M vs. 200K), and scores substantially higher on terminal and repository benchmarks. [1] (https://www.respan.ai/articles/deepseek-model-comparison), [2] (https://benchlm.ai/compare/composer-2-5-vs-deepseek-v4-flash-0731)
+• GLM-5.4 trades speed for deep bug and security analysis. Early developer tests of Zhipu AI's GLM-5.4 show it takes far longer to finish tasks than Composer 2.5 or Gemini 4 Neon, making it poorly suited for rapid tab-completion or quick edits, but very strong as a second-opinion code reviewer and vulnerability finder. [1] (https://venturebeat.com/technology/z-ais-glm-5-4-aims-to-match-models-up-to-four-times-its-size-by-running-28-layers-twice)
+• Mistral Large 4 focuses on compliance and general tool use. Mistral Large 4 is the strongest option if you need EU-hosted infrastructure or self-hosted open weights with native vision and solid tool calling, though its autonomous coding-agent scores lag behind DeepSeek V4.1 Flash and closed frontier models. [1] (https://mistral.ai/news/mistral-large-4/), [2] (https://www.aicentralresources.com/compare/mistral-ai-vs-cursor), [3] (https://www.reddit.com/r/MistralAI/comments/1xhh744/artificialanalysis_released_an_updated_scoring/)
+• Why developers still use Composer 2.5 inside Cursor. Even though open-weight models score higher on standalone benchmarks, Composer 2.5 is post-trained specifically on Cursor's multi-file diff format and terminal loop, giving it lower latency and smoother tool execution inside the Cursor IDE without requiring external API keys or custom harnesses.
+If you let me know:
+• Whether you want to self-host on your own GPUs or use a cloud API / editor subscription
+• Whether you care more about interactive editor speed, deep bug/security review, or data privacy
+I can help you pick the best model and coding harness setup.
