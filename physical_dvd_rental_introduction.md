@@ -831,7 +831,7 @@ You can use the same master prompt in all three tools, but I recommend keeping t
 For a large project, I would not ask the agent to implement everything in one uninterrupted run. Have it implement one milestone, run tests, commit the result, and then continue. This makes errors easier to find and reduces the risk of the AI changing previously working code.
 
 Here is a short follow-up prompt you can use after each milestone:
-
+```text
 Continue implementing the DVD Rental System according to `docs/PROJECT_SPEC.md`.
 
 First inspect the current repository and Git status. Identify which acceptance criteria are already implemented and verified.
@@ -843,7 +843,7 @@ Do not rewrite working modules unnecessarily. Add or update automated tests for 
 Run all relevant available tests and builds. Fix any failures introduced by your changes.
 
 At the end, summarize the files changed, functionality completed, verification results, and remaining work. Do not claim success for tests or commands that were not executed.
-
+```
 One final suggestion: use the AI agent as an implementation partner, not as the architectural authority. Have it explain why it chooses a particular transaction strategy, database relationship, or Spring Security configuration. Those decisions are especially valuable for your Java backend learning and future interviews.
 
 
